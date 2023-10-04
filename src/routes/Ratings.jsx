@@ -25,16 +25,22 @@ export function Ratings() {
 	};
 
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col gap-y-1">
 			{
 				ratings.map((rating, index) => (
-					<div className="flex flex-row">
+					<div
+						key={ rating.$id }
+						className="flex flex-row"
+					>
 						<div className="text-2xl flex-1">{ rating.label }</div>
 						<IconRating
-							key={ rating.$id }
-							className="flex flex-1"
+							className="flex flex-1 gap-1"
 							rating={ rating }
-							icon={ <BsStarFill size={ 36 } /> }
+							icon={
+								Math.random() > 0.5
+									? <BsStar size={ 36 } />
+									: <BsEmojiSmile size={ 36 } />
+							}
 							onHover={ (...args) => onHover(index, ...args) }
 							onSelect={ (...args) => onSelect(index, ...args) }
 						/>
