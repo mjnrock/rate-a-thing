@@ -4,7 +4,7 @@ import { IconRating } from "../modules/rat/components/IconRating";
 import Markdown from "react-markdown";
 import CodeMirror from "@uiw/react-codemirror";
 
-import { test as $$ratings } from "../modules/rat/data/reviews/test.schema";
+import $$ratings from "../modules/rat/data/reviews/test.schema";
 import Rating from "../modules/rat/lib/Rating";
 
 export function EditableMarkdown({ content, index, onUpdate }) {
