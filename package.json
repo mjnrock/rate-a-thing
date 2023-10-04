@@ -4,12 +4,12 @@
 	"private": true,
 	"dependencies": {
 		"@codemirror/lang-javascript": "^6.1.9",
+		"@uiw/react-codemirror": "^4.21.9",
 		"@headlessui/react": "^1.7.16",
 		"@lespantsfancy/chord": "0.2.5",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^13.0.0",
 		"@testing-library/user-event": "^13.2.1",
-		"@uiw/react-codemirror": "^4.21.9",
 		"chance": "^1.1.11",
 		"is-base64": "^1.1.0",
 		"react": "^18.2.0",

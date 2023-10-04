@@ -1,3 +1,5 @@
+import Chord from "@lespantsfancy/chord";
+
 export const EnumRatingType = {
 	DISCRETE_RANGE: "DISCRETE_RANGE",
 	CONTINUOUS_RANGE: "CONTINUOUS_RANGE",
@@ -11,10 +13,11 @@ export const Reducers = ({ } = {}) => ({
 	setOptions: (state, options) => ({ ...state, options }),
 });
 
-export const Rating = ({ type = EnumRatingType.DISCRETE_RANGE } = {}) => ({
-	type,
+export const Rating = ({ $type = EnumRatingType.DISCRETE_RANGE, ...rest } = {}) => Chord.Node.Identity.Next({
+	$type,
 	current: null,
 	options: [ 1, 2, 3, 4, 5 ],
+	...rest,
 });
 
 export default {
