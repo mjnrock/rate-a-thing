@@ -27,7 +27,7 @@ export function Ratings() {
 	return (
 		<div className="flex flex-col gap-y-1">
 			{
-				ratings.map((rating, index) => (
+				ratings.map((rating, i) => (
 					<div
 						key={ rating.$id }
 						className="flex flex-row"
@@ -37,12 +37,12 @@ export function Ratings() {
 							className="flex flex-1 gap-1"
 							rating={ rating }
 							icon={
-								Math.random() > 0.5
+								i % 2 === 0
 									? <BsStar size={ 36 } />
 									: <BsEmojiSmile size={ 36 } />
 							}
-							onHover={ (...args) => onHover(index, ...args) }
-							onSelect={ (...args) => onSelect(index, ...args) }
+							onHover={ (...args) => onHover(i, ...args) }
+							onSelect={ (...args) => onSelect(i, ...args) }
 						/>
 					</div>
 				))
