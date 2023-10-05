@@ -9,6 +9,8 @@ export const EnumTextType = {
 
 export const Reducers = ({ } = {}) => ({
 	merge: (state, next = {}) => ({ ...state, ...next }),
+	setSubtype: (state, subtype) => ({ ...state, subtype }),
+	setContent: (state, content) => ({ ...state, content }),
 });
 
 export const Markdown = ({ $subtype = EnumTextType.COMMENT, content = "", ...rest } = {}) => Chord.Node.Identity.Next({

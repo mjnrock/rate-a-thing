@@ -1,39 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { BsEmojiSmile, BsStar } from "react-icons/bs";
-import { IconRating } from "../modules/rat/components/IconRating";
-import { EditableMarkdown } from "../modules/rat/components/EditableMarkdown";
+import { IconRating } from "./IconRating";
+import { EditableMarkdown } from "./EditableMarkdown";
 
-import $$ratings from "../modules/rat/data/reviews/test.schema";
-import Rating from "../modules/rat/lib/Rating";
+import Rating from "../lib/Rating";
 
-//TODO: Confer FK Studio on flux paradigm, implement here
-//FIXME: Nothing persists, because there is no meaningful state management yet
-
-export function Ratings() {
-	const [ ratings, setRatings ] = useState($$ratings);
-
-	const onHover = (index, option) => console.log(option);
-	const onSelect = (index, option) => {
-		let nextRatings = [ ...ratings ];
-		nextRatings[ index ] = {
-			...nextRatings[ index ],
-			current: option,
-		};
-		setRatings(nextRatings);
-	};
-
-	const handleContentUpdate = (index, newContent) => {
-		let nextRatings = [ ...ratings ];
-		nextRatings[ index ] = {
-			...nextRatings[ index ],
-			content: newContent,
-		};
-		setRatings(nextRatings);
-	};
-
-	useEffect(() => {
-		// console.log(JSON.stringify(ratings, null, 2));
-	}, [ ratings ]);
+export function Review({ data, update }) {
+	const { ratings } = data;
 
 	const getJSX = (rating, i) => {
 		let jsx = null;
@@ -50,8 +23,13 @@ export function Ratings() {
 								? <BsStar size={ 36 } />
 								: <BsEmojiSmile size={ 36 } />
 						}
-						onHover={ (...args) => onHover(i, ...args) }
-						onSelect={ (...args) => onSelect(i, ...args) }
+						onSelect={ (option) => update({
+							type: "setRatingValue",
+							data: {
+								id: rating.$id,
+								value: option,
+							},
+						}) }
 					/>
 				</>
 			);
@@ -60,7 +38,13 @@ export function Ratings() {
 				<EditableMarkdown
 					content={ rating.content }
 					index={ i }
-					onUpdate={ handleContentUpdate }
+					onUpdate={ (i, value) => update({
+						type: "setRatingValue",
+						data: {
+							id: rating.$id,
+							value: value,
+						},
+					}) }
 				/>
 			);
 		} else if(rating.$type === Rating.EnumRatingType.GROUP) {
@@ -109,4 +93,4 @@ export function Ratings() {
 	);
 }
 
-export default Ratings;
+export default Review;

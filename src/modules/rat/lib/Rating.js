@@ -1,9 +1,40 @@
 import Chord from "@lespantsfancy/chord";
 
+import Group from "./Group";
+
 export const EnumRatingType = {
+	REVIEW: "REVIEW",
+	GROUP: "GROUP",
 	DISCRETE_RANGE: "DISCRETE_RANGE",
 	CONTINUOUS_RANGE: "CONTINUOUS_RANGE",
 	MARKDOWN: "MARKDOWN",
+};
+
+export const Helpers = {
+	transformToRatingGroup: (schema) => {
+		const transformed = [];
+	
+		schema.forEach(item => {
+			if (Array.isArray(item)) {
+				const transformedChildren = Helpers.transformToRatingGroup(item);
+				// console.log(Group.State({ children: transformedChildren }));
+				transformed.push({
+					$type: EnumRatingType.GROUP,
+					children: transformedChildren
+				});
+			} else if (item.hasOwnProperty("children") && Array.isArray(item.children)) {
+				const transformedChildren = Helpers.transformToRatingGroup(item.children);
+				transformed.push({
+					...item,
+					children: transformedChildren
+				});
+			} else {
+				transformed.push(item);
+			}
+		});
+	
+		return transformed;
+	},
 };
 
 export const Reducers = ({ } = {}) => ({
@@ -22,6 +53,7 @@ export const Rating = ({ $type = EnumRatingType.DISCRETE_RANGE, ...rest } = {}) 
 
 export default {
 	EnumRatingType,
-	Reducers,
+	Helpers,
+	Reducers: Reducers(),
 	State: Rating,
 };
