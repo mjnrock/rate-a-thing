@@ -1,15 +1,33 @@
 import Review from "./lib/Review";
 import Rating from "./lib/Rating";
 
-export const Reducers = () => ({
-	New: (next = {}) => {
-		const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
-		const n = Review.State({ ...next, ratings });
-
-		n.ratings = Review.Helpers.transformToRatings(n.ratings);
-
-		return n;
+export const Transformers = {
+	toJson: (state = {}) => {
+		return JSON.stringify(state);
 	},
+	fromJson: (json = []) => {
+		const state = typeof json === "object" ? json : JSON.parse(json);
+
+		state.reviews = state.reviews.map(review => {
+			return New(review);
+		});
+
+		return state;
+	},
+};
+
+export const New = (next = {}) => {
+	const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
+	const n = Review.State({ ...next, ratings });
+
+	n.ratings = Review.Helpers.transformToRatings(n.ratings);
+
+	return n;
+};
+
+export const Reducers = () => ({
+	/* Constructor-like functionality that also processes short-hand syntax */
+	New,
 	init: (state, next = {}) => {
 		const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
 		const n = Review.Reducers.merge(state, { ...next, ratings });
@@ -33,10 +51,12 @@ export const Reducers = () => ({
 });
 
 export const State = () => ({
-	...Review.State(),
+	reviews: [],
 });
 
 export default {
+	Transformers,
 	Reducers: Reducers(),
 	State,
+	New,
 };

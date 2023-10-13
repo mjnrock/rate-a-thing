@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Chord from "@lespantsfancy/chord";
 
 import ModReview from "../modules/review/main";
@@ -7,36 +6,16 @@ import { Review as ReviewJSX } from "../modules/review/components/Review";
 import { ReviewList } from "../modules/reviews/components/ReviewList";
 
 import $$ratings from "../modules/review/data/reviews/test.schema";
-
-console.log(
-	ModReview.Reducers.New({
-		ratings: $$ratings,
-	})
-);
-console.log(
-	ModReview.Reducers.init(ModReview.State(), {
-		ratings: $$ratings,
-	})
-);
+import $$reviews from "../data/reviews/reviews.json";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	reviews: {
 		state: {
-			reviews: [
-				ModReview.Reducers.New({
-					ratings: $$ratings,
-				}),
-				ModReview.Reducers.New({
-					ratings: $$ratings,
-				}),
-				ModReview.Reducers.New({
-					ratings: $$ratings,
-				}),
-			],
+			...ModReview.Transformers.fromJson($$reviews),
 		},
 	},
 	review: {
-		state: ModReview.Reducers.init(ModReview.State(), {
+		state: ModReview.New({
 			ratings: $$ratings,
 		}),
 		reducers: ModReview.Reducers,
@@ -54,8 +33,6 @@ const Nodes = Chord.Node.Node.CreateMany({
 export function RouteReview() {
 	const { state: review, dispatch: reviewDispatch } = Chord.Node.React.useNode(Nodes.review);
 	const { state: reviews, dispatch: reviewsDispatch } = Chord.Node.React.useNode(Nodes.reviews);
-
-	console.log(reviews)
 
 	return (
 		<>

@@ -1,0 +1,379 @@
+{
+  "reviews": [
+    {
+      "$type": "REVIEW",
+      "ratings": [
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "LABEL",
+              "content": "**Westview Winery**",
+              "$id": "44130698-255c-4a70-b66e-63311e95ae1e",
+              "$tags": {}
+            },
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "DESCRIPTION",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+              "$id": "5d096669-7142-40d5-86c2-0ac56dd9b547",
+              "$tags": {}
+            }
+          ],
+          "$id": "8f37047d-3f35-4d6b-b0ec-dcadaa1ecd3e",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Cider",
+              "$id": "1f7bcf7a-8163-4c15-af7c-54f9b329c01b",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Donuts",
+              "$id": "bbd51f57-88c1-4cc2-ade4-52bdcf89b5e8",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "0f945782-62ca-465a-a9ad-8091241d2ced",
+              "$tags": {}
+            }
+          ],
+          "$id": "8905a03f-f597-4555-ba30-34abdbb77e80",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "41c6b757-8df7-49f1-adcb-74aa1aafc74a",
+              "$tags": {}
+            }
+          ],
+          "$id": "8cbbc715-25e5-4e90-a1fd-423d24561e02",
+          "$tags": {}
+        },
+        {
+          "$type": "MARKDOWN",
+          "$subtype": "COMMENT",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+          "$id": "8bbb608d-b058-41a4-818c-d1ad51f9c8fb",
+          "$tags": {}
+        }
+      ],
+      "$id": "ed5a5699-26e8-48a7-a828-5fc42d7bb6d7",
+      "$tags": {}
+    },
+    {
+      "$type": "REVIEW",
+      "ratings": [
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "LABEL",
+              "content": "**Westview Winery**",
+              "$id": "d034377a-cfcb-4106-bdc8-c2d41d385536",
+              "$tags": {}
+            },
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "DESCRIPTION",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+              "$id": "416ef9e1-384e-40a6-b830-3944b9bde9c6",
+              "$tags": {}
+            }
+          ],
+          "$id": "adf603ed-05dd-40dd-b1d3-bb370b8fd831",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Cider",
+              "$id": "5a36d1bd-3a02-47be-962c-615252cc240e",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Donuts",
+              "$id": "32fb2ae5-af78-4790-803b-b7e87b55f90e",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "257b6db9-4ae9-42bf-93c4-4352746aa9d1",
+              "$tags": {}
+            }
+          ],
+          "$id": "5683ef79-a6d5-483d-a1ea-84367b83f36b",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "bbdcedbd-013a-439b-93bc-fcb64f468a4f",
+              "$tags": {}
+            }
+          ],
+          "$id": "e0d4bbb7-4d67-4185-b37d-6c73c29716ae",
+          "$tags": {}
+        },
+        {
+          "$type": "MARKDOWN",
+          "$subtype": "COMMENT",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+          "$id": "45249e2e-7c8a-406c-b628-12559a22d8f0",
+          "$tags": {}
+        }
+      ],
+      "$id": "7ef33615-3e00-43bb-b944-252268dcb74d",
+      "$tags": {}
+    },
+    {
+      "$type": "REVIEW",
+      "ratings": [
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "LABEL",
+              "content": "**Westview Winery**",
+              "$id": "44bd96b6-f729-424d-a0cc-3e6e77746fa0",
+              "$tags": {}
+            },
+            {
+              "$type": "MARKDOWN",
+              "$subtype": "DESCRIPTION",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+              "$id": "17f656f0-f49f-47fb-8b9a-fbd25b6be7c1",
+              "$tags": {}
+            }
+          ],
+          "$id": "3d871c1d-dc4d-4015-84c3-57ed82356939",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Cider",
+              "$id": "0f968f45-07d6-48f2-a1cc-b8df45f2c9c9",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Donuts",
+              "$id": "bcec9acc-1432-4f1e-b8a2-ab0056e4d915",
+              "$tags": {}
+            },
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "944261d1-8294-471d-b30f-84f81f2a8894",
+              "$tags": {}
+            }
+          ],
+          "$id": "d1c5db09-e482-402d-8ee2-53fc7edafcd4",
+          "$tags": {}
+        },
+        {
+          "$type": "GROUP",
+          "children": [
+            {
+              "$type": "DISCRETE_RANGE",
+              "current": 3,
+              "options": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "label": "Activities",
+              "$id": "9310ac56-94d1-4a86-a8e3-6f36926ef9af",
+              "$tags": {}
+            }
+          ],
+          "$id": "cfa18a5e-b32a-47b1-8cdc-98d9f6f8d527",
+          "$tags": {}
+        },
+        {
+          "$type": "MARKDOWN",
+          "$subtype": "COMMENT",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl. Nulla euismod, nisl eget ultricies ultricies, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.",
+          "$id": "2c50cca4-c999-4f1b-877b-b96354319448",
+          "$tags": {}
+        }
+      ],
+      "$id": "191a5cea-b462-44f0-98c6-116f50d7e831",
+      "$tags": {}
+    }
+  ]
+}
