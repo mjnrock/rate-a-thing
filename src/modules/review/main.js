@@ -7,7 +7,8 @@ export const Transformers = {
 	},
 	fromJson: (json = []) => {
 		const state = typeof json === "object" ? json : JSON.parse(json);
-
+		
+		const New = Reducers().New;
 		state.reviews = state.reviews.map(review => {
 			return New(review);
 		});
@@ -16,18 +17,16 @@ export const Transformers = {
 	},
 };
 
-export const New = (next = {}) => {
-	const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
-	const n = Review.State({ ...next, ratings });
-
-	n.ratings = Review.Helpers.transformToRatings(n.ratings);
-
-	return n;
-};
-
 export const Reducers = () => ({
 	/* Constructor-like functionality that also processes short-hand syntax */
-	New,
+	New: (next = {}) => {
+		const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
+		const n = Review.State({ ...next, ratings });
+
+		n.ratings = Review.Helpers.transformToRatings(n.ratings);
+
+		return n;
+	},
 	set: (state, next = {}) => {
 		return next;
 	},
@@ -63,5 +62,4 @@ export default {
 	Transformers,
 	Reducers: Reducers(),
 	State,
-	New,
 };

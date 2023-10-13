@@ -9,8 +9,25 @@ import { ReviewList } from "../modules/reviews/components/ReviewList";
 import $$ratings from "../modules/review/data/reviews/test.schema";
 import $$reviews from "../data/reviews/reviews.json";
 
+//FIXME: You mixed up `review > main.js` and `reviews > main.js`, so the reducers / pipeline are not correct
+//NOTE: While this point is valid, you should also cleanup the Flux paradigm and collapse the two modules into one, refactoring accordingly
+
 const Nodes = Chord.Node.Node.CreateMany({
     reviews: {
+		
+		// state: {
+		// 	reviews: [
+		// 		ModReview.Reducers.New({
+		// 			ratings: $$ratings,
+		// 		}),
+		// 		ModReview.Reducers.New({
+		// 			ratings: $$ratings,
+		// 		}),
+		// 		ModReview.Reducers.New({
+		// 			ratings: $$ratings,
+		// 		}),
+		// 	],
+		// },
         state: {
             ...ModReview.Transformers.fromJson($$reviews),
         },
@@ -39,7 +56,6 @@ export function RouteReview() {
         reader.addEventListener("load", (e) => {
 			const json = JSON.parse(e.target.result);
             const data = ModReview.Transformers.fromJson(json);
-			console.log(data)
 
             reviewsDispatch({
                 type: "set",

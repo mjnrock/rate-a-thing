@@ -51,6 +51,15 @@ export const Helpers = {
 };
 
 export const Reducers = ({ ...args } = {}) => ({
+	/* Constructor-like functionality that also processes short-hand syntax */
+	New: (next = {}) => {
+		const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
+		const n = Review.State({ ...next, ratings });
+
+		n.ratings = Review.Helpers.transformToRatings(n.ratings);
+
+		return n;
+	},
 	merge: (state, next = {}) => ({ ...state, ...next }),
 	setRatings: (state, ratings) => ({ ...state, ratings }),
 	setRatingValue: (state, { id, value } = {}) => {
