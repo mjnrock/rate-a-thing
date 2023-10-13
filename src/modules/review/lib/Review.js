@@ -50,9 +50,21 @@ export const Helpers = {
 	},
 };
 
-export const Reducers = ({ } = {}) => ({
+export const Reducers = ({ ...args } = {}) => ({
 	merge: (state, next = {}) => ({ ...state, ...next }),
 	setRatings: (state, ratings) => ({ ...state, ratings }),
+	setRatingValue: (state, { id, value } = {}) => {
+		let rating = Helpers.findRatingById(state.ratings, id);
+		if(rating) {
+			if(rating.$type === Rating.EnumRatingType.DISCRETE_RANGE) {
+				rating.current = value;
+			} else if(rating.$type === Rating.EnumRatingType.MARKDOWN) {
+				rating.content = value;
+			}
+		}
+
+		return Reducers(args).merge(state, { ratings: state.ratings });
+	},
 	addRating: (state, rating) => ({ ...state, ratings: [ ...state.ratings, rating ] }),
 	removeRating: (state, rating) => ({ ...state, ratings: state.ratings.filter(c => c !== rating) }),
 	swapRatings: (state, ratingA, ratingB) => {

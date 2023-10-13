@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { BsEmojiSmile, BsStar } from "react-icons/bs";
-import { IconRating } from "../modules/rat/components/IconRating";
-import { EditableMarkdown } from "../modules/rat/components/EditableMarkdown";
+import { IconRating } from "../modules/review/components/IconRating";
+import { EditableMarkdown } from "../modules/review/components/EditableMarkdown";
 
-import $$ratings from "../modules/rat/data/reviews/test.schema";
-import Rating from "../modules/rat/lib/Rating";
+import $$ratings from "../modules/review/data/reviews/test.schema";
+import Rating from "../modules/review/lib/Rating";
 
 //TODO: Confer FK Studio on flux paradigm, implement here
 //FIXME: Nothing persists, because there is no meaningful state management yet
