@@ -28,11 +28,16 @@ export const New = (next = {}) => {
 export const Reducers = () => ({
 	/* Constructor-like functionality that also processes short-hand syntax */
 	New,
+	set: (state, next = {}) => {
+		return next;
+	},
 	init: (state, next = {}) => {
 		const ratings = Rating.Helpers.transformToRatingGroup(next.ratings);
 		const n = Review.Reducers.merge(state, { ...next, ratings });
 
 		n.ratings = Review.Helpers.transformToRatings(n.ratings);
+
+		console.log(n)
 
 		return n;
 	},
