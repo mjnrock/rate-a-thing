@@ -4,7 +4,7 @@ import Chord from "@lespantsfancy/chord";
 import ModReview from "../modules/review/main";
 import { Review as ReviewJSX } from "../modules/review/components/Review";
 
-import { ReviewList } from "../modules/reviews/components/ReviewList";
+import { ReviewList } from "../modules/review/components/ReviewList";
 
 import $$ratings from "../modules/review/data/reviews/test.schema";
 import $$reviews from "../data/reviews/reviews.json";
