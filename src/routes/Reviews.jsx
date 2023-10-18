@@ -2,6 +2,12 @@ import Chord from "@lespantsfancy/chord";
 
 import ModReviews from "../modules/reviews/main";
 
+import Heading from "../modules/reviews/elements/markdown/Heading";
+import Element from "../modules/reviews/lib/Element";
+
+console.log(Heading.State())
+console.log(Element.State())
+
 const Nodes = Chord.Node.Node.CreateMany({
     reviews: {
         state: {
