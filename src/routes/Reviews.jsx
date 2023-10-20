@@ -45,7 +45,15 @@ const Nodes = Chord.Node.Node.CreateMany({
 export function RouteReviews() {
 	const { state: reviewsState, dispatch: reviewsDispatch } = Chord.Node.React.useNode(Nodes.reviews);
 
-	console.log(reviewsState)
+	const onUpdate = (id, value) => {
+		reviewsDispatch({
+			type: "updateElementValue",
+			data: {
+				id,
+				value,
+			},
+		});
+	};
 
 	return (
 		<>
@@ -56,7 +64,7 @@ export function RouteReviews() {
 							key={ i }
 							map={ JSXMap }
 							element={ review }
-							onUpdate={ console.log }
+							onUpdate={ onUpdate }
 						/>
 					);
 				})
