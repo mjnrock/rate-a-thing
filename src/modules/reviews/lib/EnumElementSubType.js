@@ -1,16 +1,14 @@
-import { EnumElementType } from "./EnumElementType";
-
 export const EnumElementSubType = {
-	[ EnumElementType.Markdown ]: {
+	Markdown: {
 		Heading: "heading",
-		Context: "content",
+		Content: "content",
 	},
-	[ EnumElementType.Range ]: {
+	Range: {
 		Discrete: "discrete",
 		Continuous: "continuous",
 		Binary: "binary",
 	},
-	[ EnumElementType.Media ]: {
+	Media: {
 		Image: "image",
 		Video: "video",
 		Audio: "audio",
@@ -18,12 +16,12 @@ export const EnumElementSubType = {
 		Link: "link",
 		Geo: "geo",
 	},
-	[ EnumElementType.DateTime ]: {
+	DateTime: {
 		Date: "date",
 		Time: "time",
 		DateTime: "datetime",
 	},
-	[ EnumElementType.Group ]: {
+	Group: {
 		Generic: "generic",
 		Review: "review",
 		Section: "section",
@@ -32,14 +30,6 @@ export const EnumElementSubType = {
 	},
 };
 
-export const ByKeys = (type, subtype) => {
-	let tg = EnumElementType?.[ type ],
-		sg = EnumElementSubType?.[ tg ]?.[ subtype ];
-
-	return sg;
-};
-
 export default {
 	...EnumElementSubType,
-	$ByKeys: ByKeys,
 };

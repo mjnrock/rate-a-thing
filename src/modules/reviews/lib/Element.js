@@ -1,10 +1,11 @@
 import { v4 as uuid } from "uuid";
 
-export const State = ({ type, subtype, tags = [] } = {}) => ({
+export const State = (value, { type, subtype, tags = [] } = {}) => ({
 	$id: uuid(),
 	$type: type,
 	$subtype: subtype,
 	$tags: tags,
+	value,
 });
 
 export const Reducers = () => ({
@@ -40,4 +41,4 @@ export const Reducers = () => ({
 export default {
 	State,
 	Reducers: Reducers(),
-}
+};

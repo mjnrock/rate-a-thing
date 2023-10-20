@@ -4,8 +4,9 @@ export const Reducers = () => ({
 	},
 });
 
-export const State = ({ reviews = [] } = {}) => ({
+export const State = ({ reviews = [], ...rest } = {}) => ({
 	reviews,
+	...rest,
 });
 
 export default {

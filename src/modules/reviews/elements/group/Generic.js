@@ -2,10 +2,10 @@ import EnumElementType from "../../lib/EnumElementType";
 import EnumElementSubType from "../../lib/EnumElementSubType";
 import Element from "../../lib/Element";
 
-export const State = (value, { ...rest } = {}) => ({
-	...Element.State(value, {
-		type: EnumElementType.Markdown,
-		subtype: EnumElementSubType.Markdown.Heading,
+export const State = (members, { ...rest } = {}) => ({
+	...Element.State(members, {
+		type: EnumElementType.Group,
+		subtype: EnumElementSubType.Group.Generic,
 		...rest,
 	}),
 });

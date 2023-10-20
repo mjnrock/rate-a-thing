@@ -5,7 +5,7 @@ import Element from "../../lib/Element";
 export const State = (value, { ...rest } = {}) => ({
 	...Element.State(value, {
 		type: EnumElementType.Markdown,
-		subtype: EnumElementSubType.Markdown.Heading,
+		subtype: EnumElementSubType.Markdown.Content,
 		...rest,
 	}),
 });
