@@ -14,6 +14,8 @@ import HeadingJSX from "../modules/reviews/components/elements/markdown/Heading"
 import ContentJSX from "../modules/reviews/components/elements/markdown/Content";
 import EnumElementType from "../modules/reviews/lib/EnumElementType";
 
+import Serialize from "../modules/reviews/lib/Serialize";
+
 const JSXMap = {
 	[ EnumElementType.Group ]: {
 		[ EnumElementSubType.Group.Review ]: ReviewJSX,
@@ -35,34 +37,6 @@ const FluxMap = {
 	},
 };
 
-const deserialize = (json) => {
-	if(Array.isArray(json)) {
-		return json.map(x => deserialize(x));
-	}
-
-	const obj = typeof json === "object" ? json : JSON.parse(json);
-	const { $type, $subtype, ...rest } = obj;
-	let { value } = obj;
-
-	if($type === EnumElementType.Group) {
-		value = value.map(x => deserialize(x));
-	}
-
-	const Namespace = FluxMap[ $type ][ $subtype ];
-	return Namespace.State(value, {
-		type: $type,
-		subtype: $subtype,
-		...rest,
-	});
-};
-const serialize = (element) => {
-	if(Array.isArray(element)) {
-		return element.map(x => serialize(x));
-	}
-
-	return JSON.stringify(element);
-};
-
 
 const reviews = [
 	Review.State([
@@ -80,9 +54,9 @@ const reviews = [
 ];
 
 console.log(reviews)
-const json = serialize(reviews);
+const json = Serialize.serialize(reviews);
 console.log(json);
-console.log(deserialize(json));
+console.log(Serialize.deserialize(json, FluxMap));
 
 const Nodes = Chord.Node.Node.CreateMany({
 	reviews: {
@@ -90,7 +64,6 @@ const Nodes = Chord.Node.Node.CreateMany({
 		reducers: ModReviews.Reducers,
 	},
 });
-
 
 export function RouteReviews() {
 	const { state: reviewsState, dispatch: reviewsDispatch } = Chord.Node.React.useNode(Nodes.reviews);
