@@ -1,11 +1,12 @@
 import { v4 as uuid } from "uuid";
 
-export const State = (value, { type, subtype, tags = [] } = {}) => ({
-	$id: uuid(),
+export const State = (value, { type, subtype, tags = [], $id, ...rest } = {}) => ({
+	$id: $id ?? uuid(),		// Extracted here in case you don't want the instance to reuse an existing ID, for example
 	$type: type,
 	$subtype: subtype,
 	$tags: tags,
 	value,
+	...rest,
 });
 
 export const Reducers = () => ({

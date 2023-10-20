@@ -24,6 +24,45 @@ const JSXMap = {
 		[ EnumElementSubType.Markdown.Content ]: ContentJSX,
 	},
 };
+const FluxMap = {
+	[ EnumElementType.Group ]: {
+		[ EnumElementSubType.Group.Review ]: Review,
+		[ EnumElementSubType.Group.Section ]: Section,
+	},
+	[ EnumElementType.Markdown ]: {
+		[ EnumElementSubType.Markdown.Heading ]: Heading,
+		[ EnumElementSubType.Markdown.Content ]: Content,
+	},
+};
+
+const deserialize = (json) => {
+	if(Array.isArray(json)) {
+		return json.map(x => deserialize(x));
+	}
+
+	const obj = typeof json === "object" ? json : JSON.parse(json);
+	const { $type, $subtype, ...rest } = obj;
+	let { value } = obj;
+
+	if($type === EnumElementType.Group) {
+		value = value.map(x => deserialize(x));
+	}
+
+	const Namespace = FluxMap[ $type ][ $subtype ];
+	return Namespace.State(value, {
+		type: $type,
+		subtype: $subtype,
+		...rest,
+	});
+};
+const serialize = (element) => {
+	if(Array.isArray(element)) {
+		return element.map(x => serialize(x));
+	}
+
+	return JSON.stringify(element);
+};
+
 
 const reviews = [
 	Review.State([
@@ -32,7 +71,18 @@ const reviews = [
 			Content.State("This _is_ some **Content**"),
 		]),
 	]),
+	Review.State([
+		Section.State([
+			Heading.State("Heading 2"),
+			Content.State("This _is_ also **Content**"),
+		]),
+	]),
 ];
+
+console.log(reviews)
+const json = serialize(reviews);
+console.log(json);
+console.log(deserialize(json));
 
 const Nodes = Chord.Node.Node.CreateMany({
 	reviews: {
