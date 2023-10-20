@@ -21,6 +21,8 @@ export const Helpers = {
 };
 
 export const Reducers = () => ({
+	set: (state, next) => next,
+	merge: (state, next) => ({ ...state, ...next }),
 	updateElementValue: (state, { id, value } = {}) => {
 		for(const review of state.reviews) {
 			const element = Helpers.findElementById(review, id);
