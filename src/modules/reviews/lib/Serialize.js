@@ -46,3 +46,37 @@ export default {
 	serialize,
 	toJson,
 };
+
+
+
+// const FluxMap = {
+// 	[ EnumElementType.Group ]: {
+// 		[ EnumElementSubType.Group.Review ]: Review,
+// 		[ EnumElementSubType.Group.Section ]: Section,
+// 	},
+// 	[ EnumElementType.Markdown ]: {
+// 		[ EnumElementSubType.Markdown.Heading ]: Heading,
+// 		[ EnumElementSubType.Markdown.Content ]: Content,
+// 	},
+// };
+
+
+// const reviews = [
+// 	Review.State([
+// 		Section.State([
+// 			Heading.State("Heading 1"),
+// 			Content.State("This _is_ some **Content**"),
+// 		]),
+// 	]),
+// 	Review.State([
+// 		Section.State([
+// 			Heading.State("Heading 2"),
+// 			Content.State("This _is_ also **Content**"),
+// 		]),
+// 	]),
+// ];
+
+// console.log(reviews)
+// const json = Serialize.serialize(reviews);
+// console.log(json);
+// console.log(Serialize.deserialize(json, FluxMap));
