@@ -55,7 +55,7 @@ GO
 
 
 -- Create a change trigger that increments Version by 1 any time the Schema is updated
-CREATE TRIGGER Core.Template_UpdateVersion
+CREATE TRIGGER Core.Template_UpdateSync
 ON Core.Template
 AFTER UPDATE
 AS
@@ -72,3 +72,23 @@ BEGIN
                 ON i.TemplateID = t.TemplateID
     END
 END
+GO
+
+-- Create a similar trigger for Core.Instance, but without the versioning
+CREATE TRIGGER Core.Instance_UpdateSync
+ON Core.Instance
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE([Data])
+    BEGIN
+        UPDATE t
+        SET
+            t.ModifiedDateTimeUTC = SYSUTCDATETIME()
+        FROM
+            Core.Instance t
+            INNER JOIN inserted i
+                ON i.InstanceID = t.InstanceID
+    END
+END
+GO
