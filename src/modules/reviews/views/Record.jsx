@@ -68,6 +68,11 @@ export function Record({ data, update }) {
 		reader.readAsText(file);
 	};
 
+	const records = [];
+	for(const id in reviewsState.records) {
+		records.push(reviewsState.records[ id ]);
+	}
+
 	return (
 		<>
 			<div className="flex flex-row gap-2 m-2 ">
@@ -91,18 +96,6 @@ export function Record({ data, update }) {
 				onChange={ loadFromFile }
 				style={ { display: 'none' } }
 			/>
-			{
-				reviewsState.reviews.map((review, i) => {
-					return (
-						<ReviewJSX
-							key={ i }
-							map={ JSXMap }
-							element={ review }
-							onUpdate={ onUpdate }
-						/>
-					);
-				})
-			}
 		</>
 	);
 };

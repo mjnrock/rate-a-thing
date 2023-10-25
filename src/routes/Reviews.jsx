@@ -18,7 +18,8 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 };
 
-const reviews = [
+//STUB: This is just a temporary way to create some records
+const records = Object.fromEntries([
 	Review.State([
 		Section.State([
 			Heading.State("Heading 1"),
@@ -35,11 +36,11 @@ const reviews = [
 	], {
 		name: "Review 2",
 	}),
-];
+].map((record) => [ record.$id, record ]));
 
 const Nodes = Chord.Node.Node.CreateMany({
 	reviews: {
-		state: ModReviews.State({ reviews }),
+		state: ModReviews.State({ records }),
 		reducers: ModReviews.Reducers,
 	},
 });
@@ -67,25 +68,6 @@ export function Reviews() {
 						</Tab>
 					)) }
 				</Tab.List>
-
-				<div className="mt-2">
-					{ reviewsState.reviews.map((review, i) => review.$id).join(" | ") }
-					<div
-						className="border border-solid border-neutral-200 hover:bg-neutral-100 hover:text-neutral-900 hover:border-neutral-900"
-						onClick={ () => {
-							reviewsDispatch({
-								type: "set",
-								data: {
-									reviews,
-								},
-							});
-
-							console.log(reviews)
-						} }
-					>
-						Load
-					</div>
-				</div>
 
 				<Tab.Panels className="w-full px-2 mt-4 bg-white rounded-md shadow-sm">
 					<Tab.Panel className="p-4">
