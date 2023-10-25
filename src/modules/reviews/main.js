@@ -1,5 +1,5 @@
+import { v4 as uuid } from "uuid";
 import { deepClone } from "../../util/deepClone.js";
-import Review from "./elements/group/Review.js";
 import { EnumElementType } from "./lib/EnumElementType";
 
 export const Helpers = {
@@ -62,8 +62,27 @@ export const Utility = {
 		removeId(clone);
 
 		return clone;
+	},
+	instantiate: (template) => {
+		const clone = deepClone(template);
+
+		// create a recursive function that add the $id property to each element
+		const addId = element => {
+			element.$id = element.$id || uuid();
+
+			if(element.$type === EnumElementType.Group) {
+				for(const child of element.value) {
+					addId(child);
+				}
+			}
+		};
+
+		// add the $id property to the root element
+		addId(clone);
+
+		return clone;
 	}
-}
+};
 
 export const State = ({ records = {}, ...rest } = {}) => {
 	/* Arbitrarily select the first record as the active one */
