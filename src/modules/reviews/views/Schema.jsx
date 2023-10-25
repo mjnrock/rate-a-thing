@@ -26,6 +26,7 @@ export function Schema({ data, update }) {
 	console.log(reviewsState);
 	console.log(active);
 
+	//TODO: Formalize the concept of Aliases (e.g. Text: [ "markdown", "content" ], Rating: [ "range", "discrete" ]), etc.)
 	//FIXME: Sort out the props
 
 	return (
