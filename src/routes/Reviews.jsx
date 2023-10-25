@@ -52,7 +52,7 @@ export function Reviews() {
 		<div className="flex flex-col items-center justify-start w-full h-full m-2 bg-gray-50">
 			<Tab.Group>
 				<Tab.List className="flex p-2 space-x-2 bg-gray-200 border-b rounded-xl">
-					{ [ "Build", "Use", "Find" ].map((category) => (
+					{ [ "Pattern", "Record", "Search" ].map((category) => (
 						<Tab
 							key={ category }
 							className={ ({ selected }) =>

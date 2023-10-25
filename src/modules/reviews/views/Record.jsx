@@ -1,12 +1,12 @@
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
 
-import EnumElementSubType from "../lib/EnumElementSubType";
-import ReviewJSX from "../components/elements/group/Review";
-import SectionJSX from "../components/elements/group/Section";
-import HeadingJSX from "../components/elements/markdown/Heading";
-import ContentJSX from "../components/elements/markdown/Content";
 import EnumElementType from "../lib/EnumElementType";
+import EnumElementSubType from "../lib/EnumElementSubType";
+import ReviewJSX from "../components/editor/elements/group/Review";
+import SectionJSX from "../components/editor/elements/group/Section";
+import HeadingJSX from "../components/editor/elements/markdown/Heading";
+import ContentJSX from "../components/editor/elements/markdown/Content";
 
 export const JSXMap = {
 	[ EnumElementType.Group ]: {
