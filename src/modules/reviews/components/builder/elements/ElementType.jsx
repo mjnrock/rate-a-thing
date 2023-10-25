@@ -5,18 +5,24 @@ const classNames = (...classes) => {
 	return classes.filter(Boolean).join(" ");
 };
 
-export function ElementType({ type, onSelect }) {
-	let initialType = Object.keys(EnumElementType).find((key) => EnumElementType[ key ] === type);
+export function ElementType({ type, onSelect, exclude = [] }) {
+	const modEnumElementType = Object.keys(EnumElementType).reduce((acc, key) => {
+		if(!exclude.includes(EnumElementType[ key ])) {
+			acc[ key ] = EnumElementType[ key ];
+		}
+		return acc;
+	}, {});
+	let initialType = Object.keys(modEnumElementType).find((key) => modEnumElementType[ key ] === type);
 	const [ selectedType, setSelectedType ] = useState(initialType || "");
 
 	const handleButtonClick = (key) => {
 		setSelectedType(key);
-		onSelect(EnumElementType[ key ]);
+		onSelect(modEnumElementType[ key ]);
 	};
 
 	return (
 		<div className="flex flex-row items-center justify-start w-full p-2 bg-gray-200 border-b rounded-md gap-x-1">
-			{ Object.keys(EnumElementType).map((key) => (
+			{ Object.keys(modEnumElementType).map((key) => (
 				<button
 					key={ key }
 					className={ classNames(

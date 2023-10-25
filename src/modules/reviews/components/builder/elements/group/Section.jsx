@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { Element } from "../Element";
 import ElementType from "../ElementType";
 import ElementSubType from "../ElementSubType";
+import EnumElementType from "../../../../lib/EnumElementType";
 
 export function Section({ map, element, onUpdate, dispatch, ...rest }) {
 	const children = element.value;
 
 	//TODO: When you click a Type and SubType, invoke a dispatch to add that type of Element
-	const [ type, setType ] = useState("group");
+	const [ type, setType ] = useState("markdown");
 
 	return (
 		<div
@@ -36,6 +37,7 @@ export function Section({ map, element, onUpdate, dispatch, ...rest }) {
 				<ElementType
 					type={ type }
 					onSelect={ t => setType(t) }
+					exclude={ [ EnumElementType.Group ] }
 				/>
 				<ElementSubType
 					type={ type }
