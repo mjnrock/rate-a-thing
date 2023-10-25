@@ -9,7 +9,7 @@ export const Element = ({ map, element, onUpdate, ...rest }) => {
 
 	return (
 		<div
-		className="flex flex-col w-full gap-2 p-4 rounded shadow bg-neutral-100"
+		className="flex flex-col w-full gap-2 p-4 bg-white rounded shadow"
 			// className="flex flex-col w-full gap-2 rounded"
 			// className="flex flex-col w-full gap-2 p-4 bg-white border rounded shadow border-neutral-300"
 			{ ...rest }

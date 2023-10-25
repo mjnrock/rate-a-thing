@@ -1,12 +1,14 @@
+import React, { useState } from "react";
+
 import { Element } from "../Element";
 import ElementType from "../ElementType";
 import ElementSubType from "../ElementSubType";
-import EnumElementType from "../../../../lib/EnumElementType";
 
 export function Section({ map, element, onUpdate, dispatch, ...rest }) {
 	const children = element.value;
 
 	//TODO: When you click a Type and SubType, invoke a dispatch to add that type of Element
+	const [ type, setType ] = useState("group");
 
 	return (
 		<div
@@ -27,18 +29,18 @@ export function Section({ map, element, onUpdate, dispatch, ...rest }) {
 
 			<div className="flex flex-col items-center justify-end w-full gap-2">
 				<div
-					className="flex flex-row items-center justify-center w-full p-2 text-xs font-bold text-center text-gray-500 uppercase border-b rounded select-none border-b-neutral-200"
+					className="flex flex-row items-center justify-center w-full p-2 text-xs font-bold text-center text-gray-500 uppercase bg-white border-b rounded select-none border-b-neutral-200"
 				>
 					Add Element
 				</div>
 				<ElementType
-					type={ null }
-					onSelect={ type => console.log(type) }
+					type={ type }
+					onSelect={ t => setType(t) }
 				/>
 				<ElementSubType
-					type={ EnumElementType.Group }
+					type={ type }
 					subtype={ null }
-					onSelect={ type => console.log(type) }
+					onSelect={ t => console.log(t) }
 				/>
 			</div>
 		</div>
