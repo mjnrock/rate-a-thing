@@ -39,6 +39,11 @@ export const Reducers = () => ({
 });
 
 export const State = ({ reviews = [], ...rest } = {}) => ({
+	schema: {},			// The current review schema filter (i.e. find records with this schema)
+	records: [],		// Cached records for the current schema
+	active: {},			// The active review(s) for editing
+
+
 	reviews,
 	...rest,
 });
