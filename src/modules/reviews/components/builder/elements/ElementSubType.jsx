@@ -18,7 +18,7 @@ export function ElementSubType({ type, subtype, onSelect }) {
 	};
 
 	return (
-		<div className="flex flex-row items-center justify-start p-2 bg-gray-200 border-b gap-x-1 rounded-xl">
+		<div className="flex flex-row items-center justify-start w-full p-2 bg-gray-200 border-b rounded-md gap-x-1">
 			{ Object.keys(subTypes).map((key) => (
 				<button
 					key={ key }

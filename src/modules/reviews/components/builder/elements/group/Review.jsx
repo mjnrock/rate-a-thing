@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export function Review({ map, element, onUpdate, ...rest }) {
+export function Review({ map, element, onUpdate, dispatch, ...rest }) {
 	const children = element.value;
 
 	return (
@@ -11,7 +11,7 @@ export function Review({ map, element, onUpdate, ...rest }) {
 				className="flex flex-col w-full gap-2 p-4 bg-white border rounded shadow-lg border-neutral-100"
 			>
 				{ children.map((child, i) => {
-					return map[ child.$type ][ child.$subtype ]({ key: i, element: child, map, onUpdate });
+					return map[ child.$type ][ child.$subtype ]({ key: i, element: child, map, onUpdate, dispatch });
 				}) }
 			</div>
 		</Fragment>

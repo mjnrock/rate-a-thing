@@ -26,9 +26,12 @@ export function Schema({ data, update }) {
 	console.log(reviewsState);
 	console.log(active);
 
+	//FIXME: Sort out the props
+
 	return (
 		<div>
 			<ReviewJSX
+				dispatch={ reviewsDispatch }
 				element={ schema }
 				map={ JSXMap }
 				onUpdate={ console.log }
