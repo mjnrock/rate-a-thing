@@ -24,13 +24,17 @@ const reviews = [
 			Heading.State("Heading 1"),
 			Content.State("This _is_ some **Content**"),
 		]),
-	]),
+	], {
+		name: "Review 1",
+	}),
 	Review.State([
 		Section.State([
 			Heading.State("Heading 2"),
 			Content.State("This _is_ also **Content**"),
 		]),
-	]),
+	], {
+		name: "Review 2",
+	}),
 ];
 
 const Nodes = Chord.Node.Node.CreateMany({
@@ -47,7 +51,7 @@ export function Reviews() {
 		<div className="flex flex-col items-center justify-start w-full h-full m-2 bg-gray-50">
 			<Tab.Group>
 				<Tab.List className="flex p-2 space-x-2 bg-gray-200 border-b rounded-xl">
-					{ [ "Schema", "Record", "Query" ].map((category) => (
+					{ [ "Build", "Use", "Find" ].map((category) => (
 						<Tab
 							key={ category }
 							className={ ({ selected }) =>
@@ -63,6 +67,26 @@ export function Reviews() {
 						</Tab>
 					)) }
 				</Tab.List>
+
+				<div className="mt-2">
+					{ reviewsState.reviews.map((review, i) => review.$id).join(" | ") }
+					<div
+						className="border border-solid border-neutral-200 hover:bg-neutral-100 hover:text-neutral-900 hover:border-neutral-900"
+						onClick={ () => {
+							reviewsDispatch({
+								type: "set",
+								data: {
+									reviews,
+								},
+							});
+
+							console.log(reviews)
+						} }
+					>
+						Load
+					</div>
+				</div>
+
 				<Tab.Panels className="w-full px-2 mt-4 bg-white rounded-md shadow-sm">
 					<Tab.Panel className="p-4">
 						<SchemaView
