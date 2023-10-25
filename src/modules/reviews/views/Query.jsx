@@ -16,10 +16,33 @@ export const JSXMap = {
 	},
 };
 
-export function Query() {
+export function Query({ data, update }) {
+	const { reviewsState } = data;
+	const { reviewsDispatch } = update;
+
+	const records = Object.values(reviewsState.records);
+	const active = reviewsState.records[ reviewsState.active[ 0 ] ];
+
+	console.log(reviewsState);
+	console.log(active);
+
 	return (
 		<div>
-			Query
+			<input
+				type="text"
+				className="w-full px-3 py-2 mt-1 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+				placeholder="Search"
+			/>
+			{
+				records.map((record) => (
+					<ReviewJSX
+						key={ record.$id }
+						element={ record }
+						map={ JSXMap }
+						onUpdate={ console.log }
+					/>
+				))
+			}
 		</div>
 	);
 };

@@ -1,5 +1,3 @@
-import { Review } from "../components/builder/elements/group/Review";
-
 import EnumElementType from "../lib/EnumElementType";
 import EnumElementSubType from "../lib/EnumElementSubType";
 import ReviewJSX from "../components/builder/elements/group/Review";
@@ -29,7 +27,7 @@ export function Schema({ data, update }) {
 
 	return (
 		<div>
-			<Review
+			<ReviewJSX
 				element={ active }
 				map={ JSXMap }
 				onUpdate={ console.log }
