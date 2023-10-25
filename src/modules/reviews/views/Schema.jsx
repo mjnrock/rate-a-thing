@@ -21,6 +21,7 @@ export function Schema({ data, update }) {
 	const { reviewsDispatch } = update;
 
 	const active = reviewsState.records[ reviewsState.active[ 0 ] ];
+	const schema = reviewsState.schema;
 	
 	console.log(reviewsState);
 	console.log(active);
@@ -28,7 +29,7 @@ export function Schema({ data, update }) {
 	return (
 		<div>
 			<ReviewJSX
-				element={ active }
+				element={ schema }
 				map={ JSXMap }
 				onUpdate={ console.log }
 			/>

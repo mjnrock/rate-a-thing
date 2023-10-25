@@ -6,16 +6,14 @@ export function Review({ map, element, onUpdate, ...rest }) {
 	return (
 		<Fragment { ...rest }>
 			<div className="mt-4 text-xl">{ element?.name }</div>
-			{ children.map((child, i) => {
-				return (
-					<div
-						key={ child.$id }
-						className="flex flex-col w-full gap-2 p-4 bg-white border border-gray-100 rounded shadow"
-					>
-						{ map[ child.$type ][ child.$subtype ]({ key: child.$id, element: child, map, onUpdate }) }
-					</div>
-				);
-			}) }
+			<div
+				// className="flex flex-col w-full gap-2 p-4 bg-white border-l-2 rounded border-l-violet-300"
+				className="flex flex-col w-full gap-2 p-4 bg-white border rounded shadow-lg border-neutral-100"
+			>
+				{ children.map((child, i) => {
+					return map[ child.$type ][ child.$subtype ]({ key: i, element: child, map, onUpdate });
+				}) }
+			</div>
 		</Fragment>
 	);
 };
