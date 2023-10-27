@@ -1,5 +1,6 @@
 import Chord from "@lespantsfancy/chord";
 
+import HorizontalSelect from "../components/HorizontalSelect";
 import ModReviews, { Utility } from "../modules/reviews/main";
 
 import Review from "../modules/reviews/elements/group/Review";
@@ -17,7 +18,7 @@ import { Query as QueryView } from "../modules/reviews/views/Query";
 
 //STUB - Use a random template for now
 import TestReview from "../data/reviews/5e40531f-3598-4a04-b726-6067fdf3475f.json";
-const schema = Utility.createTemplate(TestReview.reviews[0]);
+const schema = Utility.createTemplate(TestReview.reviews[ 0 ]);
 
 
 function classNames(...classes) {
@@ -58,7 +59,8 @@ export function Reviews() {
 		<div className="flex flex-col items-center justify-start w-full h-full m-2 bg-gray-50">
 			<Tab.Group>
 				<Tab.List className="flex p-2 space-x-2 bg-gray-200 border-b rounded-xl">
-					{ [ "Pattern", "Record", "Search" ].map((category) => (
+					{/* { [ "Pattern", "Record", "Search" ].map((category) => ( */}
+					{ [ "Record", "Search" ].map((category) => (
 						<Tab
 							key={ category }
 							className={ ({ selected }) =>
@@ -76,12 +78,12 @@ export function Reviews() {
 				</Tab.List>
 
 				<Tab.Panels className="w-full px-2 mt-4 bg-white rounded-md shadow-sm">
-					<Tab.Panel className="p-4">
+					{/* <Tab.Panel className="p-4">
 						<SchemaView
 							data={ { reviewsState } }
 							update={ { reviewsDispatch } }
 						/>
-					</Tab.Panel>
+					</Tab.Panel> */}
 					<Tab.Panel className="p-4">
 						<RecordView
 							data={ { reviewsState } }

@@ -10,6 +10,8 @@ import ContentJSX from "../components/editor/elements/markdown/Content";
 
 import { Utility, Helpers } from "../main";
 
+import { HorizontalSelect } from "../../../components/HorizontalSelect";
+
 export const JSXMap = {
 	[ EnumElementType.Group ]: {
 		[ EnumElementSubType.Group.Review ]: ReviewJSX,
@@ -25,38 +27,63 @@ export function Record({ data, update }) {
 	const { reviewsState } = data;
 	const { reviewsDispatch } = update;
 
-	const [ record, setRecord ] = useState(Utility.instantiate(reviewsState.schema));
-	const [ recordData, setRecordData ] = useState({
-		$id: uuid(),
+	const recordDataRef = useRef({
+		record: Utility.instantiate(reviewsState.schema),
+		data: {
+			$id: uuid(),
+		},
 	});
-	const recordDataRef = useRef(recordData);
+
+	//FIXME: Figure out how to handle this, as the "New" wasn't working as intended
+
+	if(reviewsState.active) {
+		recordDataRef.current.data = { ...reviewsState.records[ reviewsState.active ] };
+		recordDataRef.current.record = Utility.reconstitute(reviewsState.schema, recordDataRef.current.data);
+	}
 
 	const onUpdate = (id, value) => {
-		setRecordData(prev => {
-			const next = {
-				...prev,
-				[ id ]: value,
-			};
+		const next = {
+			...recordDataRef.current.data,
+			[ id ]: value,
+		};
 
-			recordDataRef.current = next;
+		recordDataRef.current.data = next;
+	};
 
-			return next;
+	const onNewRecord = e => {
+		recordDataRef.current.data = { $id: uuid() };
+		recordDataRef.current.record = Utility.instantiate(reviewsState.schema);
+
+		reviewsDispatch({
+			type: "selectRecord",
+			data: null,
+		});
+	};
+	const onSaveRecord = e => {
+		reviewsDispatch({
+			type: "setRecord",
+			data: recordDataRef.current.data,
 		});
 	};
 
 	return (
-		<div>
-			<div
-				className="border border-gray-400 border-solid rounded-md"
-				onClick={ e => reviewsDispatch({
-					type: "addRecord",
-					data: recordDataRef.current,
-				}) }
-			>
-				Save
+		<div className="flex flex-col w-full">
+			<div className="flex flex-row w-full gap-2">
+				<div
+					className="px-4 py-2 mb-2 bg-white border border-gray-200 rounded-md hover:shadow-md hover:bg-gray-50 hover:border-gray-300 hover:cursor-pointer"
+					onClick={ onNewRecord }
+				>
+					New
+				</div>
+				<div
+					className="px-4 py-2 mb-2 bg-white border border-gray-200 rounded-md hover:shadow-md hover:bg-gray-50 hover:border-gray-300 hover:cursor-pointer"
+					onClick={ onSaveRecord }
+				>
+					Save
+				</div>
 			</div>
 			<ReviewJSX
-				element={ record }
+				element={ recordDataRef.current.record }
 				map={ JSXMap }
 				onUpdate={ onUpdate }
 			/>

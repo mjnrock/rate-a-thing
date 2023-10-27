@@ -67,7 +67,7 @@ export const Reducers = () => ({
 
 		return next;
 	},
-	addRecord: (state, recordData) => {
+	setRecord: (state, recordData) => {
 		const next = { ...state };
 
 		next.records[ recordData.$id ] = {
@@ -86,6 +86,39 @@ export const Reducers = () => ({
 
 		return next;
 	},
+
+	setConfig: (state, next) => ({
+		...state,
+		config: next,
+	}),
+	mergeConfig: (state, next) => ({
+		...state,
+		config: {
+			...state.config,
+			...next,
+		},
+	}),
+	toggleAutoSave: (state, value) => ({
+		...state,
+		config: {
+			...state.config,
+			autoSave: value ?? !state.config.autoSave,
+		},
+	}),
+	toggleSchemaLock: (state, value) => ({
+		...state,
+		config: {
+			...state.config,
+			isSchemaLocked: value ?? !state.config.isSchemaLocked,
+		},
+	}),
+	toggleRecordLock: (state, value) => ({
+		...state,
+		config: {
+			...state.config,
+			isRecordLocked: value ?? !state.config.isRecordLocked,
+		},
+	}),
 });
 
 export const Utility = {
@@ -121,6 +154,11 @@ export const State = ({ schema = {}, records = {}, ...rest } = {}) => {
 			},
 		},
 		active: null,
+		config: {
+			autoSave: true,
+			isSchemaLocked: false,	// true = view, false = edit
+			isRecordLocked: false,	// true = view, false = edit
+		},
 		...rest,
 	};
 };
