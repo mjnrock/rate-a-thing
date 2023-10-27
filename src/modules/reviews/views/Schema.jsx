@@ -20,11 +20,7 @@ export function Schema({ data, update }) {
 	const { reviewsState } = data;
 	const { reviewsDispatch } = update;
 
-	const active = reviewsState.records[ reviewsState.active[ 0 ] ];
 	const schema = reviewsState.schema;
-	
-	console.log(reviewsState);
-	console.log(active);
 
 	//TODO: Formalize the concept of Aliases (e.g. Text: [ "markdown", "content" ], Rating: [ "range", "discrete" ]), etc.)
 	//FIXME: Sort out the props
@@ -35,7 +31,13 @@ export function Schema({ data, update }) {
 				dispatch={ reviewsDispatch }
 				element={ schema }
 				map={ JSXMap }
-				onUpdate={ console.log }
+				onUpdate={ (id, value) => reviewsDispatch({
+					type: "updateSchemaValue",
+					data: {
+						id,
+						value,
+					},
+				}) }
 			/>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
 export function Review({ map, element, onUpdate, ...rest }) {
-	const children = element.value;
+	const children = element.value ?? [];
 
 	return (
 		<Fragment { ...rest }>

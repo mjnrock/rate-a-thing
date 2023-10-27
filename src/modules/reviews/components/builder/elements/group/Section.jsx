@@ -6,7 +6,7 @@ import ElementSubType from "../ElementSubType";
 import EnumElementType from "../../../../lib/EnumElementType";
 
 export function Section({ map, element, onUpdate, dispatch, ...rest }) {
-	const children = element.value;
+	const children = element.value ?? [];
 
 	//TODO: When you click a Type and SubType, invoke a dispatch to add that type of Element
 	const [ type, setType ] = useState("markdown");

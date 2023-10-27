@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { deepClone } from "../../util/deepClone.js";
 import { EnumElementType } from "./lib/EnumElementType";
 
@@ -20,26 +19,72 @@ export const Helpers = {
 
 		return null;
 	},
+	createDataMap: (element, { $id, $schema } = {}) => {
+		const map = {
+			$id,
+			$schema,
+		};
+
+		// if the element is NOT a group, add the value to the map
+		if(element.$type !== EnumElementType.Group) {
+			map[ element.$id ] = element.value;
+		} else {
+			// otherwise, add the values of the children
+			for(const child of element.value) {
+				Object.assign(map, Helpers.createDataMap(child));
+			}
+		}
+
+		return map;
+	},
+	assignDataMap: (element, map) => {
+		// if the element is NOT a group, assign the value from the map
+		if(element.$type !== EnumElementType.Group) {
+			element.value = map[ element.$id ];
+		} else {
+			// otherwise, assign the values of the children
+			for(const child of element.value) {
+				Helpers.assignDataMap(child, map);
+			}
+		}
+
+		return element;
+	},
 };
 
 export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
-	updateElementValue: (state, { id, value } = {}) => {
-		/* The UUID of the active review */
-		let [ activeId ] = state.active;
-		/* The actual state-data object of the review */
-		const record = state.records[ activeId ];
-		/* The particular element we're updating */
-		const element = Helpers.findElementById(record, id);
+	updateSchemaValue: (state, { id, value } = {}) => {
+		const next = { ...state };
+		const element = Helpers.findElementById(next.schema, id);
 
 		if(element) {
 			element.value = value;
 
-			return state;
+			return next;
 		}
 
-		return state;
+		return next;
+	},
+	addRecord: (state, recordData) => {
+		const next = { ...state };
+
+		next.records[ recordData.$id ] = {
+			$schema: state.schema.$id,
+			...recordData
+		};
+
+		return next;
+	},
+	selectRecord: (state, rid) => {
+		const next = { ...state };
+
+		next.active = rid;
+
+		console.log(next)
+
+		return next;
 	},
 });
 
@@ -47,53 +92,35 @@ export const Utility = {
 	createTemplate: record => {
 		const clone = deepClone(record);
 
-		// create a recursive function that remove the $id property from each element
-		const removeId = element => {
-			delete element.$id;
-
-			if(element.$type === EnumElementType.Group) {
-				for(const child of element.value) {
-					removeId(child);
-				}
-			}
-		};
-
-		// remove the $id property from the root element
-		removeId(clone);
-
 		return clone;
 	},
 	instantiate: (template) => {
 		const clone = deepClone(template);
 
-		// create a recursive function that add the $id property to each element
-		const addId = element => {
-			element.$id = element.$id || uuid();
-
-			if(element.$type === EnumElementType.Group) {
-				for(const child of element.value) {
-					addId(child);
-				}
-			}
-		};
-
-		// add the $id property to the root element
-		addId(clone);
-
 		return clone;
-	}
+	},
+	reconstitute: (template, data) => {
+		const clone = Utility.instantiate(template);
+		const record = Helpers.assignDataMap(clone, data);
+
+		record.$_rid = data.$id;
+
+		return record;
+	},
 };
 
-export const State = ({ records = {}, ...rest } = {}) => {
-	/* Arbitrarily select the first record as the active one */
-	let [ active ] = Object.values(records);
-
+export const State = ({ schema = {}, records = {}, ...rest } = {}) => {
 	return {
-		schema: Utility.createTemplate(active),			// The current review schema filter (i.e. find records with this schema)
-		records,			// Cached records for the current schema
-		active: [			// The active review(s) for editing, represented as an array of UUIDs (array for future multi-edit support)
-			active.$id,
-		],
+		schema,
+		records: {
+			"64c63687-1e9b-4596-a327-d6d70fe7e912": {
+				$schema: "f430fecd-fab5-4810-ad19-2568c6557515",
+				$id: "64c63687-1e9b-4596-a327-d6d70fe7e912",
+				"eea0db48-2c2b-4ff3-a3f4-0ea9e830542b": "Heading 1a1223",
+				"49f505e8-e554-4e54-800a-5d9088339475": "This _is_ some **Contentss**e12e  "
+			},
+		},
+		active: null,
 		...rest,
 	};
 };

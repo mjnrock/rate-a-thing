@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { Helpers, Utility } from "../main";
+
 import EnumElementType from "../lib/EnumElementType";
 import EnumElementSubType from "../lib/EnumElementSubType";
 import ReviewJSX from "../components/finder/elements/group/Review";
@@ -20,11 +23,13 @@ export function Query({ data, update }) {
 	const { reviewsState } = data;
 	const { reviewsDispatch } = update;
 
-	const records = Object.values(reviewsState.records);
-	const active = reviewsState.records[ reviewsState.active[ 0 ] ];
+	const [ records, setRecords ] = useState([]);
 
-	console.log(reviewsState);
-	console.log(active);
+	useEffect(() => {
+		const next = Object.values(reviewsState.records).map((data) => Utility.reconstitute(reviewsState.schema, data));
+
+		setRecords(next);
+	}, [ reviewsState.records ]);
 
 	return (
 		<div>
@@ -33,16 +38,26 @@ export function Query({ data, update }) {
 				className="w-full px-3 py-2 mt-1 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
 				placeholder="Search"
 			/>
-			{
-				records.map((record) => (
-					<ReviewJSX
-						key={ record.$id }
-						element={ record }
-						map={ JSXMap }
-						onUpdate={ console.log }
-					/>
-				))
-			}
+			<div className="flex flex-col w-full">
+				{
+					records.map((record) => (
+						<div
+							key={ record.$_rid }
+							className="flex flex-col w-full px-4 py-2 mb-2 bg-white border border-gray-100 rounded-md hover:shadow-md hover:bg-gray-50 hover:border-gray-300 hover:cursor-pointer"
+							onClick={ e => reviewsDispatch({
+								type: "selectRecord",
+								data: record.$_rid,
+							}) }
+						>
+							<ReviewJSX
+								element={ record }
+								map={ JSXMap }
+								onUpdate={ console.log }
+							/>
+						</div>
+					))
+				}
+			</div>
 		</div>
 	);
 };

@@ -1,52 +1,58 @@
 import Chord from "@lespantsfancy/chord";
 
-import ModReviews from "../modules/reviews/main";
+import ModReviews, { Utility } from "../modules/reviews/main";
 
 import Review from "../modules/reviews/elements/group/Review";
 import Section from "../modules/reviews/elements/group/Section";
 import Heading from "../modules/reviews/elements/markdown/Heading";
 import Content from "../modules/reviews/elements/markdown/Content";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Tab } from "@headlessui/react";
 
 import { Schema as SchemaView } from "../modules/reviews/views/Schema";
 import { Record as RecordView } from "../modules/reviews/views/Record";
 import { Query as QueryView } from "../modules/reviews/views/Query";
 
+
+//STUB - Use a random template for now
+import TestReview from "../data/reviews/5e40531f-3598-4a04-b726-6067fdf3475f.json";
+const schema = Utility.createTemplate(TestReview.reviews[0]);
+
+
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 };
 
-//STUB: This is just a temporary way to create some records
-const records = Object.fromEntries([
-	Review.State([
-		Section.State([
-			Heading.State("Heading 1"),
-			Content.State("This _is_ some **Content**"),
-		]),
-	], {
-		name: "Review 1",
-	}),
-	Review.State([
-		Section.State([
-			Heading.State("Heading 2"),
-			Content.State("This _is_ also **Content**"),
-		]),
-	], {
-		name: "Review 2",
-	}),
-].map((record) => [ record.$id, record ]));
-
 const Nodes = Chord.Node.Node.CreateMany({
 	reviews: {
-		state: ModReviews.State({ records }),
+		state: ModReviews.State({ schema }),
 		reducers: ModReviews.Reducers,
 	},
 });
 
 export function Reviews() {
 	const { state: reviewsState, dispatch: reviewsDispatch } = Chord.Node.React.useNode(Nodes.reviews);
+
+	//STUB: Debugging keybind (ref for closure)
+	const reviewsStateRef = React.useRef();
+	reviewsStateRef.current = reviewsState;
+	useEffect(() => {
+		const fn = (e) => {
+			if(e.code === "Backquote") {
+				e.preventDefault();
+				e.stopPropagation();
+
+				console.warn(reviewsStateRef.current);
+			}
+		};
+
+		window.addEventListener("keypress", fn);
+
+		return () => {
+			window.removeEventListener("keypress", fn);
+		};
+	}, []);
 
 	return (
 		<div className="flex flex-col items-center justify-start w-full h-full m-2 bg-gray-50">
