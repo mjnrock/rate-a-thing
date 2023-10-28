@@ -28,8 +28,8 @@ export function ElementType({ type, onSelect, exclude = [] }) {
 					className={ classNames(
 						"px-4 py-2 rounded text-sm font-medium leading-5 focus:ring-0 focus:outline-none",
 						selectedType === key
-							? "bg-white text-gray-800 shadow"
-							: "text-gray-600 hover:bg-gray-300 hover:text-gray-800 focus:outline-none"
+							? "bg-white text-gray-600 shadow-md"
+							: "text-gray-500 hover:bg-gray-300 hover:text-gray-700 focus:outline-none"
 					) }
 					onClick={ () => handleButtonClick(key) }
 				>
