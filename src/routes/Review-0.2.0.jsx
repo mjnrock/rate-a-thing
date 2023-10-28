@@ -17,7 +17,7 @@ import { Query as QueryView } from "../modules/review-0.2.0/views/Query";
 
 
 //STUB - Use a random template for now
-import TestReview from "../data/reviews/5e40531f-3598-4a04-b726-6067fdf3475f.json";
+import TestReview from "../data/reviews/v0.2.0/5e40531f-3598-4a04-b726-6067fdf3475f.json";
 const schema = Utility.createTemplate(TestReview.reviews[ 0 ]);
 
 

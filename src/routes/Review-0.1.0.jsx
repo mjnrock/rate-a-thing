@@ -7,7 +7,7 @@ import { Review as ReviewJSX } from "../modules/review-0.1.0/components/Review";
 import { ReviewList } from "../modules/review-0.1.0/components/ReviewList";
 
 import $$ratings from "../modules/review-0.1.0/data/reviews/test.schema";
-import $$reviews from "../data/reviews/reviews.json";
+import $$reviews from "../data/reviews/v0.1.0/reviews.json";
 
 //FIXME: You mixed up `review > main.js` and `reviews > main.js`, so the reducers / pipeline are not correct
 //NOTE: While this point is valid, you should also cleanup the Flux paradigm and collapse the two modules into one, refactoring accordingly
