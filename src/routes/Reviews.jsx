@@ -8,7 +8,7 @@ import Section from "../modules/reviews/elements/group/Section";
 import Heading from "../modules/reviews/elements/markdown/Heading";
 import Content from "../modules/reviews/elements/markdown/Content";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 
 import { Schema as SchemaView } from "../modules/reviews/views/Schema";
@@ -55,12 +55,16 @@ export function Reviews() {
 		};
 	}, []);
 
+
+	const [ test, setTest ] = useState("Schema");
+
 	return (
 		<div className="flex flex-col items-center justify-start w-full h-full m-2 bg-gray-50">
 			<Tab.Group>
 				<Tab.List className="flex p-2 space-x-2 bg-gray-200 border-b rounded-xl">
-					{/* { [ "Pattern", "Record", "Search" ].map((category) => ( */}
-					{ [ "Record", "Search" ].map((category) => (
+					{/* { [ "Schema", "Record", "Search" ].map((category) => ( */ }
+					{ [ "Record", "Schema", "Search" ].map((category) => (
+						// { [ "Record", "Search" ].map((category) => (
 						<Tab
 							key={ category }
 							className={ ({ selected }) =>
@@ -78,14 +82,14 @@ export function Reviews() {
 				</Tab.List>
 
 				<Tab.Panels className="w-full px-2 mt-4 bg-white rounded-md shadow-sm">
-					{/* <Tab.Panel className="p-4">
-						<SchemaView
+					<Tab.Panel className="p-4">
+						<RecordView
 							data={ { reviewsState } }
 							update={ { reviewsDispatch } }
 						/>
-					</Tab.Panel> */}
+					</Tab.Panel>
 					<Tab.Panel className="p-4">
-						<RecordView
+						<SchemaView
 							data={ { reviewsState } }
 							update={ { reviewsDispatch } }
 						/>
