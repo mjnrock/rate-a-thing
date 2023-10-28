@@ -1,6 +1,6 @@
-import Review from "../../review/components/Review";
+import Review from "../../review-0.1.0/components/Review";
 
-import ReviewJS from "../../review/lib/Review";
+import ReviewJS from "../../review-0.1.0/lib/Review";
 
 export function ReviewList({ data, update }) {
 	const dispatch = ({ type, data }, review) => {

@@ -1,12 +1,12 @@
 import { v4 as uuid } from "uuid";
 import Chord from "@lespantsfancy/chord";
 
-import ModReview from "../modules/review/main";
-import { Review as ReviewJSX } from "../modules/review/components/Review";
+import ModReview from "../modules/review-0.1.0/main";
+import { Review as ReviewJSX } from "../modules/review-0.1.0/components/Review";
 
-import { ReviewList } from "../modules/review/components/ReviewList";
+import { ReviewList } from "../modules/review-0.1.0/components/ReviewList";
 
-import $$ratings from "../modules/review/data/reviews/test.schema";
+import $$ratings from "../modules/review-0.1.0/data/reviews/test.schema";
 import $$reviews from "../data/reviews/reviews.json";
 
 //FIXME: You mixed up `review > main.js` and `reviews > main.js`, so the reducers / pipeline are not correct

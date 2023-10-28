@@ -1,19 +1,19 @@
 import Chord from "@lespantsfancy/chord";
 
 import HorizontalSelect from "../components/HorizontalSelect";
-import ModReviews, { Utility } from "../modules/reviews/main";
+import ModReviews, { Utility } from "../modules/review-0.2.0/main";
 
-import Review from "../modules/reviews/elements/group/Review";
-import Section from "../modules/reviews/elements/group/Section";
-import Heading from "../modules/reviews/elements/markdown/Heading";
-import Content from "../modules/reviews/elements/markdown/Content";
+import Review from "../modules/review-0.2.0/elements/group/Review";
+import Section from "../modules/review-0.2.0/elements/group/Section";
+import Heading from "../modules/review-0.2.0/elements/markdown/Heading";
+import Content from "../modules/review-0.2.0/elements/markdown/Content";
 
 import React, { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 
-import { Schema as SchemaView } from "../modules/reviews/views/Schema";
-import { Record as RecordView } from "../modules/reviews/views/Record";
-import { Query as QueryView } from "../modules/reviews/views/Query";
+import { Schema as SchemaView } from "../modules/review-0.2.0/views/Schema";
+import { Record as RecordView } from "../modules/review-0.2.0/views/Record";
+import { Query as QueryView } from "../modules/review-0.2.0/views/Query";
 
 
 //STUB - Use a random template for now
