@@ -1,11 +1,11 @@
 import { v4 as uuid } from "uuid";
 
-export const State = (value, { type, subtype, tags = [], $id, ...rest } = {}) => ({
-	$id: $id ?? uuid(),		// Extracted here in case you don't want the instance to reuse an existing ID, for example
-	$type: type,
-	$subtype: subtype,
-	$tags: tags,
-	value,
+export const Helpers = {};
+
+export const State = (state, { type, id, ...rest } = {}) => ({
+	id: id ?? uuid(),
+	type,
+	state,
 	...rest,
 });
 
@@ -16,30 +16,23 @@ export const Reducers = () => ({
 	}),
 	setId: (state, { id } = {}) => ({
 		...state,
-		$id: id,
+		id: id,
 	}),
 	setType: (state, { type } = {}) => ({
 		...state,
-		$type: type,
+		type: type,
 	}),
-	setSubtype: (state, { subtype } = {}) => ({
+	setState: (state, { state: next } = {}) => ({
 		...state,
-		$subtype: subtype,
-	}),
-	addTags: (state, { tags } = {}) => ({
-		...state,
-		$tags: [
-			...state.$tags,
-			...tags,
-		],
-	}),
-	removeTags: (state, { tags } = {}) => ({
-		...state,
-		$tags: state.$tags.filter(tag => !tags.includes(tag)),
+		state: next,
 	}),
 });
+
+export const Effect = () => ({});
 
 export default {
 	State,
 	Reducers: Reducers(),
+	Effect: Effect(),
+	Helpers,
 };

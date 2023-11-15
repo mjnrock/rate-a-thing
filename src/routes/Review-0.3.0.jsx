@@ -1,7 +1,19 @@
 import Chord from "@lespantsfancy/chord";
 
 const Nodes = Chord.Node.Node.CreateMany({
-	review: {},
+	review: {
+		state: {
+			current: "This is the review",
+		},
+		reducers: {
+			setCurrent(state, action) {
+				return {
+					...state,
+					current: action.payload,
+				};
+			},
+		},
+	},
 });
 
 export function Reviews() {
@@ -9,7 +21,7 @@ export function Reviews() {
 
 	return (
 		<div>
-			Hi
+			{ reviewState.current }
 		</div>
 	)
 };
