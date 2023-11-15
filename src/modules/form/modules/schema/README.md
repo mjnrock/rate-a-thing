@@ -1,0 +1,1 @@
+This is meant to be a struct for the form, defining its shape and properties.
