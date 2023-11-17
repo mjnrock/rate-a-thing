@@ -1,4 +1,4 @@
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 import Element from "./Element";
 
 export const MarkdownState = ({ content = "", ...rest } = {}) => {
@@ -14,7 +14,7 @@ export const MarkdownState = ({ content = "", ...rest } = {}) => {
 };
 
 export const MarkdownReducers = () => ({
-	...Element.Reducers(),
+	...Element.Reducers,
     setContent: (state, content) => ({
         ...state,
         state: {

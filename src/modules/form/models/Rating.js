@@ -1,4 +1,4 @@
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 import Element from "./Element";
 
 export const RatingState = ({ current = null, max, min, step = 1, ...rest } = {}) => {
@@ -17,7 +17,7 @@ export const RatingState = ({ current = null, max, min, step = 1, ...rest } = {}
 };
 
 export const RatingReducers = () => ({
-	...Element.Reducers(),
+	...Element.Reducers,
 	setCurrent: (state, current) => {
 		// ensure current is between min and max
 		let nextCurrent = current;

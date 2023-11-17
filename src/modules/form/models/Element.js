@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 
 export const ElementState = ({ ...rest } = {}) => {
 	return {

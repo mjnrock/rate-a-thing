@@ -1,4 +1,4 @@
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 import Element from "./Element";
 
 export const GroupState = ({ ...rest } = {}) => {
@@ -14,7 +14,7 @@ export const GroupState = ({ ...rest } = {}) => {
 };
 
 export const GroupReducers = () => ({
-	...Element.Reducers(),
+	...Element.Reducers,
 	addElement: (state, element) => ({
 		...state,
 		state: {
@@ -35,8 +35,10 @@ export const GroupReducers = () => ({
 		const index2 = elements.findIndex(el => el.id === elementId2);
 		const element1 = elements[ index1 ];
 		const element2 = elements[ index2 ];
+
 		elements[ index1 ] = element2;
 		elements[ index2 ] = element1;
+
 		return {
 			...state,
 			state: {

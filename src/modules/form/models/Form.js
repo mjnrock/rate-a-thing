@@ -1,4 +1,4 @@
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 import Group from "./Group";
 
 export const FormState = ({ ...rest } = {}) => {
@@ -14,7 +14,7 @@ export const FormState = ({ ...rest } = {}) => {
 };
 
 export const FormReducers = () => ({
-	...Group.Reducers(),
+	...Group.Reducers,
 });
 
 export default {

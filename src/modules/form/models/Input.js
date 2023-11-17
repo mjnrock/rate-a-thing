@@ -1,4 +1,4 @@
-import EnumElementType from "./EnumElementType";
+import EnumElementType from "../EnumElementType";
 import Element from "./Element";
 
 export const InputState = ({ type = "text", ...rest } = {}) => {
@@ -15,7 +15,7 @@ export const InputState = ({ type = "text", ...rest } = {}) => {
 };
 
 export const InputReducers = () => ({
-	...Element.Reducers(),
+	...Element.Reducers,
 	setInputType: (state, inputType) => ({
 		...state,
 		state: {
