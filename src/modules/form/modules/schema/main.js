@@ -6,6 +6,7 @@ import Form from "../../models/group/Form";
 import Text from "../../models/text/Text";
 import NumberModel from "../../models/number/Number";
 import BooleanModel from "../../models/boolean/Boolean";
+import Bitmask from "../../models/boolean/Bitmask";
 import ArrayModel from "../../models/array/Array";
 import ObjectModel from "../../models/object/Object";
 import Input from "../../models/input/Input";
@@ -33,7 +34,11 @@ export const Helpers = {
 		} else if(type === EnumElementType.NUMBER) {
 			return NumberModel;
 		} else if(type === EnumElementType.BOOLEAN) {
-			return BooleanModel;
+			if(subType === EnumElementSubType[ EnumElementType.BOOLEAN ].BITMASK) {
+				return Bitmask;
+			} else {
+				return BooleanModel;
+			}
 		} else if(type === EnumElementType.OBJECT) {
 			return ObjectModel;
 		} else if(type === EnumElementType.ARRAY) {
