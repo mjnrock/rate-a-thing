@@ -1,5 +1,5 @@
-import EnumElementType from "../EnumElementType";
-import Element from "./Element";
+import { EnumElementType } from "../../EnumElementType";
+import Element from "../Element";
 
 export const GroupState = ({ ...rest } = {}) => {
 	return {

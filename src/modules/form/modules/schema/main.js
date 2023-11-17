@@ -1,26 +1,51 @@
-import EnumElementType from "../../EnumElementType";
+import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
 
 import Element from "../../models/Element";
-import Form from "../../models/Form";
-import Group from "../../models/Group";
-import Input from "../../models/Input";
-import Markdown from "../../models/Markdown";
-import Rating from "../../models/Rating";
+import Group from "../../models/group/Group";
+import Form from "../../models/group/Form";
+import Text from "../../models/text/Text";
+import NumberModel from "../../models/number/Number";
+import BooleanModel from "../../models/boolean/Boolean";
+import ArrayModel from "../../models/array/Array";
+import ObjectModel from "../../models/object/Object";
+import Input from "../../models/input/Input";
+import Markdown from "../../models/input/Markdown";
+import Rating from "../../models/input/Rating";
 
 export const Helpers = {
 	TypeToModel: (type) => {
+		let subType;
+		if(Array.isArray(type)) {
+			type = type[ 0 ];
+			subType = type[ 1 ];
+		}
+
 		if(type === EnumElementType.ELEMENT) {
 			return Element;
-		} else if(type === EnumElementType.FORM) {
-			return Form;
 		} else if(type === EnumElementType.GROUP) {
-			return Group;
+			if(subType === EnumElementSubType[ EnumElementType.GROUP ].FORM) {
+				return Form;
+			} else {
+				return Group;
+			}
+		} else if(type === EnumElementType.TEXT) {
+			return Text;
+		} else if(type === EnumElementType.NUMBER) {
+			return NumberModel;
+		} else if(type === EnumElementType.BOOLEAN) {
+			return BooleanModel;
+		} else if(type === EnumElementType.OBJECT) {
+			return ObjectModel;
+		} else if(type === EnumElementType.ARRAY) {
+			return ArrayModel;
 		} else if(type === EnumElementType.INPUT) {
-			return Input;
-		} else if(type === EnumElementType.MARKDOWN) {
-			return Markdown;
-		} else if(type === EnumElementType.RATING) {
-			return Rating;
+			if(subType === EnumElementSubType[ EnumElementType.INPUT ].MARKDOWN) {
+				return Markdown;
+			} else if(subType === EnumElementSubType[ EnumElementType.INPUT ].RATING) {
+				return Rating;
+			} else {
+				return Input;
+			}
 		} else {
 			throw new Error(`Unknown type: ${ type }`);
 		}

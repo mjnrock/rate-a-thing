@@ -26,11 +26,6 @@ export function Reviews() {
 
 	return (
 		<div>
-			<TypeBar
-				data={ schemaState }
-				update={ schemaDispatch }
-			/>
-
 			{
 				schemaState.form.state.elements.map((element, i) => {
 					return (
@@ -48,6 +43,11 @@ export function Reviews() {
 					)
 				})
 			}
+			
+			<TypeBar
+				data={ schemaState }
+				update={ schemaDispatch }
+			/>
 		</div>
 	)
 };
