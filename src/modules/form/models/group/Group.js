@@ -15,6 +15,19 @@ export const GroupState = ({ ...rest } = {}) => {
 
 export const GroupReducers = () => ({
 	...Element.Reducers,
+	addElementByType: (state, type, modelMap, ...args) => {
+		const model = typeof modelMap === "function" ? modelMap(type) : modelMap[ type ];
+		const element = model.State(...args);
+		const elements = [ ...state.state.elements, element ];
+
+		return {
+			...state,
+			state: {
+				...state.state,
+				elements,
+			},
+		};
+	},
 	addElement: (state, element) => ({
 		...state,
 		state: {

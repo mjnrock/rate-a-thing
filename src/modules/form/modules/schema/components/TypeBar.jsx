@@ -13,7 +13,7 @@ export const TypeBar = ({ data, update }) => {
 							<div
 								className="flex flex-row p-2 m-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-600 bg-neutral-100 border-neutral-200 hover:bg-sky-100 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
 								onClick={ e => {
-									update("addFormElement", EnumElementType[ key ]);
+									update("addElementByType", EnumElementType[ key ]);
 								} }
 							>
 								{ key }

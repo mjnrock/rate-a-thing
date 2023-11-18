@@ -14,11 +14,31 @@ import Markdown from "../../models/input/Markdown";
 import Rating from "../../models/input/Rating";
 
 export const Helpers = {
+	findElement: (group, id) => {
+		// recurse through all groups and sub-groups
+		let element;
+		for(let i = 0; i < group.elements.length; i++) {
+			element = group.elements[ i ];
+			if(element.id === id) {
+				return element;
+			} else if(element.type === EnumElementType.GROUP) {
+				element = Helpers.findElement(element, id);
+				if(element) {
+					return element;
+				}
+			}
+		}
+
+		return null;
+	},
 	TypeToModel: (type) => {
 		let subType;
 		if(Array.isArray(type)) {
 			type = type[ 0 ];
 			subType = type[ 1 ];
+		} else if(typeof type === "object" && type.type) {
+			subType = type.subType;
+			type = type.type;
 		}
 
 		if(type === EnumElementType.ELEMENT) {
@@ -57,6 +77,32 @@ export const Helpers = {
 	},
 };
 
+export const Utility = {
+	toDataMap: (element, data = {}) => {
+		/* Recursively flatten the schema into a UUID-map of elements */
+		if(element.type === EnumElementType.GROUP) {
+			for(let i = 0; i < element.state.elements.length; i++) {
+				Utility.toDataMap(element.state.elements[ i ], data);
+			}
+		} else {
+			data[ element.id ] = element;
+		}
+
+		/* For use in meta analysis, extract the groups into an additional, separate map */
+		let groups = {};
+		for(let i = 0; i < element.state.elements.length; i++) {
+			if(element.elements[ i ].type === EnumElementType.GROUP) {
+				groups[ element.state.elements[ i ].id ] = element.state.elements[ i ].map((element) => element.id);
+			}
+		}
+
+		return {
+			elements: data,
+			groups,
+		};
+	},
+};
+
 export const State = ({ form = {}, ...rest } = {}) => {
 	return {
 		form: Form.State(form),
@@ -68,28 +114,16 @@ export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
 
-	addFormElement: (state, type, stateArgs = {}) => {
-		let next = { ...state.form };
+	addElementByType: (state, type) => {
+		const { form } = state;
 
-		let model = Helpers.TypeToModel(type);
-		let element = model.State(stateArgs);
-
-		next = Form.Reducers.addElement(next, element);
+		let next = Form.Reducers.addElementByType(form, type, Helpers.TypeToModel);
 
 		return {
 			...state,
 			form: next,
 		};
-	},
-	/* sub-reducer, route to Form */
-	form: (state, action, ...args) => {
-		const next = { ...state.form };
-
-		return {
-			...state,
-			form: Form.Reducers[ action ](next, ...args),
-		};
-	},
+	}
 });
 export const Effects = () => ({});
 
