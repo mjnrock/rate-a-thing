@@ -50,6 +50,7 @@ export function Reviews() {
 			<TypeBar
 				update={ schemaDispatch }
 				element={ schemaState.components.elements[ schemaState.form ] }
+				startCollapsed={ false }
 			/>
 		</div>
 	)
