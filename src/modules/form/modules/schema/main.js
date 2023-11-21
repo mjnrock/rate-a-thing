@@ -104,14 +104,12 @@ export const Utility = {
 				groups[ element.id ] = element.state.elements.map((element) => element.id);
 
 				for(let i = 0; i < element.state.elements.length; i++) {
-					let child = extractGroups(element.state.elements[ i ], groups);
+					extractGroups(element.state.elements[ i ], groups);
 				}
 			}
 
 			return groups;
 		};
-
-		console.log(extractGroups(element))
 
 		return {
 			elements: data,

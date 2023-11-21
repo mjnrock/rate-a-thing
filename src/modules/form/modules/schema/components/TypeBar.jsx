@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import EnumElementType from "../../../EnumElementType";
-import { BsChevronDown, BsChevronRight } from 'react-icons/bs';
+import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 
 export const TypeBar = ({ update, element, startCollapsed = true }) => {
 	const [ isCollapsed, setIsCollapsed ] = useState(startCollapsed);
@@ -10,10 +10,10 @@ export const TypeBar = ({ update, element, startCollapsed = true }) => {
 	};
 
 	return (
-		<div className="flex flex-row items-center p-2 m-2 border border-solid rounded border-neutral-200">
-			<div className="flex-grow">
-				{/* Content of the TypeBar */ }
-			</div>
+		<div
+			className={ `flex flex-row items-center p-2 m-2 border border-solid rounded basis-1 border-neutral-200 ` + (isCollapsed ? "cursor-pointer hover:bg-neutral-100" : "") }
+			onClick={ e => { isCollapsed && handleCollapseToggle() } }
+		>
 			{
 				!isCollapsed && Object.keys(EnumElementType).map((key, i) => (
 					<div
@@ -32,10 +32,11 @@ export const TypeBar = ({ update, element, startCollapsed = true }) => {
 				))
 			}
 			<div
-				className="p-1 cursor-pointer"
+				className="flex flex-row items-center p-2 cursor-pointer hover:bg-neutral-100 text-neutral-400"
 				onClick={ handleCollapseToggle }
 			>
-				{ isCollapsed ? <BsChevronRight /> : <BsChevronDown /> }
+				<span className="flex items-center">{ isCollapsed ? <BsChevronRight /> : <BsChevronDown /> }</span>
+				<span className="ml-2 italic">{ isCollapsed ? "Add Element" : "Collapse" }</span>
 			</div>
 		</div>
 	);
