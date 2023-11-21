@@ -1,13 +1,14 @@
 import Chord from "@lespantsfancy/chord";
 
-import ModRecord from "../modules/form/modules/schema/main";
+import ModSchema from "../modules/form/modules/schema/main";
 
 import TypeBar from "../modules/form/modules/schema/components/TypeBar";
+import Element from "../modules/form/modules/schema/components/Element";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
-		state: ModRecord.State(),
-		reducers: ModRecord.Reducers,
+		state: ModSchema.State(),
+		reducers: ModSchema.Reducers,
 	},
 	record: {
 		state: {},
@@ -24,10 +25,12 @@ export function Reviews() {
 	const { state: recordState, dispatch: recordDispatch } = Chord.Node.React.useNode(Nodes.record);
 	const { state: repositoryState, dispatch: repositoryDispatch } = Chord.Node.React.useNode(Nodes.repository);
 
+	console.log(schemaState);
+
 	return (
 		<div>
 			{
-				schemaState.form.state.elements.map((element, i) => {
+				schemaState.components.groups[ schemaState.form ].map((elementId, i) => {
 					return (
 						<div
 							key={ `form-element-${ i }` }
@@ -36,17 +39,17 @@ export function Reviews() {
 
 							} }
 						>
-							<span className="font-bold">{ element.type }</span>
-							&nbsp;
-							<span className="font-mono">{ element.id }</span>
+							<Element
+								update={ schemaDispatch }
+								element={ schemaState.components.elements[ elementId ] }
+							/>
 						</div>
 					)
 				})
 			}
-			
 			<TypeBar
-				data={ schemaState }
 				update={ schemaDispatch }
+				element={ schemaState.components.elements[ schemaState.form ] }
 			/>
 		</div>
 	)

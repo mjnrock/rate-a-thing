@@ -1,4 +1,6 @@
-import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
+import { deepClone } from "../../../../util/deepClone";
+
+import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 
 import Element from "../../models/Element";
 import Group from "../../models/group/Group";
@@ -14,37 +16,44 @@ import Markdown from "../../models/input/Markdown";
 import Rating from "../../models/input/Rating";
 
 export const Helpers = {
-	findElement: (group, id) => {
-		// recurse through all groups and sub-groups
-		let element;
-		for(let i = 0; i < group.elements.length; i++) {
-			element = group.elements[ i ];
-			if(element.id === id) {
-				return element;
-			} else if(element.type === EnumElementType.GROUP) {
-				element = Helpers.findElement(element, id);
-				if(element) {
-					return element;
+	findElement: (state, id) => {
+		if("id" in state && "type" in state) {
+			if(state.type === EnumElementType.GROUP) {
+				for(let i = 0; i < state.state.elements.length; i++) {
+					let current = state.state.elements[ i ];
+					if(current.id === id) {
+						return current;
+					} else {
+						let result = Helpers.findElement(current, id);
+						if(result) {
+							return result;
+						}
+					}
 				}
 			}
+
+			return false;
 		}
 
-		return null;
+		return state.components.elements[ id ];
+	},
+	getForm: (state) => {
+		return Helpers.findElement(state, state.form);
 	},
 	TypeToModel: (type) => {
-		let subType;
+		let as;
 		if(Array.isArray(type)) {
 			type = type[ 0 ];
-			subType = type[ 1 ];
+			as = type[ 1 ];
 		} else if(typeof type === "object" && type.type) {
-			subType = type.subType;
+			as = type.as;
 			type = type.type;
 		}
 
 		if(type === EnumElementType.ELEMENT) {
 			return Element;
 		} else if(type === EnumElementType.GROUP) {
-			if(subType === EnumElementSubType[ EnumElementType.GROUP ].FORM) {
+			if(as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
 				return Form;
 			} else {
 				return Group;
@@ -54,7 +63,7 @@ export const Helpers = {
 		} else if(type === EnumElementType.NUMBER) {
 			return NumberModel;
 		} else if(type === EnumElementType.BOOLEAN) {
-			if(subType === EnumElementSubType[ EnumElementType.BOOLEAN ].BITMASK) {
+			if(as === EnumFormElementType[ EnumElementType.BOOLEAN ].BITMASK) {
 				return Bitmask;
 			} else {
 				return BooleanModel;
@@ -64,9 +73,9 @@ export const Helpers = {
 		} else if(type === EnumElementType.ARRAY) {
 			return ArrayModel;
 		} else if(type === EnumElementType.INPUT) {
-			if(subType === EnumElementSubType[ EnumElementType.INPUT ].MARKDOWN) {
+			if(as === EnumFormElementType[ EnumElementType.INPUT ].MARKDOWN) {
 				return Markdown;
-			} else if(subType === EnumElementSubType[ EnumElementType.INPUT ].RATING) {
+			} else if(as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
 				return Rating;
 			} else {
 				return Input;
@@ -78,50 +87,75 @@ export const Helpers = {
 };
 
 export const Utility = {
-	toDataMap: (element, data = {}) => {
+	toComponentMap: (element, data = {}) => {
 		/* Recursively flatten the schema into a UUID-map of elements */
 		if(element.type === EnumElementType.GROUP) {
+			data[ element.id ] = element;
 			for(let i = 0; i < element.state.elements.length; i++) {
-				Utility.toDataMap(element.state.elements[ i ], data);
+				Utility.toComponentMap(element.state.elements[ i ], data);
 			}
 		} else {
 			data[ element.id ] = element;
 		}
 
 		/* For use in meta analysis, extract the groups into an additional, separate map */
-		let groups = {};
-		for(let i = 0; i < element.state.elements.length; i++) {
-			if(element.elements[ i ].type === EnumElementType.GROUP) {
-				groups[ element.state.elements[ i ].id ] = element.state.elements[ i ].map((element) => element.id);
+		const extractGroups = (element, groups = {}) => {
+			if(element.type === EnumElementType.GROUP) {
+				groups[ element.id ] = element.state.elements.map((element) => element.id);
+
+				for(let i = 0; i < element.state.elements.length; i++) {
+					let child = extractGroups(element.state.elements[ i ], groups);
+				}
 			}
-		}
+
+			return groups;
+		};
+
+		console.log(extractGroups(element))
 
 		return {
 			elements: data,
-			groups,
+			groups: extractGroups(element),
 		};
 	},
 };
 
 export const State = ({ form = {}, ...rest } = {}) => {
-	return {
-		form: Form.State(form),
+	const nextForm = Form.State(form);
+
+	const next = {
+		form: nextForm.id,
+		components: Utility.toComponentMap(nextForm),
 		...rest,
 	};
+
+	return next;
 };
 
 export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
 
-	addElementByType: (state, type) => {
-		const { form } = state;
+	addElementByType: (state, type, parentId) => {
+		const model = Helpers.TypeToModel(type);
+		const element = model.State();
 
-		let next = Form.Reducers.addElementByType(form, type, Helpers.TypeToModel);
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+
+		if(!parentId || parentId === next.form) {
+			nextForm.state.elements.push(element);
+		} else {
+			const parentElement = Helpers.findElement(nextForm, parentId);
+
+			if(parentElement.type === EnumElementType.GROUP) {
+				next.components.elements[ parentElement.id ].state.elements.push(element);
+			}
+		}
 
 		return {
-			...state,
-			form: next,
+			...next,
+			components: Utility.toComponentMap(nextForm),
 		};
 	}
 });

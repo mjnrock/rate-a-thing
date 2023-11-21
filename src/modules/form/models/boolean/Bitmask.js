@@ -1,10 +1,10 @@
-import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Boolean from "./Boolean";
 
 export const BitmaskState = ({ ...rest } = {}) => {
 	return {
 		...Boolean.State({
-			subType: EnumElementSubType[ EnumElementType.BOOLEAN ].BITMASK,
+			as: EnumFormElementType[ EnumElementType.BOOLEAN ].BITMASK,
 			state: {
 				value: 0,
 			},

@@ -1,10 +1,10 @@
-import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Input from "./Input";
 
 export const RatingState = ({ value = null, max, min, step = 1, ...rest } = {}) => {
 	return {
 		...Input.State({
-			subType: EnumElementSubType[ EnumElementType.INPUT ].RATING,
+			as: EnumFormElementType[ EnumElementType.INPUT ].RATING,
 			state: {
 				value,
 				max,

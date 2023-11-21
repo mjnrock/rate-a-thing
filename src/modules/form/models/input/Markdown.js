@@ -1,10 +1,10 @@
-import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Input from "./Input";
 
 export const MarkdownState = ({ content = "", ...rest } = {}) => {
 	return {
 		...Input.State({
-			subType: EnumElementSubType[ EnumElementType.INPUT ].MARKDOWN,
+			as: EnumFormElementType[ EnumElementType.INPUT ].MARKDOWN,
 		}),
 		...rest,
 	};

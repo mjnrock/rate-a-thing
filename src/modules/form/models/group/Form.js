@@ -1,10 +1,10 @@
-import { EnumElementType, EnumElementSubType } from "../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Group from "./Group";
 
 export const FormState = ({ ...rest } = {}) => {
 	return {
 		...Group.State({
-			subType: EnumElementSubType[ EnumElementType.GROUP ].FORM,
+			as: EnumFormElementType[ EnumElementType.GROUP ].FORM,
 		}),
 		...rest,
 	};

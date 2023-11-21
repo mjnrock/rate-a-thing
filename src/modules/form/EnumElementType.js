@@ -10,7 +10,8 @@ export const EnumElementType = {
 	INPUT: "input",
 };
 
-export const EnumElementSubType = {
+/* Module-specific version, for use with `as` property */
+export const EnumFormElementType = {
 	[ EnumElementType.GROUP ]: {
 		FORM: "form",
 		SECTION: "section",
