@@ -31,6 +31,7 @@ export function Reviews() {
 			<SchemaForm
 				update={ schemaDispatch }
 				element={ schemaState.components.elements[ schemaState.form ] }
+				config={ schemaState.config }
 			/>
 		</div>
 	);

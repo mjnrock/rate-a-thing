@@ -153,6 +153,10 @@ export const State = ({ form = {}, ...rest } = {}) => {
 		form: nextForm.id,
 		components: Utility.toComponentMap(nextForm),
 		...rest,
+		config: {
+			isCollapsed: true,
+			...(rest?.config ?? {}),
+		},
 	};
 
 	return next;
@@ -272,6 +276,17 @@ export const Reducers = () => ({
 			...next,
 			components: Utility.toComponentMap(nextForm),
 		};
+	},
+	toggleConfigSetting: (state, key, value) => {
+		const next = deepClone(state);
+
+		console.log(next.config)
+		if(key in next.config) {
+			next.config[ key ] = value ?? !next.config[ key ];
+		}
+		console.log(next.config)
+
+		return next;
 	},
 });
 export const Effects = () => ({});

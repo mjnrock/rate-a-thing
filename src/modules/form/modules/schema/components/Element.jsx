@@ -5,7 +5,7 @@ import EnumElementType from "../../../EnumElementType";
 import GroupElement from "./GroupElement";
 import TypeDropdown from "./TypeDropdown";
 
-export function Element({ update, element, ...props }) {
+export function Element({ update, element, config, ...props }) {
 	const [ isEditing, setIsEditing ] = useState(false);
 	const [ labelText, setLabelText ] = useState(element?.meta?.label || element.id);
 	const [ originalLabelText, setOriginalLabelText ] = useState(element?.meta?.label || element.id);
@@ -60,7 +60,7 @@ export function Element({ update, element, ...props }) {
 				</div>
 			</div>
 			{ element.type === EnumElementType.GROUP && (
-				<GroupElement update={ update } element={ element }>
+				<GroupElement update={ update } element={ element } config={ config }>
 					{ (props) => <Element { ...props } /> }
 				</GroupElement>
 			) }
