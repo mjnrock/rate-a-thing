@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsList, BsTrash } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 
 import EnumElementType from "../../../EnumElementType";
 import GroupElement from "./GroupElement";

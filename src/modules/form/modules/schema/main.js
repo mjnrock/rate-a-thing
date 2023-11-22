@@ -204,7 +204,7 @@ export const Reducers = () => ({
 		const nextForm = Helpers.getForm(next);
 		const element = Helpers.findElement(next, id);
 
-		if(element) {
+		if(element && element.type !== type) {
 			const model = Helpers.TypeToModel(type);
 			const nextElement = model.State({
 				id: element.id,
