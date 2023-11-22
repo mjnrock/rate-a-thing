@@ -1,9 +1,7 @@
 import Chord from "@lespantsfancy/chord";
 
 import ModSchema from "../modules/form/modules/schema/main";
-
-import TypeBar from "../modules/form/modules/schema/components/TypeBar";
-import Element from "../modules/form/modules/schema/components/Element";
+import SchemaForm from "../modules/form/modules/schema/components/Form";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
@@ -25,29 +23,14 @@ export function Reviews() {
 	const { state: recordState, dispatch: recordDispatch } = Chord.Node.React.useNode(Nodes.record);
 	const { state: repositoryState, dispatch: repositoryDispatch } = Chord.Node.React.useNode(Nodes.repository);
 
-	console.log(schemaState);
+	console.log(Object.keys(schemaState.components.elements).length, schemaState.components.elements);
+	console.log(Object.keys(schemaState.components.groups).length, schemaState.components.groups);
 
 	return (
 		<div>
-			{
-				schemaState.components.groups[ schemaState.form ].map((elementId, i) => {
-					return (
-						<div
-							key={ elementId }
-							className="flex flex-row flex-grow p-2 m-2 border border-solid rounded shadow cursor-pointer select-none basis-1 border-neutral-200 hover:bg-sky-100 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
-						>
-							<Element
-								update={ schemaDispatch }
-								element={ schemaState.components.elements[ elementId ] }
-							/>
-						</div>
-					)
-				})
-			}
-			<TypeBar
+			<SchemaForm
 				update={ schemaDispatch }
 				element={ schemaState.components.elements[ schemaState.form ] }
-				startCollapsed={ false }
 			/>
 		</div>
 	);

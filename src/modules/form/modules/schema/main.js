@@ -37,6 +37,34 @@ export const Helpers = {
 
 		return state.components.elements[ id ];
 	},
+	findParent: (state, id) => {
+		if("id" in state && "type" in state) {
+			if(state.type === EnumElementType.GROUP) {
+				for(let i = 0; i < state.state.elements.length; i++) {
+					let current = state.state.elements[ i ];
+					if(current.id === id) {
+						return state;
+					} else {
+						let result = Helpers.findParent(current, id);
+						if(result) {
+							return result;
+						}
+					}
+				}
+			}
+
+			return false;
+		}
+
+		for(let key in state.components.groups) {
+			const group = state.components.groups[ key ];
+			if(group.includes(id)) {
+				return state.components.elements[ key ];
+			}
+		}
+
+		return false;
+	},
 	getForm: (state) => {
 		return Helpers.findElement(state, state.form);
 	},
@@ -149,6 +177,21 @@ export const Reducers = () => ({
 			if(parentElement.type === EnumElementType.GROUP) {
 				next.components.elements[ parentElement.id ].state.elements.push(element);
 			}
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
+	removeElement: (state, id) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+
+		const parent = Helpers.findParent(nextForm, id);
+		if(parent?.type === EnumElementType.GROUP) {
+			const index = parent.state.elements.findIndex((element) => element.id === id);
+			parent.state.elements.splice(index, 1);
 		}
 
 		return {
