@@ -35,11 +35,22 @@ export function GroupElement({ update, element, children, config = {}, ...props 
 					) }
 				</Droppable>
 			</DragDropContext>
-			<TypeBar
-				update={ update }
-				element={ element }
-				collapsed={ config?.isCollapsed }
-			/>
+			{
+				element.as === "form" ? (
+					<TypeBar
+						update={ update }
+						element={ element }
+						collapsed={ false }
+						collapsible={ false }
+					/>
+				) : (
+					<TypeBar
+						update={ update }
+						element={ element }
+						collapsed={ config?.isCollapsed }
+					/>
+				)
+			}
 		</div>
 	);
 }

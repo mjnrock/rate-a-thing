@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import EnumElementType from "../../../EnumElementType";
 import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
-export const TypeBar = ({ update, element, collapsed = true }) => {
+export const TypeBar = ({ update, element, collapsed = true, collapsible = true }) => {
 	const [ isCollapsed, setIsCollapsed ] = useState(collapsed);
 
 	const handleCollapseToggle = () => {
-		setIsCollapsed(!isCollapsed);
+		collapsible && setIsCollapsed(!isCollapsed);
 	};
 
 	useEffect(() => {
@@ -41,7 +41,7 @@ export const TypeBar = ({ update, element, collapsed = true }) => {
 				)) }
 			</div>
 
-			{ !isCollapsed && (
+			{ (collapsible && !isCollapsed) && (
 				<div
 					className="flex flex-row items-center p-4 ml-3 mr-2 border border-solid rounded cursor-pointer border-neutral-200 hover:bg-sky-50 hover:text-sky-500 hover:border-sky-200 text-neutral-400 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
 					onClick={ handleCollapseToggle }
