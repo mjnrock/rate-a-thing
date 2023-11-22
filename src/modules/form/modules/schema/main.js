@@ -198,7 +198,62 @@ export const Reducers = () => ({
 			...next,
 			components: Utility.toComponentMap(nextForm),
 		};
-	}
+	},
+	changeElementType: (state, id, type) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+		const element = Helpers.findElement(next, id);
+
+		if(element) {
+			const model = Helpers.TypeToModel(type);
+			const nextElement = model.State({
+				id: element.id,
+			});
+
+			const parent = Helpers.findParent(nextForm, id);
+			if(parent?.type === EnumElementType.GROUP) {
+				const index = parent.state.elements.findIndex((element) => element.id === id);
+				parent.state.elements[ index ] = nextElement;
+			}
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
+	setLabel: (state, id, label) => {
+		const next = deepClone(state);
+		const element = Helpers.findElement(next, id);
+
+		if(element) {
+			element.meta.label = label;
+		}
+
+		return next;
+	},
+	swapChildren: (state, gid, cid1, cid2) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+		const group = gid === nextForm.id ? nextForm : Helpers.findElement(nextForm, gid);
+
+		console.log(gid, cid1, cid2)
+		console.log(group)
+
+		if(group?.type === EnumElementType.GROUP) {
+			const index1 = group.state.elements.findIndex((element) => element.id === cid1);
+			const index2 = group.state.elements.findIndex((element) => element.id === cid2);
+
+			if(index1 !== -1 && index2 !== -1) {
+				[ group.state.elements[ index1 ], group.state.elements[ index2 ] ] = [ group.state.elements[ index2 ], group.state.elements[ index1 ] ];
+			}
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
 });
 export const Effects = () => ({});
 

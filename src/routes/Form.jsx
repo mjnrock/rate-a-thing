@@ -27,7 +27,7 @@ export function Reviews() {
 	console.log(Object.keys(schemaState.components.groups).length, schemaState.components.groups);
 
 	return (
-		<div>
+		<div className="flex flex-col w-full h-full">
 			<SchemaForm
 				update={ schemaDispatch }
 				element={ schemaState.components.elements[ schemaState.form ] }
