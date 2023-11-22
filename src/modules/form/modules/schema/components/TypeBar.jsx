@@ -30,7 +30,7 @@ export const TypeBar = ({ update, element, startCollapsed = true }) => {
 					!isCollapsed && Object.keys(EnumElementType).map((key, i) => (
 						<div
 							key={ key }
-							className="flex items-center justify-center flex-1 p-2 m-2 bg-white border border-solid rounded shadow cursor-pointer select-none border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
+							className="flex items-center justify-center flex-1 px-2 py-4 m-2 bg-white border border-solid rounded shadow cursor-pointer select-none border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
 							onClick={ e => {
 								update("addElementByType", EnumElementType[ key ], element.id);
 							} }

@@ -254,6 +254,25 @@ export const Reducers = () => ({
 			components: Utility.toComponentMap(nextForm),
 		};
 	},
+	moveChildToIndex: (state, gid, cid, index) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+		const group = gid === nextForm.id ? nextForm : Helpers.findElement(nextForm, gid);
+
+		if(group?.type === EnumElementType.GROUP) {
+			const child = Helpers.findElement(group, cid);
+			if(child) {
+				const childIndex = group.state.elements.findIndex((element) => element.id === cid);
+				group.state.elements.splice(childIndex, 1);
+				group.state.elements.splice(index, 0, child);
+			}
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
 });
 export const Effects = () => ({});
 

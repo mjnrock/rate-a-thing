@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { BsList, BsTrash } from "react-icons/bs";
+import React, { useState } from 'react';
+import { BsList, BsTrash } from 'react-icons/bs';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import EnumElementType from "../../../EnumElementType";
-import TypeBar from "./TypeBar";
-import TypeDropdown from "./TypeDropdown";
+import EnumElementType from '../../../EnumElementType';
+import TypeBar from './TypeBar';
+import TypeDropdown from './TypeDropdown';
 
 export function Element({ update, element, ...props }) {
 	const [ isEditing, setIsEditing ] = useState(false);
@@ -11,7 +12,7 @@ export function Element({ update, element, ...props }) {
 	const [ originalLabelText, setOriginalLabelText ] = useState(element?.meta?.label || element.id);
 
 	const handleClick = () => {
-		setOriginalLabelText(labelText); // Store the original value before editing
+		setOriginalLabelText(labelText);
 		setIsEditing(true);
 	};
 
@@ -40,6 +41,13 @@ export function Element({ update, element, ...props }) {
 		setIsEditing(false);
 	};
 
+	const onDragEnd = (result) => {
+		if(!result.destination) return;
+		if(result.destination.index === result.source.index) return;
+
+		update("swapChildren", element.id, element.state.elements[ result.source.index ].id, element.state.elements[ result.destination.index ].id);
+	};
+
 	return (
 		<div className="flex flex-col flex-grow p-2 m-2 border border-solid rounded shadow cursor-pointer select-none basis-1 border-neutral-200" { ...props }>
 			<div className="flex flex-row items-center justify-between w-full gap-x-2">
@@ -54,23 +62,21 @@ export function Element({ update, element, ...props }) {
 				/>
 
 				<div className="flex w-full p-2 rounded hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500">
-					{
-						isEditing ? (
-							<input
-								type="text"
-								value={ labelText }
-								onChange={ handleChange }
-								onBlur={ handleBlur }
-								onKeyDown={ handleKeyDown }
-								className="flex-1 w-full p-2 font-mono border border-solid rounded shadow-md cursor-pointer select-none text-neutral-600 border-neutral-200"
-								autoFocus
-							/>
-						) : (
-							<span className="flex-1 w-full font-mono" onClick={ handleClick }>
-								{ labelText }
-							</span>
-						)
-					}
+					{ isEditing ? (
+						<input
+							type="text"
+							value={ labelText }
+							onChange={ handleChange }
+							onBlur={ handleBlur }
+							onKeyDown={ handleKeyDown }
+							className="flex-1 w-full p-2 font-mono border border-solid rounded shadow-md cursor-pointer select-none text-neutral-600 border-neutral-200"
+							autoFocus
+						/>
+					) : (
+						<span className="flex-1 w-full font-mono" onClick={ handleClick }>
+							{ labelText }
+						</span>
+					) }
 				</div>
 
 				<div
@@ -82,27 +88,36 @@ export function Element({ update, element, ...props }) {
 					<BsTrash />
 				</div>
 			</div>
-			{
-				element.type === EnumElementType.GROUP && (
-					<div className="flex flex-col w-full">
-						{
-							element.state.elements.map((el, i) => {
-								return (
-									<Element
-										key={ el.id }
-										update={ update }
-										element={ el }
-									/>
-								)
-							})
-						}
-						<TypeBar
-							update={ update }
-							element={ element }
-						/>
-					</div>
-				)
-			}
+			{ element.type === EnumElementType.GROUP && (
+				<div className="flex flex-col w-full">
+					<DragDropContext onDragEnd={ onDragEnd }>
+						<Droppable droppableId={ element.id }>
+							{ (provided) => (
+								<div { ...provided.droppableProps } ref={ provided.innerRef }>
+									{ element.state.elements.map((el, index) => (
+										<Draggable key={ el.id } draggableId={ el.id } index={ index }>
+											{ (provided) => (
+												<div ref={ provided.innerRef } { ...provided.draggableProps } { ...provided.dragHandleProps }>
+													<Element
+														key={ el.id }
+														update={ update }
+														element={ el }
+													/>
+												</div>
+											) }
+										</Draggable>
+									)) }
+									{ provided.placeholder }
+								</div>
+							) }
+						</Droppable>
+					</DragDropContext>
+					<TypeBar
+						update={ update }
+						element={ element }
+					/>
+				</div>
+			) }
 		</div>
 	);
 };
