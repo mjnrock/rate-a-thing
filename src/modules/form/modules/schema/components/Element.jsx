@@ -60,7 +60,11 @@ export function Element({ update, element, config, ...props }) {
 				</div>
 			</div>
 			{ element.type === EnumElementType.GROUP && (
-				<GroupElement update={ update } element={ element } config={ config }>
+				<GroupElement
+					update={ update }
+					element={ element }
+					config={ config }
+				>
 					{ (props) => <Element { ...props } /> }
 				</GroupElement>
 			) }

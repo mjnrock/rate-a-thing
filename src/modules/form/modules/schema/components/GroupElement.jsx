@@ -1,9 +1,8 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { BsList } from "react-icons/bs"; // Import BsList
+import { BsList } from "react-icons/bs";
 
 import TypeBar from "./TypeBar";
-import EnumElementType from "../../../EnumElementType";
 
 export function GroupElement({ update, element, children, config = {}, ...props }) {
 	const onDragEnd = (result) => {
