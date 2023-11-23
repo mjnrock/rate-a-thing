@@ -15,35 +15,35 @@ export const GroupState = ({ ...rest } = {}) => {
 
 export const GroupReducers = () => ({
 	...Element.Reducers,
-	addElementByType: (state, type, modelMap, ...args) => {
+	addChildType: (self, type, modelMap, ...args) => {
 		const model = typeof modelMap === "function" ? modelMap(type) : modelMap[ type ];
 		const element = model.State(...args);
-		const elements = [ ...state.state.elements, element ];
+		const elements = [ ...self.state.elements, element ];
 
 		return {
-			...state,
+			...self,
 			state: {
-				...state.state,
+				...self.state,
 				elements,
 			},
 		};
 	},
-	addElement: (state, element) => ({
-		...state,
+	addElement: (self, element) => ({
+		...self,
 		state: {
-			...state.state,
-			elements: [ ...state.state.elements, element ],
+			...self.state,
+			elements: [ ...self.state.elements, element ],
 		},
 	}),
-	removeElement: (state, elementId) => ({
-		...state,
+	removeElement: (self, elementId) => ({
+		...self,
 		state: {
-			...state.state,
-			elements: state.state.elements.filter(el => el.id !== elementId),
+			...self.state,
+			elements: self.state.elements.filter(el => el.id !== elementId),
 		},
 	}),
-	swapElements: (state, elementId1, elementId2) => {
-		const elements = state.state.elements;
+	swapElements: (self, elementId1, elementId2) => {
+		const elements = self.state.elements;
 		const index1 = elements.findIndex(el => el.id === elementId1);
 		const index2 = elements.findIndex(el => el.id === elementId2);
 		const element1 = elements[ index1 ];
@@ -53,9 +53,9 @@ export const GroupReducers = () => ({
 		elements[ index2 ] = element1;
 
 		return {
-			...state,
+			...self,
 			state: {
-				...state.state,
+				...self.state,
 				elements,
 			},
 		};

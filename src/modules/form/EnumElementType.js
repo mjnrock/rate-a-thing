@@ -1,5 +1,5 @@
 export const EnumElementType = {
-	ELEMENT: "element",
+	ELEMENT: "element",	// a generic element
 	GROUP: "group",
 	TEXT: "text",
 	NUMBER: "number",

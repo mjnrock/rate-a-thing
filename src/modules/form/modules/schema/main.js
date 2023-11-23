@@ -166,9 +166,9 @@ export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
 
-	addElementByType: (state, type, parentId) => {
+	addElementByType: (state, parentId, type, as) => {
 		const model = Helpers.TypeToModel(type);
-		const element = model.State();
+		const element = model.State({ as });
 
 		const next = deepClone(state);
 		const nextForm = Helpers.getForm(next);
@@ -213,6 +213,34 @@ export const Reducers = () => ({
 			const nextElement = model.State({
 				id: element.id,
 			});
+
+			const parent = Helpers.findParent(nextForm, id);
+			if(parent?.type === EnumElementType.GROUP) {
+				const index = parent.state.elements.findIndex((element) => element.id === id);
+				parent.state.elements[ index ] = nextElement;
+			}
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
+	changeElementAs: (state, id, as) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+		const element = Helpers.findElement(next, id);
+
+		if(element) {
+			const model = Helpers.TypeToModel(element.type);
+			const nextElement = model.State({
+				...element,
+				as,
+			});
+
+			if(as === null) {
+				delete nextElement.as;
+			}
 
 			const parent = Helpers.findParent(nextForm, id);
 			if(parent?.type === EnumElementType.GROUP) {

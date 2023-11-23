@@ -4,6 +4,7 @@ import { BsTrash } from "react-icons/bs";
 import EnumElementType from "../../../EnumElementType";
 import GroupElement from "./GroupElement";
 import TypeDropdown from "./TypeDropdown";
+import AsDropdown from "./AsDropdown";
 
 export function Element({ update, element, config, ...props }) {
 	const [ isEditing, setIsEditing ] = useState(false);
@@ -41,9 +42,14 @@ export function Element({ update, element, config, ...props }) {
 	};
 
 	return (
-		<div className="flex flex-col flex-grow p-2 m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
+		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
 			<div className="flex flex-row items-center justify-between w-full gap-x-2">
-				<TypeDropdown update={ update } element={ element } />
+				<div className="flex flex-row w-1/4 px-2 gap-x-2">
+					<TypeDropdown update={ update } element={ element } className="w-full" /> {/* Flex-1 for equal sizing */ }
+					<AsDropdown update={ update } element={ element } className="w-full" />
+				</div>
+
+				<div className="flex-1 w-full font-mono cursor-pointer">{ element.as }</div>
 
 				<div className="flex w-full p-2 rounded hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500">
 					{ isEditing ? (

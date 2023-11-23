@@ -28,17 +28,20 @@ export const TypeBar = ({ update, element, collapsed = true, collapsible = true 
 			) }
 
 			<div className="grid justify-center w-full grid-flow-row gap-3 auto-rows-max grid-cols-auto-fit" style={ { gridTemplateColumns: 'repeat(auto-fit, minmax(80px, 1fr))' } }>
-				{ !isCollapsed && Object.keys(EnumElementType).map((key, i) => (
-					<div
-						key={ key }
-						className="items-center justify-center px-2 py-4 bg-white border border-solid rounded shadow cursor-pointer select-none border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
-						onClick={ e => {
-							update("addElementByType", EnumElementType[ key ], element.id);
-						} }
-					>
-						<div className="text-center">{ key.toLowerCase() }</div>
-					</div>
-				)) }
+				{
+					//TODO: Iterate over a curated list of element types, instead
+					!isCollapsed && Object.keys(EnumElementType).map((key, i) => (
+						<div
+							key={ key }
+							className="items-center justify-center px-2 py-4 bg-white border border-solid rounded shadow cursor-pointer select-none border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
+							onClick={ e => {
+								//TODO: Implement use of the "as" clause: update("addElementByType", element.id, EnumElementType[ key ], as);
+								update("addElementByType", element.id, EnumElementType[ key ]);
+							} }
+						>
+							<div className="text-center">{ key.toLowerCase() }</div>
+						</div>
+					)) }
 			</div>
 
 			{ (collapsible && !isCollapsed) && (

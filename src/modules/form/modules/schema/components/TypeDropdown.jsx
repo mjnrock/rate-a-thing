@@ -14,7 +14,7 @@ export const TypeDropdown = ({ update, element, ...props }) => {
 
 	return (
 		<Menu as="div" className="relative inline-block text-left" { ...props }>
-			<Menu.Button className="flex flex-row items-center justify-start p-2 m-2 overflow-x-auto border border-solid rounded shadow cursor-pointer text-neutral-500 border-neutral-200 bg-neutral-100 hover:bg-sky-50 hover:text-sky-500 hover:border-sky-200">
+			<Menu.Button className="flex flex-row items-center justify-between w-full p-2 m-2 overflow-x-auto border border-solid rounded shadow cursor-pointer text-neutral-500 border-neutral-200 bg-neutral-100 hover:bg-sky-50 hover:text-sky-500 hover:border-sky-200">
 				<span className="font-bold">{ element.type }</span>
 				<BsChevronDown className="ml-2" />
 			</Menu.Button>
