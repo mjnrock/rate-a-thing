@@ -1,5 +1,6 @@
 import Chord from "@lespantsfancy/chord";
 
+import TabContainer from "../modules/form/views/TabContainer";
 import ModSchema from "../modules/form/modules/schema/main";
 import SchemaForm from "../modules/form/modules/schema/components/Form";
 
@@ -27,13 +28,19 @@ export function Reviews() {
 	console.log(Object.keys(schemaState.components.groups).length, schemaState.components.groups);
 
 	return (
-		<div className="flex flex-col w-full h-full">
-			<SchemaForm
-				update={ schemaDispatch }
-				element={ schemaState.components.elements[ schemaState.form ] }
-				config={ schemaState.config }
-			/>
-		</div>
+		<TabContainer
+			schemaContent={ () => (
+				<div className="flex flex-col w-full h-full">
+					<SchemaForm
+						update={ schemaDispatch }
+						element={ schemaState.components.elements[ schemaState.form ] }
+						config={ schemaState.config }
+					/>
+				</div>
+			) }
+			writeContent={ () => null }
+			searchContent={ () => null }
+		/>
 	);
 };
 

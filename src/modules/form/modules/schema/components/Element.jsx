@@ -22,7 +22,7 @@ export function Element({ update, element, config, ...props }) {
 
 	const handleUpdate = (newLabel) => {
 		if(newLabel !== originalLabelText && newLabel !== element.id) {
-			update("setLabel", element.id, newLabel);
+			update("setLabel", element.id, newLabel.trim());
 		}
 	};
 
@@ -45,13 +45,11 @@ export function Element({ update, element, config, ...props }) {
 		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
 			<div className="flex flex-row items-center justify-between w-full gap-x-2">
 				<div className="flex flex-row w-1/4 px-2 gap-x-2">
-					<TypeDropdown update={ update } element={ element } className="w-full" /> {/* Flex-1 for equal sizing */ }
-					<AsDropdown update={ update } element={ element } className="w-full" />
+					<TypeDropdown update={ update } element={ element } className="w-1/2" />
+					<AsDropdown update={ update } element={ element } className="w-1/2" />
 				</div>
 
-				<div className="flex-1 w-full font-mono cursor-pointer">{ element.as }</div>
-
-				<div className="flex w-full p-2 rounded hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500">
+				<div className="flex w-3/4 p-2 rounded hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500">
 					{ isEditing ? (
 						<input type="text" value={ labelText } onChange={ handleChange } onBlur={ handleBlur } onKeyDown={ handleKeyDown } className="flex-1 w-full p-2 font-mono border border-solid rounded shadow-md select-none text-neutral-600 border-neutral-200" autoFocus />
 					) : (

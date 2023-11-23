@@ -8,7 +8,7 @@ import EnumElementType from "../../../EnumElementType";
 export function Form({ update, element, config = {}, ...props }) {
 	return (
 		<>
-			<div className="flex flex-row items-center justify-between w-full gap-2 p-2 mb-2 border border-solid shadow-md select-none bg-neutral-50 border-neutral-200">
+			<div className="flex flex-row items-center justify-between w-full gap-2 p-2 mb-2 border border-b border-solid shadow-md select-none bg-neutral-50 border-neutral-200 border-b-neutral-100 ">
 				{
 					element.state.elements.some(el => el.type === EnumElementType.GROUP) ? (
 						<button
