@@ -84,9 +84,11 @@ export function Element({ update, element, config, map, ...props }) {
 					</div>
 				</div>
 			</div>
-			{
-				Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
-			}
+			<div className="flex flex-col w-full p-2">
+				{
+					Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
+				}
+			</div>
 		</div>
 	);
 };

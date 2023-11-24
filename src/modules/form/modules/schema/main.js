@@ -336,6 +336,22 @@ export const Reducers = () => ({
 
 		return next;
 	},
+	mergeElementState: (state, id, next) => {
+		const nextForm = Helpers.getForm(state);
+		const element = Helpers.findElement(nextForm, id);
+
+		if(element) {
+			element.state = {
+				...element.state,
+				...next,
+			};
+		}
+
+		return {
+			...state,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
 	duplicateChild: (state, cid) => {
 		const next = deepClone(state);
 		const nextForm = Helpers.getForm(next);

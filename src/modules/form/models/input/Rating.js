@@ -10,7 +10,7 @@ export const RatingState = ({ value = null, max = 5, min = 1, step = 1, ...rest 
 				max,
 				min,
 				step,
-				icon: "circle",
+				icon: "star",
 			},
 			...rest,
 		}),

@@ -2,8 +2,9 @@ import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 import ElementGroup from "./ElementGroup";
-import Element, { toComponent } from "./Element";
-import ElementRating from "./ElementRating";
+import Element from "./Element";
+
+import Elements from "./elements/package";
 
 export const ElementComponentMap = {
 	[ EnumElementType.GROUP ]: (element) => {
@@ -15,10 +16,10 @@ export const ElementComponentMap = {
 	},
 	[ EnumElementType.INPUT ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
-			return ElementRating;
+			return Elements.Input.Rating;
 		}
 
-		return ElementRating;
+		return Element;
 	},
 	default: (element) => Element,
 };
