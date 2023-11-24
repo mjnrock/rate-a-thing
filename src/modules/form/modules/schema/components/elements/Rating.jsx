@@ -1,14 +1,20 @@
-import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
+import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
 
 function Rating({ update, element }) {
 	const { max, min, step, icon: stateIcon } = element.state;
 
-	const renderIcon = () => {
-		switch(stateIcon) {
+	const renderIcon = (icon) => {
+		switch(icon ?? stateIcon) {
 			case "circle":
 				return BsCircle;
+			case "circle-fill":
+				return BsCircleFill;
 			case "square":
 				return BsSquare;
+			case "square-fill":
+				return BsSquareFill;
+			case "star-fill":
+				return BsStarFill;
 			default:
 				return BsStar;
 		}
@@ -18,10 +24,15 @@ function Rating({ update, element }) {
 		const stars = [];
 
 		for(let i = min; i <= max; i++) {
-			let Comp = renderIcon();
+			let Comp = renderIcon(i <= element.state.value ? stateIcon + "-fill" : stateIcon);
 
 			stars.push(
-				<Comp key={ i } size={ "3rem" } />
+				<Comp
+					className={ `cursor-pointer hover:text-amber-300 active:text-amber-400 ` + (i <= element.state.value ? "text-neutral-500" : "text-neutral-300") }
+					onClick={ e => update("setElementValue", element.id, i) }
+					key={ i }
+					size={ "3rem" }
+				/>
 			);
 		}
 
