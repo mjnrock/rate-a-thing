@@ -2,7 +2,7 @@ import Chord from "@lespantsfancy/chord";
 
 import TabContainer from "../modules/form/views/TabContainer";
 import ModSchema from "../modules/form/modules/schema/main";
-import SchemaForm from "../modules/form/modules/schema/components/Form";
+import FormSchema from "../modules/form/modules/schema/components/ElementForm";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
@@ -31,7 +31,7 @@ export function Reviews() {
 		<TabContainer
 			schemaContent={ () => (
 				<div className="flex flex-col w-full h-full">
-					<SchemaForm
+					<FormSchema
 						update={ schemaDispatch }
 						element={ schemaState.components.elements[ schemaState.form ] }
 						config={ schemaState.config }

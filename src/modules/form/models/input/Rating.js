@@ -1,7 +1,7 @@
 import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Input from "./Input";
 
-export const RatingState = ({ value = null, max, min, step = 1, ...rest } = {}) => {
+export const RatingState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
 	return {
 		...Input.State({
 			as: EnumFormElementType[ EnumElementType.INPUT ].RATING,
@@ -10,9 +10,10 @@ export const RatingState = ({ value = null, max, min, step = 1, ...rest } = {}) 
 				max,
 				min,
 				step,
+				icon: "circle",
 			},
+			...rest,
 		}),
-		...rest,
 	};
 };
 

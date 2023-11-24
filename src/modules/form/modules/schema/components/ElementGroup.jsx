@@ -2,9 +2,10 @@ import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { BsList } from "react-icons/bs";
 
+import Element from "./Element";
 import TypeBar from "./TypeBar";
 
-export function GroupElement({ update, element, children, config = {}, ...props }) {
+export function ElementGroup({ update, element, config = {}, map, ...props }) {
 	const onDragEnd = (result) => {
 		if(!result.destination) return;
 		if(result.destination.index === result.source.index) return;
@@ -25,7 +26,7 @@ export function GroupElement({ update, element, children, config = {}, ...props 
 											<span { ...provided.dragHandleProps } className="flex p-2 m-2 mr-3 border border-solid rounded border-neutral-200 text-neutral-300 bg-neutral-100 hover:bg-neutral-200 hover:border-neutral-300 hover:text-neutral-500 active:bg-neutral-700 active:border-neutral-50 active:text-neutral-50">
 												<BsList size={ "2rem" } />
 											</span>
-											{ children({ update, element: el, config }) }
+											<Element update={ update } element={ el } config={ config } map={ map } className="flex-grow" />
 										</div>
 									) }
 								</Draggable>
@@ -55,4 +56,4 @@ export function GroupElement({ update, element, children, config = {}, ...props 
 	);
 }
 
-export default GroupElement;
+export default ElementGroup;

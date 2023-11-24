@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import { deepClone } from "../../../../util/deepClone";
 
 import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
@@ -16,6 +17,21 @@ import Markdown from "../../models/input/Markdown";
 import Rating from "../../models/input/Rating";
 
 export const Helpers = {
+	duplicateElementWithChildren: (element) => {
+		const model = Helpers.TypeToModel(element.type);
+		const nextElement = model.State({
+			...deepClone(element),
+			id: uuid(),
+		});
+
+		if(element.type === EnumElementType.GROUP) {
+			nextElement.state.elements = element.state.elements.map(child =>
+				Helpers.duplicateElementWithChildren(child)
+			);
+		}
+
+		return nextElement;
+	},
 	findElement: (state, id) => {
 		if("id" in state && "type" in state) {
 			if(state.type === EnumElementType.GROUP) {
@@ -71,8 +87,7 @@ export const Helpers = {
 	TypeToModel: (type) => {
 		let as;
 		if(Array.isArray(type)) {
-			type = type[ 0 ];
-			as = type[ 1 ];
+			[ type, as ] = type;
 		} else if(typeof type === "object" && type.type) {
 			as = type.as;
 			type = type.type;
@@ -232,11 +247,8 @@ export const Reducers = () => ({
 		const element = Helpers.findElement(next, id);
 
 		if(element) {
-			const model = Helpers.TypeToModel(element.type);
-			const nextElement = model.State({
-				...element,
-				as,
-			});
+			const model = Helpers.TypeToModel([ element.type, as ]);
+			const nextElement = model.State({ id: element.id });
 
 			if(as === null) {
 				delete nextElement.as;
@@ -313,6 +325,34 @@ export const Reducers = () => ({
 		}
 
 		return next;
+	},
+	setElementValue: (state, id, value) => {
+		const next = deepClone(state);
+		const element = Helpers.findElement(next, id);
+
+		if(element) {
+			element.state.value = value;
+		}
+
+		return next;
+	},
+	duplicateChild: (state, cid) => {
+		const next = deepClone(state);
+		const nextForm = Helpers.getForm(next);
+		const child = Helpers.findElement(nextForm, cid);
+		const parent = Helpers.findParent(nextForm, cid);
+
+		if(child && parent) {
+			const index = parent.state.elements.findIndex(element => element.id === cid);
+			const nextChild = Helpers.duplicateElementWithChildren(child);
+
+			parent.state.elements.splice(index + 1, 0, nextChild);
+		}
+
+		return {
+			...next,
+			components: Utility.toComponentMap(nextForm),
+		};
 	},
 });
 export const Effects = () => ({});

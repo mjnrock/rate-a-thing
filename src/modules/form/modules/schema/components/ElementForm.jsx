@@ -1,11 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { BsChevronRight, BsChevronUp, BsDash, BsEye, BsEyeSlash, BsPlus } from "react-icons/bs";
+import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
-import GroupElement from "./GroupElement";
-import Element from "./Element";
-import EnumElementType from "../../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
+import ElementGroup from "./ElementGroup";
+import Element, { toComponent } from "./Element";
+import ElementRating from "./ElementRating";
 
-export function Form({ update, element, config = {}, ...props }) {
+export const ElementComponentMap = {
+	[ EnumElementType.GROUP ]: (element) => {
+		if(element.as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
+			return ElementForm;
+		}
+
+		return ElementGroup;
+	},
+	[ EnumElementType.INPUT ]: (element) => {
+		if(element.as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
+			return ElementRating;
+		}
+
+		return ElementRating;
+	},
+	default: (element) => Element,
+};
+
+export function ElementForm({ update, element, config = {}, ...props }) {
 	return (
 		<>
 			<div className="flex flex-row items-center justify-between w-full gap-2 p-2 mb-2 border border-b border-solid shadow-md select-none bg-neutral-50 border-neutral-200 border-b-neutral-100 ">
@@ -23,16 +41,15 @@ export function Form({ update, element, config = {}, ...props }) {
 				}
 			</div>
 
-			<GroupElement
+			<ElementGroup
 				update={ update }
 				element={ element }
 				config={ config }
+				map={ ElementComponentMap }
 				{ ...props }
-			>
-				{ (props) => <Element { ...props } /> }
-			</GroupElement>
+			/>
 		</>
 	);
 };
 
-export default Form;
+export default ElementForm;

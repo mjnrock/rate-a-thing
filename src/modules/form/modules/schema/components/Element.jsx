@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import { BsTrash } from "react-icons/bs";
+import { BsTrash, BsClipboard } from "react-icons/bs";
 
-import EnumElementType from "../../../EnumElementType";
-import GroupElement from "./GroupElement";
 import TypeDropdown from "./TypeDropdown";
 import AsDropdown from "./AsDropdown";
 
-export function Element({ update, element, config, ...props }) {
+export function toComponent(element, map = {}) {
+	if(element.type in map) {
+		return map[ element.type ](element);
+	} else if(typeof map.default === "function") {
+		return map.default(element);
+	}
+
+	return Element;
+};
+
+export function Element({ update, element, config, map, ...props }) {
 	const [ isEditing, setIsEditing ] = useState(false);
 	const [ labelText, setLabelText ] = useState(element?.meta?.label || element.id);
 	const [ originalLabelText, setOriginalLabelText ] = useState(element?.meta?.label || element.id);
@@ -41,6 +49,8 @@ export function Element({ update, element, config, ...props }) {
 		setIsEditing(false);
 	};
 
+	const Component = toComponent(element, map);
+
 	return (
 		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
 			<div className="flex flex-row items-center justify-between w-full gap-x-2">
@@ -59,19 +69,24 @@ export function Element({ update, element, config, ...props }) {
 					) }
 				</div>
 
-				<div className="flex flex-row items-center justify-center p-2 m-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-400 bg-neutral-100 border-neutral-200 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-500 active:bg-rose-700 active:border-rose-50 active:text-rose-50" onClick={ (e) => update("removeElement", element.id) }>
-					<BsTrash size={ "1.5rem" } />
+				<div className="flex flex-row items-center justify-end w-1/4 gap-2 p-2">
+					<div
+						className="flex flex-row items-center justify-center gap-2 p-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-400 bg-neutral-100 border-neutral-200 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-500 active:bg-emerald-700 active:border-emerald-50 active:text-emerald-50"
+						onClick={ (e) => update("duplicateChild", element.id) }
+					>
+						<BsClipboard size={ "1.5rem" } />
+					</div>
+					<div
+						className="flex flex-row items-center justify-center gap-2 p-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-400 bg-neutral-100 border-neutral-200 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-500 active:bg-rose-700 active:border-rose-50 active:text-rose-50"
+						onClick={ (e) => update("removeElement", element.id) }
+					>
+						<BsTrash size={ "1.5rem" } />
+					</div>
 				</div>
 			</div>
-			{ element.type === EnumElementType.GROUP && (
-				<GroupElement
-					update={ update }
-					element={ element }
-					config={ config }
-				>
-					{ (props) => <Element { ...props } /> }
-				</GroupElement>
-			) }
+			{
+				Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
+			}
 		</div>
 	);
 };

@@ -8,8 +8,8 @@ export const InputState = ({ ...rest } = {}) => {
 			state: {
 				value: "",
 			},
+			...rest
 		}),
-		...rest
 	};
 };
 
