@@ -1,10 +1,10 @@
 import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
-import ElementGroup from "./ElementGroup";
-import Element from "./Element";
+import ElementGroup from "../components/ElementGroup";
+import Element from "../components/Element";
 
-import Elements from "./elements/package";
+import Elements from "../components/elements/package";
 
 export const HTMLInputEnums = [
 	"button",

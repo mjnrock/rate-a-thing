@@ -129,7 +129,7 @@ export const InputSchema = {
 	},
 };
 
-export const InputState = ({ as, ...rest } = {}) => {
+export const InputState = ({ as = EnumFormElementType[ EnumElementType.INPUT ].TEXT, ...rest } = {}) => {
 	return {
 		...Element.State({
 			type: EnumElementType.INPUT,

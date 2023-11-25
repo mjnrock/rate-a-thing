@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
 
-function ElementRating({ update, element, icon }) {
+function ElementRatingRange({ update, element, icon }) {
 	const { value, max, min, step, icon: stateIcon } = element.state;
 	const [ hoverValue, setHoverValue ] = useState(null);
 
@@ -44,4 +44,4 @@ function ElementRating({ update, element, icon }) {
 	);
 }
 
-export default ElementRating;
+export default ElementRatingRange;
