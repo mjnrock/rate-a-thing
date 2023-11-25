@@ -40,12 +40,12 @@ export const ElementComponentMap = {
 		return ElementGroup;
 	},
 	[ EnumElementType.INPUT ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
-			return Elements.Input.Rating;
-		} else if (HTMLInputEnums.includes(element.as)) {
-			return Elements.Input.HTMLInput;
+		return Elements.Input;
+	},
+	[ EnumElementType.RATING ]: (element) => {
+		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
+			return Elements.RatingRange;
 		}
-
 
 		return Element;
 	},

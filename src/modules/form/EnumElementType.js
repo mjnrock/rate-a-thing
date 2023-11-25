@@ -1,3 +1,5 @@
+//TODO: Refactor INPUT subtypes so that it's exclusively HTML Input Types
+
 export const EnumElementType = {
 	ELEMENT: "element",	// a generic element
 	GROUP: "group",
@@ -8,6 +10,7 @@ export const EnumElementType = {
 	ARRAY: "array",
 
 	INPUT: "input",
+	RATING: "rating",
 };
 
 /* Module-specific version, for use with `as` property */
@@ -20,9 +23,10 @@ export const EnumFormElementType = {
 		SECTION: "section",
 	},
 	[ EnumElementType.TEXT ]: {
-		CHARACTER: "character",
-		HEADING: "heading",
-		MARKDOWN: "markdown",
+		CHARACTER: "character",	// Single character
+		CODE: "code",			// Code block (CodeMirror)
+		HEADING: "heading",		// Heading (h1, h2, h3, etc.)
+		MARKDOWN: "markdown",	// Markdown block (remarkable)
 	},
 	[ EnumElementType.NUMBER ]: {
 		INT8: "int8",
@@ -56,12 +60,11 @@ export const EnumFormElementType = {
 		RANGE: "range",
 		CHECKBOX: "checkbox",
 		RADIO: "radio",
-
-		// Custom input types
-		TEXTAREA: "textarea",
-		MARKDOWN: "markdown",
-		SWITCH: "switch",	// Switch is a binary radio with a different UI
-		RATING: "rating",	// Rating is a range with a different UI
+	},
+	[ EnumElementType.RATING ]: {
+		LIKE_DISLIKE: "like-dislike",	// Thumbs up/down
+		RANGE: "range",					// 1-5 stars, 1-10 scale, etc.
+		COMMENT: "comment",				// Markdown comment
 	},
 }
 

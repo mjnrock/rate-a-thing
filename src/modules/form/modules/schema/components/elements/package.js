@@ -1,9 +1,7 @@
-import Rating from "./input/Rating";
-import HTMLInput from "./input/HTMLInput";
+import RatingRange from "./RatingRange";
+import Input from "./Input";
 
 export default {
-	Input: {
-		Rating,
-		HTMLInput,
-	},
+	RatingRange,
+	Input,
 };

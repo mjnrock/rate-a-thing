@@ -1,10 +1,10 @@
 import React from "react";
 import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
-import { GridForm } from "../../../../../components/GridForm";
-import { RatingSchema } from "../../../../../models/input/Rating";
+import { GridForm } from "../../../../components/GridForm";
+import { RangeSchema } from "../../../../models/rating/Range";
 
 
-function Rating({ update, element }) {
+export function RatingRange({ update, element }) {
 	const { max, min, step, icon: stateIcon } = element.state;
 
 	const renderIcon = (icon) => {
@@ -57,7 +57,7 @@ function Rating({ update, element }) {
 	return (
 		<div className="flex flex-col items-center justify-between gap-2">
 			<GridForm
-				schema={ RatingSchema }
+				schema={ RangeSchema }
 				element={ element }
 				update={ handleRatingUpdate }
 				columns={ 2 }
@@ -70,4 +70,4 @@ function Rating({ update, element }) {
 	);
 }
 
-export default Rating;
+export default RatingRange;

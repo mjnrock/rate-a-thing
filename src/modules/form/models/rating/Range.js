@@ -1,7 +1,7 @@
 import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
-import Input from "./Input";
+import Rating from "./Rating";
 
-export const RatingSchema = {
+export const RangeSchema = {
 	value: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
 	max: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
 	min: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
@@ -9,10 +9,10 @@ export const RatingSchema = {
 	icon: [ EnumElementType.ARRAY, EnumFormElementType[ EnumElementType.ARRAY ].DROPDOWN, "star", "circle", "square", ],
 };
 
-export const RatingState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
+export const RangeState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
 	return {
-		...Input.State({
-			as: EnumFormElementType[ EnumElementType.INPUT ].RATING,
+		...Rating.State({
+			as: EnumFormElementType[ EnumElementType.RATING ].RANGE,
 			state: {
 				value,
 				max,
@@ -26,7 +26,7 @@ export const RatingState = ({ value = null, max = 5, min = 1, step = 1, ...rest 
 };
 
 export const RatingReducers = () => ({
-	...Input.Reducers,
+	...Rating.Reducers,
 	setValue: (state, value) => {
 		// ensure value is between min and max
 		let nextValue = value;
@@ -74,7 +74,7 @@ export const RatingReducers = () => ({
 });
 
 export default {
-	Schema: RatingSchema,
-	State: RatingState,
+	Schema: RangeSchema,
+	State: RangeState,
 	Reducers: RatingReducers(),
 };

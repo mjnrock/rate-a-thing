@@ -13,9 +13,8 @@ import Bitmask from "../../models/boolean/Bitmask";
 import ArrayModel from "../../models/array/Array";
 import ObjectModel from "../../models/object/Object";
 import Input from "../../models/input/Input";
-import HTMLInput from "../../models/input/HTMLInput";
-import Markdown from "../../models/input/Markdown";
-import Rating from "../../models/input/Rating";
+import Rating from "../../models/rating/Rating";
+import RatingRange from "../../models/rating/Range";
 
 export const HTMLInputEnums = [
 	"button",
@@ -142,14 +141,12 @@ export const Helpers = {
 		} else if(type === EnumElementType.ARRAY) {
 			return ArrayModel;
 		} else if(type === EnumElementType.INPUT) {
-			if(HTMLInputEnums.includes(as)) {
-				return HTMLInput;
-			} else if(as === EnumFormElementType[ EnumElementType.INPUT ].MARKDOWN) {
-				return Markdown;
-			} else if(as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
-				return Rating;
+			return Input;
+		} else if(type === EnumElementType.RATING) {
+			if(as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
+				return RatingRange;
 			} else {
-				return Input;
+				return Rating;
 			}
 		} else {
 			throw new Error(`Unknown type: ${ type }`);
