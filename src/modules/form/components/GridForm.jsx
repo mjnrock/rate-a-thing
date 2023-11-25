@@ -1,9 +1,10 @@
 import React from "react";
 import { InputField } from "./InputField";
 
-export function GridForm({ schema, state, update, columns = 2, children, ...props }) {
-	const handleUpdate = (key, value) => {
-		update(key, value);
+export function GridForm({ schema, element, update, columns = 2, children, ...props }) {
+	const handleUpdate = (prop, value) => {
+		console.log(prop, value)
+		update(element.id, prop, value);
 	};
 
 	const gridStyles = {
@@ -14,20 +15,20 @@ export function GridForm({ schema, state, update, columns = 2, children, ...prop
 
 	return (
 		<div className="w-full" style={ gridStyles } { ...props }>
-			{ Object.entries(schema).map(([ key, schemaDetails ]) => {
+			{ Object.entries(schema).map(([ prop, schemaDetails ]) => {
 				const [ elementType, ...options ] = Array.isArray(schemaDetails) ? schemaDetails : [ schemaDetails ];
-				const value = state[ key ] || "";
+				const value = element.state[ prop ] || "";
 
 				// Pass the options starting from the third element if elementType is "array"
 				const extraProps = elementType === "array" ? { options: options.slice(1) } : {};
 
 				return (
 					<InputField
-						key={ key }
-						label={ key.charAt(0).toUpperCase() + key.slice(1) }
+						key={ prop }
+						label={ prop.charAt(0).toUpperCase() + prop.slice(1) }
 						type={ elementType }
 						value={ value }
-						onChange={ (e) => handleUpdate(key, elementType === "array" ? e.target.value : e) }
+						onChange={ (e) => handleUpdate(prop, e.target.value) }
 						extraProps={ extraProps }
 					/>
 				);

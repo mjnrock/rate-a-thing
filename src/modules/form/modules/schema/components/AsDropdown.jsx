@@ -19,7 +19,6 @@ export const AsDropdown = ({ update, element, ...props }) => {
 	}
 
 	const Options = Object.keys(currentTypeOptions).sort();
-	console.log(currentTypeOptions, Options);
 
 	return (
 		<Menu as="div" className="relative inline-block text-left" { ...props }>

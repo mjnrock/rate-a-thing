@@ -43,14 +43,14 @@ function Rating({ update, element }) {
 		return stars;
 	};
 
-	const handleRatingUpdate = (key, value) => {
-		if(key === "value") {
-			update("setElementValue", element.id, value);
+	const handleRatingUpdate = (id, prop, value) => {
+		if(prop === "value") {
+			update("setElementValue", id, value);
 		} else {
-			const newValue = key === "min"
+			const newValue = prop === "min"
 				? Math.max(value, element.state.value)
 				: Math.min(value, element.state.value);
-			update("mergeElementState", element.id, { [ key ]: value, value: newValue });
+			update("mergeElementState", id, { [ prop ]: value, value: newValue });
 		}
 	};
 
@@ -58,7 +58,7 @@ function Rating({ update, element }) {
 		<div className="flex flex-col items-center justify-between gap-2">
 			<GridForm
 				schema={ RatingSchema }
-				state={ element.state }
+				element={ element }
 				update={ handleRatingUpdate }
 				columns={ 2 }
 			>
