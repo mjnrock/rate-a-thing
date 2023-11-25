@@ -1,6 +1,14 @@
 import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Input from "./Input";
 
+export const RatingSchema = {
+	value: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
+	max: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
+	min: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
+	step: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
+	icon: [ EnumElementType.ARRAY, EnumFormElementType[ EnumElementType.ARRAY ].DROPDOWN, "star", "circle", "square", ],
+};
+
 export const RatingState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
 	return {
 		...Input.State({
@@ -66,6 +74,7 @@ export const RatingReducers = () => ({
 });
 
 export default {
+	Schema: RatingSchema,
 	State: RatingState,
 	Reducers: RatingReducers(),
 };

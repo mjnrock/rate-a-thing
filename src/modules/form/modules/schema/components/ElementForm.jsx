@@ -6,6 +6,31 @@ import Element from "./Element";
 
 import Elements from "./elements/package";
 
+export const HTMLInputEnums = [
+	"button",
+	"checkbox",
+	"color",
+	"date",
+	"datetime-local",
+	"email",
+	"file",
+	"hidden",
+	"image",
+	"month",
+	"number",
+	"password",
+	"radio",
+	"range",
+	"reset",
+	"search",
+	"submit",
+	"tel",
+	"text",
+	"time",
+	"url",
+	"week",
+];
+
 export const ElementComponentMap = {
 	[ EnumElementType.GROUP ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
@@ -17,7 +42,10 @@ export const ElementComponentMap = {
 	[ EnumElementType.INPUT ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.INPUT ].RATING) {
 			return Elements.Input.Rating;
+		} else if (HTMLInputEnums.includes(element.as)) {
+			return Elements.Input.HTMLInput;
 		}
+
 
 		return Element;
 	},

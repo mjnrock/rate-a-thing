@@ -12,6 +12,9 @@ export const EnumElementType = {
 
 /* Module-specific version, for use with `as` property */
 export const EnumFormElementType = {
+	[ EnumElementType.ARRAY ]: {
+		DROPDOWN: "dropdown",
+	},
 	[ EnumElementType.GROUP ]: {
 		FORM: "form",
 		SECTION: "section",
@@ -40,7 +43,7 @@ export const EnumFormElementType = {
 		NUMBER: "number",
 		DATE: "date",
 		TIME: "time",
-		DATETIME: "datetime",
+		DATETIME: "datetime-local",
 		WEEK: "week",
 		MONTH: "month",
 		EMAIL: "email",

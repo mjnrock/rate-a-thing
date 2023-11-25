@@ -4,9 +4,10 @@ import { BsChevronDown } from "react-icons/bs";
 import EnumElementType from "../../../EnumElementType";
 
 export const TypeDropdown = ({ update, element, ...props }) => {
-	// Function to determine if the dropdown should open to the left or right
+	const Options = Object.keys(EnumElementType).sort();
+
 	const getDropdownPosition = () => {
-		if(window.innerWidth < 640) { // You can adjust this threshold as needed
+		if(window.innerWidth < 640) {
 			return "left-0";
 		}
 		return "right-0";
@@ -20,7 +21,7 @@ export const TypeDropdown = ({ update, element, ...props }) => {
 			</Menu.Button>
 
 			<Menu.Items className={ `absolute z-10 w-56 mt-2 origin-top-${ getDropdownPosition() } bg-white divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none` }>
-				{ Object.keys(EnumElementType).map(key => (
+				{ Options.map(key => (
 					<Menu.Item key={ key }>
 						{ ({ active }) => (
 							<div
