@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { debounce } from "../../../util/debounce";
 import { InputField } from "./InputField";
 
 export function GridForm({ schema, element, update, columns = 2, children, ...props }) {
+	const debouncedUpdate = useCallback(debounce((id, prop, value) => {
+		update(id, prop, value);
+	}, 50), []);
+
 	const handleUpdate = (prop, value) => {
-		console.log(prop, value)
-		update(element.id, prop, value);
+		debouncedUpdate(element.id, prop, value);
 	};
 
 	const gridStyles = {

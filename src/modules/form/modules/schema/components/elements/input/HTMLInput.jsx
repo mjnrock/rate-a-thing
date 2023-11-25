@@ -7,7 +7,6 @@ export function HTMLInput({ update, element, columns = 2 }) {
 	const inputSchema = HTMLInputSchema[ inputType ];
 
 	const handleElementUpdate = (id, prop, value) => {
-		console.log(id, prop, value)
 		update("mergeElementState", id, { [ prop ]: value });
 	};
 

@@ -16,7 +16,7 @@ export function getInputElement(type, value, onChange, extraProps = {}) {
 			return (
 				<Switch
 					checked={ value }
-					onChange={ onChange }
+					onChange={ v => onChange({ target: { value: v } }) /* make it conform to the minimalp event interface */ }
 					className={ `${ value ? "bg-sky-500" : "bg-gray-200" }
                                 relative inline-flex items-center h-6 rounded-full w-11`}
 				>
