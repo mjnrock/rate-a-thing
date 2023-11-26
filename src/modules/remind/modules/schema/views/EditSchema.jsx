@@ -31,7 +31,7 @@ export const HTMLInputEnums = [
 	"week",
 ];
 
-export const ElementComponentMap = {
+export const ElementModelMap = {
 	[ EnumElementType.GROUP ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
 			return ElementForm;
@@ -74,7 +74,7 @@ export function ElementForm({ update, element, config = {}, ...props }) {
 				update={ update }
 				element={ element }
 				config={ config }
-				map={ ElementComponentMap }
+				map={ ElementModelMap }
 				{ ...props }
 			/>
 		</>

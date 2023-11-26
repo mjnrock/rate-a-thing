@@ -1,10 +1,12 @@
 import Chord from "@lespantsfancy/chord";
 
-import TabContainer from "../modules/remind/views/TabContainer";
+import RecordShop from "../modules/remind/views/RecordShop";
 import ModSchema from "../modules/remind/modules/schema/main";
 import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
 import ModRecord from "../modules/remind/modules/record/main";
 import EditRecord from "../modules/remind/modules/record/views/EditRecord";
+import ViewRecord from "../modules/remind/modules/record/views/ViewRecord";
+import ReadWriteContainer from "../modules/remind/modules/record/views/ReadWriteContainer";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
@@ -32,7 +34,7 @@ export function Reviews() {
 	console.log(recordState)
 
 	return (
-		<TabContainer
+		<RecordShop
 			schemaContent={ () => (
 				<div className="flex flex-col w-full h-full">
 					<EditSchema
@@ -43,9 +45,27 @@ export function Reviews() {
 				</div>
 			) }
 			writeContent={ () => (
-				<EditRecord
-					update={ recordDispatch }
-					data={ { schemaState, recordState } }
+				<ReadWriteContainer
+					readContent={ () => (
+						<ViewRecord
+							update={ recordDispatch }
+							data={ {
+								schemaState,
+								recordState,
+								repositoryState,
+							} }
+						/>
+					) }
+					writeContent={ () => (
+						<EditRecord
+							update={ recordDispatch }
+							data={ {
+								schemaState,
+								recordState,
+								repositoryState,
+							} }
+						/>
+					) }
 				/>
 			) }
 			searchContent={ () => null }

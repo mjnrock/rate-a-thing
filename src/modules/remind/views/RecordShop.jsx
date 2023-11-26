@@ -2,9 +2,9 @@ import { Tab } from "@headlessui/react";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
-}
+};
 
-export function TabContainer({ schemaContent, writeContent, searchContent }) {
+export function RecordShop({ schemaContent, writeContent, searchContent }) {
 	return (
 		<Tab.Group>
 			<Tab.List className="flex p-1 space-x-2 border-b border-solid shadow border-b-neutral-100 bg-neutral-300">
@@ -41,4 +41,4 @@ export function TabContainer({ schemaContent, writeContent, searchContent }) {
 	);
 };
 
-export default TabContainer;
+export default RecordShop;

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
 
-function ElementRatingRange({ update, element, icon }) {
+function Range({ update, element, icon, isPlayful = true }) {
 	const { value, max, min, step, icon: stateIcon } = element.state;
-	const [ hoverValue, setHoverValue ] = useState(null);
 
 	let Icon = icon ?? BsStar;
 	if(stateIcon === "star") {
@@ -14,22 +12,16 @@ function ElementRatingRange({ update, element, icon }) {
 		Icon = BsSquare;
 	}
 
-	const changeRating = (newValue) => {
-		if(newValue >= min && newValue <= max) {
-			update("setElementValue", element.id, newValue);
-		}
-	};
-
 	const renderStars = () => {
 		let stars = [];
 		for(let i = 1; i <= max; i += step) {
+			const rotationDegree = Math.floor(Math.random() * 360);
+
 			stars.push(
 				<Icon
 					key={ i }
-					className={ `cursor-pointer text-4xl ${ i <= (hoverValue || value) ? "text-yellow-500" : "text-gray-300" }` }
-					onMouseEnter={ () => setHoverValue(i) }
-					onMouseLeave={ () => setHoverValue(null) }
-					onClick={ () => changeRating(i) }
+					className={ `cursor-pointer text-4xl ${ i <= value ? "text-yellow-500" : "text-gray-200" }` }
+					style={ isPlayful && { transform: `rotate(${ rotationDegree }deg)` } }
 					size={ "3rem" }
 				/>
 			);
@@ -44,4 +36,4 @@ function ElementRatingRange({ update, element, icon }) {
 	);
 }
 
-export default ElementRatingRange;
+export default Range;
