@@ -40,20 +40,18 @@ export const ElementModelMap = {
 		return ElementGroup;
 	},
 	[ EnumElementType.TEXT ]: (element) => {
-		console.log(12345, element)
 		if(element.as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
-			console.log(657489, element)
-			return Elements.TextHeading;
+			return Elements.Text.Heading;
 		}
 
 		return Element;
 	},
 	[ EnumElementType.INPUT ]: (element) => {
-		return Elements.Input;
+		return Elements.Input.Input;
 	},
 	[ EnumElementType.RATING ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
-			return Elements.RatingRange;
+			return Elements.Rating.Range;
 		}
 
 		return Element;

@@ -1,9 +1,17 @@
-import RatingRange from "./RatingRange";
-import Input from "./Input";
-import TextHeading from "./Heading";
+import Input from "./input/Input";
+
+import Range from "./rating/Range";
+
+import Heading from "./text/Heading";
 
 export default {
-	RatingRange,
-	Input,
-	TextHeading,
+	Rating: {
+		Range,
+	},
+	Input: {
+		Input,
+	},
+	Text: {
+		Heading,
+	},
 };

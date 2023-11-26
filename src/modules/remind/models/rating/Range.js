@@ -2,7 +2,6 @@ import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 import Rating from "./Rating";
 
 export const RangeSchema = {
-	value: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
 	max: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
 	min: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
 	step: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],

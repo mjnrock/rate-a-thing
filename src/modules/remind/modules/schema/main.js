@@ -110,10 +110,12 @@ export const Utility = {
 			type = type.type;
 		}
 
-		if(as) {
+		if(as in AsModelMap[ type ]) {
 			return AsModelMap[ type ][ as ];
-		} else {
+		} else if (type in TypeModelMap) {
 			return TypeModelMap[ type ];
+		} else {
+			return TypeModelMap[ EnumElementType.ELEMENT ];
 		}
 	},
 	toComponentMap: (element, data = {}) => {

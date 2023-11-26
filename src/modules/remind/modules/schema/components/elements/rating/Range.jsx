@@ -1,10 +1,10 @@
 import React from "react";
 import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
-import { ConfigForm } from "../../../../components/ConfigForm";
-import { RangeSchema } from "../../../../models/rating/Range";
+import { ConfigForm } from "../../../../../components/ConfigForm";
+import { RangeSchema } from "../../../../../models/rating/Range";
 
 
-export function RatingRange({ update, element }) {
+export function Range({ update, element }) {
 	const { max, min, step, icon: stateIcon } = element.state;
 
 	const renderIcon = (icon) => {
@@ -70,4 +70,4 @@ export function RatingRange({ update, element }) {
 	);
 }
 
-export default RatingRange;
+export default Range;
