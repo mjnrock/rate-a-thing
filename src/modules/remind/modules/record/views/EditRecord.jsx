@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
-import Range from "../../components/edit/elements/rating/Range";
-import ElementGroup from "../../components/edit/ElementGroup";
+import ElementGroup from "../write/component/ElementGroup";
+import Range from "../write/component/elements/rating/Range";
 
-export const TypeModelMap = {};
+export const TypeModelMap = {
+	[ EnumElementType.GROUP ]: ElementGroup,
+};
 
 export const AsModelMap = {
 	[ EnumElementType.RATING ]: {

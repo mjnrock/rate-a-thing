@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
-import ElementGroup from "../../components/view/ElementGroup";
-import Range from "../../components/view/elements/rating/Range";
-import Heading from "../../components/view/elements/text/Heading";
-import Code from "../../components/view/elements/text/Code";
+import ElementGroup from "../read/component/ElementGroup";
+import Range from "../read/component/elements/rating/Range";
+import Heading from "../read/component/elements/text/Heading";
+import Code from "../read/component/elements/text/Code";
 
-export const TypeModelMap = {};
+export const TypeModelMap = {
+	[ EnumElementType.GROUP ]: ElementGroup,
+};
 
 export const AsModelMap = {
 	[ EnumElementType.TEXT ]: {
