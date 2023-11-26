@@ -1,7 +1,17 @@
 export function toComponent(element, map = {}) {
-	if(element.type in map) {
-		return map[ element.type ](element);
-	} else if(typeof map.default === "function") {
+	const { TypeModelMap, AsModelMap } = map;
+
+	let as = AsModelMap?.[ element.type ]?.[ element.as ];
+	if(as) {
+		return as;
+	}
+
+	let type = TypeModelMap?.[ element.type ];
+	if(type) {
+		return type;
+	}
+
+	if(typeof map.default === "function") {
 		return map.default(element);
 	}
 

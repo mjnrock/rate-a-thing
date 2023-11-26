@@ -48,7 +48,7 @@ export function Reviews() {
 				<ReadWriteContainer
 					readContent={ () => (
 						<ViewRecord
-							update={ recordDispatch }
+							update={ { recordDispatch } }
 							data={ {
 								schemaState,
 								recordState,
@@ -58,7 +58,7 @@ export function Reviews() {
 					) }
 					writeContent={ () => (
 						<EditRecord
-							update={ recordDispatch }
+							update={ { recordDispatch } }
 							data={ {
 								schemaState,
 								recordState,

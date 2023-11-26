@@ -37,7 +37,7 @@ export function getFieldTypeJSX(type, value, onChange, extraProps = {}) {
 				>
 					{ extraProps.options.map((option, index) => (
 						<option key={ index } value={ option }>
-							{ option.charAt(0).toUpperCase() + option.slice(1) }
+							{ option.toString() }
 						</option>
 					)) }
 				</select>

@@ -20,6 +20,8 @@ import Range from "./rating/Range";
 
 import Text from "./text/Text";
 import Heading from "./text/Heading";
+import Markdown from "./text/Markdown";
+import Code from "./text/Code";
 
 export const TypeModelMap = {
 	[ EnumElementType.ELEMENT ]: Element,
@@ -47,6 +49,8 @@ export const AsModelMap = {
 	[ EnumElementType.OBJECT ]: {},
 	[ EnumElementType.TEXT ]: {
 		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Heading,
+		[ EnumFormElementType[ EnumElementType.TEXT ].MARKDOWN ]: Markdown,
+		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Code,
 	},
 
 	[ EnumElementType.INPUT ]: {},
@@ -85,6 +89,8 @@ export const Models = {
 	Text: {
 		Text,
 		Heading,
+		Markdown,
+		Code,
 	},
 };
 

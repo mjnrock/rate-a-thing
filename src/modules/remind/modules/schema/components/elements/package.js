@@ -3,6 +3,8 @@ import Input from "./input/Input";
 import Range from "./rating/Range";
 
 import Heading from "./text/Heading";
+import Markdown from "./text/Markdown";
+import Code from "./text/Code";
 
 export default {
 	Rating: {
@@ -13,5 +15,7 @@ export default {
 	},
 	Text: {
 		Heading,
+		Markdown,
+		Code,
 	},
 };

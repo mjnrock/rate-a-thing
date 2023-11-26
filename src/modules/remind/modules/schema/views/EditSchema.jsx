@@ -6,57 +6,25 @@ import Element from "../components/Element";
 
 import Elements from "../components/elements/package";
 
-export const HTMLInputEnums = [
-	"button",
-	"checkbox",
-	"color",
-	"date",
-	"datetime-local",
-	"email",
-	"file",
-	"hidden",
-	"image",
-	"month",
-	"number",
-	"password",
-	"radio",
-	"range",
-	"reset",
-	"search",
-	"submit",
-	"tel",
-	"text",
-	"time",
-	"url",
-	"week",
-];
+export const TypeModelMap = {
+	[ EnumElementType.GROUP ]: ElementGroup,
+};
 
-export const ElementModelMap = {
-	[ EnumElementType.GROUP ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
-			return ElementForm;
-		}
-
-		return ElementGroup;
+export const AsModelMap = {
+	[ EnumElementType.GROUP ]: {
+		[ EnumFormElementType[ EnumElementType.GROUP ].FORM ]: ElementForm,
 	},
-	[ EnumElementType.TEXT ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
-			return Elements.Text.Heading;
-		}
-
-		return Element;
+	[ EnumElementType.TEXT ]: {
+		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Elements.Text.Heading,
+		[ EnumFormElementType[ EnumElementType.TEXT ].MARKDOWN ]: Elements.Text.Markdown,
+		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Elements.Text.Code,
 	},
-	[ EnumElementType.INPUT ]: (element) => {
-		return Elements.Input.Input;
+	[ EnumElementType.INPUT ]: {
+		[ EnumFormElementType[ EnumElementType.INPUT ].INPUT ]: Elements.Input.Input,
 	},
-	[ EnumElementType.RATING ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
-			return Elements.Rating.Range;
-		}
-
-		return Element;
+	[ EnumElementType.RATING ]: {
+		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Elements.Rating.Range,
 	},
-	default: (element) => Element,
 };
 
 export function ElementForm({ update, element, config = {}, ...props }) {
@@ -81,7 +49,7 @@ export function ElementForm({ update, element, config = {}, ...props }) {
 				update={ update }
 				element={ element }
 				config={ config }
-				map={ ElementModelMap }
+				map={ { TypeModelMap, AsModelMap } }
 				{ ...props }
 			/>
 		</>

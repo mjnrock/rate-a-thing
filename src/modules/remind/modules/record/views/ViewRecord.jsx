@@ -2,31 +2,30 @@ import { useEffect } from "react";
 import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
-import Range from "../components/view/elements/rating/Range";
-import Element from "../components/view/Element";
-import ElementGroup from "../components/view/ElementGroup";
-import Heading from "../components/view/elements/text/Heading";
+import ElementGroup from "../../components/view/ElementGroup";
+import Range from "../../components/view/elements/rating/Range";
+import Heading from "../../components/view/elements/text/Heading";
+import Code from "../../components/view/elements/text/Code";
 
-export const ViewModelMap = {
-	[ EnumElementType.TEXT ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
-			return Heading;
-		}
+export const TypeModelMap = {};
+
+export const AsModelMap = {
+	[ EnumElementType.TEXT ]: {
+		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Heading,
+		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Code,
 	},
-	[ EnumElementType.RATING ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
-			return Range;
-		}
+	[ EnumElementType.RATING ]: {
+		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Range,
 	},
-	default: (element) => Element,
 };
 
 export function ViewRecord({ update, data }) {
+	const { recordDispatch } = update;
 	const { schemaState, recordState } = data;
 
 	useEffect(() => {
 		//TODO: Implement a way to only do this minimally if there have been changes to the schema
-		update("setActive", copyElement(schemaState.components.elements[ schemaState.form ]));
+		recordDispatch("setActive", copyElement(schemaState.components.elements[ schemaState.form ]));
 	}, []);
 
 	const { active } = recordState;
@@ -40,7 +39,7 @@ export function ViewRecord({ update, data }) {
 			update={ update }
 			element={ active }
 			config={ recordState.config }
-			map={ ViewModelMap }
+			map={ { TypeModelMap, AsModelMap } }
 		/>
 	);
 };

@@ -2,17 +2,15 @@ import { useEffect } from "react";
 import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
-import Range from "../components/edit/elements/rating/Range";
-import Element from "../components/edit/Element";
-import ElementGroup from "../components/edit/ElementGroup";
+import Range from "../../components/edit/elements/rating/Range";
+import ElementGroup from "../../components/edit/ElementGroup";
 
-export const ViewModelMap = {
-	[ EnumElementType.RATING ]: (element) => {
-		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
-			return Range;
-		}
+export const TypeModelMap = {};
+
+export const AsModelMap = {
+	[ EnumElementType.RATING ]: {
+		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Range,
 	},
-	default: (element) => Element,
 };
 
 export function EditRecord({ update, data }) {
@@ -34,7 +32,7 @@ export function EditRecord({ update, data }) {
 			update={ update }
 			element={ active }
 			config={ recordState.config }
-			map={ ViewModelMap }
+			map={ { TypeModelMap, AsModelMap } }
 		/>
 	);
 };
