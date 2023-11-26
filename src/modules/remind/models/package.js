@@ -54,3 +54,42 @@ export const AsModelMap = {
 		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Range,
 	},
 };
+
+export const Models = {
+	Element: {
+		Element,
+	},
+	Array: {
+		Array: ArrayModel,
+	},
+	Boolean: {
+		Boolean: BooleanModel,
+	},
+	Group: {
+		Group,
+		Form,
+	},
+	Input: {
+		Input,
+	},
+	Number: {
+		Number: NumberModel,
+	},
+	Object: {
+		Object: ObjectModel,
+	},
+	Rating: {
+		Rating,
+		Range,
+	},
+	Text: {
+		Text,
+		Heading,
+	},
+};
+
+export default {
+	Models,
+	TypeModelMap,
+	AsModelMap,
+};

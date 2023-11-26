@@ -3,19 +3,7 @@ import { deepClone } from "../../../../util/deepClone";
 
 import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
 
-import Element from "../../models/Element";
-import Group from "../../models/group/Group";
-import Form from "../../models/group/Form";
-import Text from "../../models/text/Text";
-import NumberModel from "../../models/number/Number";
-import BooleanModel from "../../models/boolean/Boolean";
-import Bitmask from "../../models/boolean/Bitmask";
-import ArrayModel from "../../models/array/Array";
-import ObjectModel from "../../models/object/Object";
-import Input from "../../models/input/Input";
-import Rating from "../../models/rating/Rating";
-import RatingRange from "../../models/rating/Range";
-import Heading from "../../models/text/Heading";
+import { TypeModelMap, AsModelMap, Models } from "../../models/package";
 
 export const HTMLInputEnums = [
 	"button",
@@ -119,42 +107,10 @@ export const Helpers = {
 			type = type.type;
 		}
 
-		if(type === EnumElementType.ELEMENT) {
-			return Element;
-		} else if(type === EnumElementType.GROUP) {
-			if(as === EnumFormElementType[ EnumElementType.GROUP ].FORM) {
-				return Form;
-			} else {
-				return Group;
-			}
-		} else if(type === EnumElementType.TEXT) {
-			if(as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
-				return Heading;
-			} else {
-				return Text;
-			}
-		} else if(type === EnumElementType.NUMBER) {
-			return NumberModel;
-		} else if(type === EnumElementType.BOOLEAN) {
-			if(as === EnumFormElementType[ EnumElementType.BOOLEAN ].BITMASK) {
-				return Bitmask;
-			} else {
-				return BooleanModel;
-			}
-		} else if(type === EnumElementType.OBJECT) {
-			return ObjectModel;
-		} else if(type === EnumElementType.ARRAY) {
-			return ArrayModel;
-		} else if(type === EnumElementType.INPUT) {
-			return Input;
-		} else if(type === EnumElementType.RATING) {
-			if(as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
-				return RatingRange;
-			} else {
-				return Rating;
-			}
+		if(as) {
+			return AsModelMap[ type ][ as ];
 		} else {
-			throw new Error(`Unknown type: ${ type }`);
+			return TypeModelMap[ type ];
 		}
 	},
 };
@@ -192,7 +148,7 @@ export const Utility = {
 };
 
 export const State = ({ form = {}, ...rest } = {}) => {
-	const nextForm = Form.State(form);
+	const nextForm = Models.Group.Form.State(form);
 
 	const next = {
 		form: nextForm.id,
