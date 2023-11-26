@@ -15,6 +15,7 @@ import ObjectModel from "../../models/object/Object";
 import Input from "../../models/input/Input";
 import Rating from "../../models/rating/Rating";
 import RatingRange from "../../models/rating/Range";
+import Heading from "../../models/text/Heading";
 
 export const HTMLInputEnums = [
 	"button",
@@ -127,7 +128,11 @@ export const Helpers = {
 				return Group;
 			}
 		} else if(type === EnumElementType.TEXT) {
-			return Text;
+			if(as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
+				return Heading;
+			} else {
+				return Text;
+			}
 		} else if(type === EnumElementType.NUMBER) {
 			return NumberModel;
 		} else if(type === EnumElementType.BOOLEAN) {

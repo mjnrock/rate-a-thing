@@ -1,6 +1,6 @@
 import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
 
-function Range({ update, element, icon, isPlayful = true }) {
+export function Range({ update, element, icon, isPlayful = true }) {
 	const { value, max, min, step, icon: stateIcon } = element.state;
 
 	let Icon = icon ?? BsStar;

@@ -39,6 +39,15 @@ export const ElementModelMap = {
 
 		return ElementGroup;
 	},
+	[ EnumElementType.TEXT ]: (element) => {
+		console.log(12345, element)
+		if(element.as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
+			console.log(657489, element)
+			return Elements.TextHeading;
+		}
+
+		return Element;
+	},
 	[ EnumElementType.INPUT ]: (element) => {
 		return Elements.Input;
 	},

@@ -5,8 +5,14 @@ import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 import Range from "../components/view/elements/rating/Range";
 import Element from "../components/view/Element";
 import ElementGroup from "../components/view/ElementGroup";
+import Heading from "../components/view/elements/text/Heading";
 
 export const ViewModelMap = {
+	[ EnumElementType.TEXT ]: (element) => {
+		if(element.as === EnumFormElementType[ EnumElementType.TEXT ].HEADING) {
+			return Heading;
+		}
+	},
 	[ EnumElementType.RATING ]: (element) => {
 		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
 			return Range;

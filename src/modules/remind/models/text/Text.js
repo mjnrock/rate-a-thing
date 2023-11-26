@@ -1,6 +1,10 @@
 import { EnumElementType } from "../../EnumElementType";
 import Element from "../Element";
 
+export const TextSchema = {
+	value: EnumElementType.TEXT,
+};
+
 export const TextState = ({ ...rest } = {}) => {
 	return {
 		...Element.State({
@@ -8,8 +12,8 @@ export const TextState = ({ ...rest } = {}) => {
 			state: {
 				value: "",
 			},
+			...rest
 		}),
-		...rest
 	};
 };
 
@@ -25,6 +29,7 @@ export const TextReducers = () => ({
 });
 
 export default {
+	Schema: TextSchema,
 	State: TextState,
 	Reducers: TextReducers(),
 };
