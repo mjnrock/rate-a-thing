@@ -9,6 +9,7 @@ import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
 import ModRecord from "../modules/remind/modules/record/main";
 import EditRecord from "../modules/remind/modules/record/views/EditRecord";
 import ViewRecord from "../modules/remind/modules/record/views/ViewRecord";
+import { useEffect } from "react";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
@@ -29,11 +30,6 @@ export function Reviews() {
 	const { state: schemaState, dispatch: schemaDispatch } = Chord.Node.React.useNode(Nodes.schema);
 	const { state: recordState, dispatch: recordDispatch } = Chord.Node.React.useNode(Nodes.record);
 	const { state: repositoryState, dispatch: repositoryDispatch } = Chord.Node.React.useNode(Nodes.repository);
-
-	console.log(Object.keys(schemaState.components.elements).length, schemaState.components.elements);
-	console.log(Object.keys(schemaState.components.groups).length, schemaState.components.groups);
-
-	console.log(recordState)
 
 	return (
 		<ModelRecordSearchContainer

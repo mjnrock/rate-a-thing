@@ -2,6 +2,10 @@ import { Fragment } from "react";
 import Element from "./Element";
 
 export function ElementGroup({ update, element, config = {}, map, ...props }) {
+	if(!element) {
+		return null;
+	}
+
 	return (
 		<div className="flex flex-col w-full" { ...props }>
 			{ element.state.elements.map((el) => (

@@ -21,6 +21,10 @@ export function toComponent(element, map = {}) {
 export function Element({ update, element, config, map, ...props }) {
 	const Component = toComponent(element, map);
 
+	if(!element) {
+		return null;
+	}
+
 	return (
 		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
 			<div className="flex flex-row items-center justify-between w-full gap-x-2">

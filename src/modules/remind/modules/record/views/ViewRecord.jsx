@@ -25,21 +25,10 @@ export function ViewRecord({ update, data }) {
 	const { recordDispatch } = update;
 	const { schemaState, recordState } = data;
 
-	useEffect(() => {
-		//TODO: Implement a way to only do this minimally if there have been changes to the schema
-		recordDispatch("setActive", copyElement(schemaState.components.elements[ schemaState.form ]));
-	}, []);
-
-	const { active } = recordState;
-
-	if(Object.keys(active).length === 0) {
-		return null;
-	}
-
 	return (
 		<ElementGroup
 			update={ update }
-			element={ active }
+			element={ recordState.active }
 			config={ recordState.config }
 			map={ { TypeModelMap, AsModelMap } }
 		/>
