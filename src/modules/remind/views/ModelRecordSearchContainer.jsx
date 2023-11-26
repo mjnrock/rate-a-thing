@@ -4,12 +4,12 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 };
 
-export function RecordShop({ schemaContent, writeContent, searchContent }) {
+export function ModelRecordSearchContainer({ schemaContent, writeContent, searchContent }) {
 	return (
 		<Tab.Group>
 			<Tab.List className="flex p-1 space-x-2 border-b border-solid shadow border-b-neutral-100 bg-neutral-300">
 				{
-					[ "Schema", "Write", "Search" ].map((label, i) => (
+					[ "Model", "Record", "Search" ].map((label, i) => (
 						<Tab
 							key={ i }
 							className={ ({ selected }) => classNames(
@@ -41,4 +41,4 @@ export function RecordShop({ schemaContent, writeContent, searchContent }) {
 	);
 };
 
-export default RecordShop;
+export default ModelRecordSearchContainer;

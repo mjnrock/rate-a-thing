@@ -1,6 +1,6 @@
 import Chord from "@lespantsfancy/chord";
 
-import RecordShop from "../modules/remind/views/RecordShop";
+import ModelRecordSearchContainer from "../modules/remind/views/ModelRecordSearchContainer";
 import ModSchema from "../modules/remind/modules/schema/main";
 import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
 import ModRecord from "../modules/remind/modules/record/main";
@@ -34,7 +34,7 @@ export function Reviews() {
 	console.log(recordState)
 
 	return (
-		<RecordShop
+		<ModelRecordSearchContainer
 			schemaContent={ () => (
 				<div className="flex flex-col w-full h-full">
 					<EditSchema
