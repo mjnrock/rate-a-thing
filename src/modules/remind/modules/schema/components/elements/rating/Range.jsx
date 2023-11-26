@@ -1,10 +1,12 @@
 import React from "react";
 import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
+
 import { ConfigForm } from "../../../../../components/ConfigForm";
 import { RangeSchema } from "../../../../../models/rating/Range";
 
 
 export function Range({ update, element }) {
+	const { schemaDispatch } = update;
 	const { max, min, step, icon: stateIcon } = element.state;
 
 	const renderIcon = (icon) => {
@@ -45,12 +47,12 @@ export function Range({ update, element }) {
 
 	const handleRatingUpdate = (id, prop, value) => {
 		if(prop === "value") {
-			update("setElementValue", id, value);
+			schemaDispatch("setElementValue", id, value);
 		} else {
 			const newValue = prop === "min"
 				? Math.max(value, element.state.value)
 				: Math.min(value, element.state.value);
-			update("mergeElementState", id, { [ prop ]: value, value: newValue });
+			schemaDispatch("mergeElementState", id, { [ prop ]: value, value: newValue });
 		}
 	};
 

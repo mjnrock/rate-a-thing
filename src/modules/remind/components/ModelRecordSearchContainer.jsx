@@ -4,7 +4,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 };
 
-export function ModelRecordSearchContainer({ schemaContent, writeContent, searchContent }) {
+export function ModelRecordSearchContainer({ schemaContent, recordContent, searchContent }) {
 	return (
 		<Tab.Group>
 			<Tab.List className="flex p-1 space-x-2 border-b border-solid shadow border-b-neutral-100 bg-neutral-300">
@@ -31,7 +31,7 @@ export function ModelRecordSearchContainer({ schemaContent, writeContent, search
 					{ schemaContent() }
 				</Tab.Panel>
 				<Tab.Panel className="bg-white rounded">
-					{ writeContent() }
+					{ recordContent() }
 				</Tab.Panel>
 				<Tab.Panel className="bg-white rounded">
 					{ searchContent() }

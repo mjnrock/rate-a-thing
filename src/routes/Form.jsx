@@ -42,7 +42,7 @@ export function Reviews() {
 					/>
 				</div>
 			) }
-			writeContent={ () => (
+			recordContent={ () => (
 				<ReadWriteContainer
 					readContent={ () => (
 						<ViewRecord

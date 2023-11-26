@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
 import ElementGroup from "../read/component/ElementGroup";
@@ -28,7 +26,7 @@ export function ViewRecord({ update, data }) {
 	return (
 		<ElementGroup
 			update={ update }
-			element={ recordState.active }
+			element={ schemaState.components.elements[ schemaState.form ] }
 			config={ recordState.config }
 			map={ { TypeModelMap, AsModelMap } }
 		/>

@@ -8,6 +8,7 @@ import Elements from "../components/elements/package";
 
 export const TypeModelMap = {
 	[ EnumElementType.GROUP ]: ElementGroup,
+	[ EnumElementType.INPUT ]: Elements.Input.Input,
 };
 
 export const AsModelMap = {
@@ -18,9 +19,6 @@ export const AsModelMap = {
 		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Elements.Text.Heading,
 		[ EnumFormElementType[ EnumElementType.TEXT ].MARKDOWN ]: Elements.Text.Markdown,
 		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Elements.Text.Code,
-	},
-	[ EnumElementType.INPUT ]: {
-		[ EnumFormElementType[ EnumElementType.INPUT ].INPUT ]: Elements.Input.Input,
 	},
 	[ EnumElementType.RATING ]: {
 		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Elements.Rating.Range,

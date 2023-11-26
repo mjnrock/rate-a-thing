@@ -1,11 +1,10 @@
-import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
+import { EnumElementType } from "../../EnumElementType";
 import Element from "../Element";
 
-export const RatingState = ({ as = EnumFormElementType[ EnumElementType.RATING ].RANGE, value = null, ...rest } = {}) => {
+export const RatingState = ({ value = null, ...rest } = {}) => {
 	return {
 		...Element.State({
 			type: EnumElementType.RATING,
-			as,
 			state: {
 				value,
 			},

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { copyElement } from "../../../util/copyElement";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
 import ElementGroup from "../write/component/ElementGroup";
