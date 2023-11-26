@@ -1,10 +1,10 @@
 import Chord from "@lespantsfancy/chord";
 
-import TabContainer from "../modules/form/views/TabContainer";
-import ModSchema from "../modules/form/modules/schema/main";
-import EditSchema from "../modules/form/modules/schema/views/EditSchema";
-import ModRecord from "../modules/form/modules/record/main";
-import EditRecord from "../modules/form/modules/record/views/EditRecord";
+import TabContainer from "../modules/remind/views/TabContainer";
+import ModSchema from "../modules/remind/modules/schema/main";
+import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
+import ModRecord from "../modules/remind/modules/record/main";
+import EditRecord from "../modules/remind/modules/record/views/EditRecord";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {
