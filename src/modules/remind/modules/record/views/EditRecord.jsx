@@ -1,6 +1,19 @@
 import { useEffect } from "react";
 import { copyElement } from "../../../util/copyElement";
-import EnumElementType from "../../../EnumElementType";
+import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
+
+import Range from "../components/edit/elements/rating/Range";
+import Element from "../components/edit/Element";
+import ElementGroup from "../components/edit/ElementGroup";
+
+export const ViewModelMap = {
+	[ EnumElementType.RATING ]: (element) => {
+		if(element.as === EnumFormElementType[ EnumElementType.RATING ].RANGE) {
+			return Range;
+		}
+	},
+	default: (element) => Element,
+};
 
 export function EditRecord({ update, data }) {
 	const { schemaState, recordState } = data;
@@ -10,50 +23,19 @@ export function EditRecord({ update, data }) {
 		update("setActive", copyElement(schemaState.components.elements[ schemaState.form ]));
 	}, []);
 
-	if(Object.keys(recordState.active).length === 0) {
+	const { active } = recordState;
+
+	if(Object.keys(active).length === 0) {
 		return null;
 	}
 
-	const renderElement = (element) => {
-		if(element.type === EnumElementType.GROUP) {
-			return (
-				<>
-					<div
-						key={ element.id }
-						className="flex flex-col w-full h-full gap-2"
-					>
-						{ element.id } { element.type } { element.as }
-					</div>
-					{
-						element.state.elements.map((child, i) => {
-							return (
-								<div
-									key={ i }
-									className="flex flex-col w-full h-full gap-2"
-								>
-									{ renderElement(child) }
-								</div>
-							);
-						})
-					}
-				</>
-			);
-		} else {
-			return (
-				<div
-					key={ element.id }
-					className="flex flex-col w-full h-full gap-2"
-				>
-					{ element.id } { element.type } { element.as }
-				</div>
-			);
-		}
-	}
-
 	return (
-		<div className="flex flex-col w-full h-full gap-2">
-			{ renderElement(recordState.active) }
-		</div>
+		<ElementGroup
+			update={ update }
+			element={ active }
+			config={ recordState.config }
+			map={ ViewModelMap }
+		/>
 	);
 };
 
