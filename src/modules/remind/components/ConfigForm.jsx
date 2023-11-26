@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { debounce } from "../../../util/debounce";
-import { InputField } from "./InputField";
+import { ConfigField } from "./ConfigField";
 
-export function GridForm({ schema, element, update, columns = 2, children, ...props }) {
+export function ConfigForm({ schema, element, update, columns = 2, children, ...props }) {
 	const debouncedUpdate = useCallback(debounce((id, prop, value) => {
 		update(id, prop, value);
 	}, 50), []);
@@ -27,7 +27,7 @@ export function GridForm({ schema, element, update, columns = 2, children, ...pr
 				const extraProps = elementType === "array" ? { options: options.slice(1) } : {};
 
 				return (
-					<InputField
+					<ConfigField
 						key={ prop }
 						label={ prop.charAt(0).toUpperCase() + prop.slice(1) }
 						type={ elementType }
@@ -42,4 +42,4 @@ export function GridForm({ schema, element, update, columns = 2, children, ...pr
 	);
 };
 
-export default GridForm;
+export default ConfigForm;

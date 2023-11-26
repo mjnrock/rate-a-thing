@@ -1,6 +1,6 @@
 import React from "react";
 import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
-import { GridForm } from "../../../../components/GridForm";
+import { ConfigForm } from "../../../../components/ConfigForm";
 import { RangeSchema } from "../../../../models/rating/Range";
 
 
@@ -56,7 +56,7 @@ export function RatingRange({ update, element }) {
 
 	return (
 		<div className="flex flex-col items-center justify-between gap-2">
-			<GridForm
+			<ConfigForm
 				schema={ RangeSchema }
 				element={ element }
 				update={ handleRatingUpdate }
@@ -65,7 +65,7 @@ export function RatingRange({ update, element }) {
 				<div className="flex flex-row items-center justify-center w-full gap-2 p-2 overflow-x-auto">
 					{ renderPreview() }
 				</div>
-			</GridForm>
+			</ConfigForm>
 		</div>
 	);
 }

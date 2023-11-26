@@ -1,6 +1,6 @@
 import React from "react";
 import { InputSchema } from "../../../../models/input/Input";
-import { GridForm } from "../../../../components/GridForm";
+import { ConfigForm } from "../../../../components/ConfigForm";
 
 export function Input({ update, element, columns = 2 }) {
 	const { as } = element;
@@ -15,7 +15,7 @@ export function Input({ update, element, columns = 2 }) {
 	}
 
 	return (
-		<GridForm
+		<ConfigForm
 			schema={ inputSchema }
 			element={ element }
 			update={ handleElementUpdate }

@@ -1,6 +1,6 @@
 import { Switch } from "@headlessui/react";
 
-export function getInputElement(type, value, onChange, extraProps = {}) {
+export function getFieldTypeJSX(type, value, onChange, extraProps = {}) {
 	switch(type) {
 		case "number":
 			return (
@@ -56,8 +56,8 @@ export function getInputElement(type, value, onChange, extraProps = {}) {
 	}
 };
 
-export function InputField({ label, type, value, onChange, extraProps }) {
-	const inputElement = getInputElement(type, value, onChange, extraProps);
+export function ConfigField({ label, type, value, onChange, extraProps }) {
+	const inputElement = getFieldTypeJSX(type, value, onChange, extraProps);
 	return (
 		<div className="flex flex-col w-full gap-1 p-2">
 			<label className="block text-sm font-medium text-gray-700">{ label }</label>
@@ -67,6 +67,6 @@ export function InputField({ label, type, value, onChange, extraProps }) {
 };
 
 export default {
-	getInputElement,
-	InputField,
+	getFieldTypeJSX,
+	ConfigField,
 };

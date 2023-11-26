@@ -32,7 +32,7 @@ export const HTMLInputEnums = [
 
 export const Helpers = {
 	duplicateElementWithChildren: (element) => {
-		const model = Helpers.TypeToModel(element.type);
+		const model = Utility.getModelByType(element.type);
 		const nextElement = model.State({
 			...deepClone(element),
 			id: uuid(),
@@ -98,7 +98,10 @@ export const Helpers = {
 	getForm: (state) => {
 		return Helpers.findElement(state, state.form);
 	},
-	TypeToModel: (type) => {
+};
+
+export const Utility = {
+	getModelByType: (type) => {
 		let as;
 		if(Array.isArray(type)) {
 			[ type, as ] = type;
@@ -113,9 +116,6 @@ export const Helpers = {
 			return TypeModelMap[ type ];
 		}
 	},
-};
-
-export const Utility = {
 	toComponentMap: (element, data = {}) => {
 		/* Recursively flatten the schema into a UUID-map of elements */
 		if(element.type === EnumElementType.GROUP) {
@@ -168,7 +168,7 @@ export const Reducers = () => ({
 	merge: (state, next) => ({ ...state, ...next }),
 
 	addElementByType: (state, parentId, type, as) => {
-		const model = Helpers.TypeToModel(type);
+		const model = Utility.getModelByType(type);
 		const element = model.State({ as });
 
 		const next = deepClone(state);
@@ -210,7 +210,7 @@ export const Reducers = () => ({
 		const element = Helpers.findElement(next, id);
 
 		if(element && element.type !== type) {
-			const model = Helpers.TypeToModel(type);
+			const model = Utility.getModelByType(type);
 			const nextElement = model.State({
 				id: element.id,
 			});
@@ -233,7 +233,7 @@ export const Reducers = () => ({
 		const element = Helpers.findElement(next, id);
 
 		if(element) {
-			const model = Helpers.TypeToModel([ element.type, as ]);
+			const model = Utility.getModelByType([ element.type, as ]);
 			const nextElement = model.State({ id: element.id, as });
 
 			if(as === null) {

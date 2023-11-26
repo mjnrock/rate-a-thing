@@ -1,6 +1,6 @@
 import React from "react";
 import { HeadingSchema } from "../../../../models/text/Heading";
-import { GridForm } from "../../../../components/GridForm";
+import { ConfigForm } from "../../../../components/ConfigForm";
 
 export function Heading({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {
@@ -8,7 +8,7 @@ export function Heading({ update, element, columns = 2 }) {
 	};
 
 	return (
-		<GridForm
+		<ConfigForm
 			schema={ HeadingSchema }
 			element={ element }
 			update={ handleElementUpdate }
