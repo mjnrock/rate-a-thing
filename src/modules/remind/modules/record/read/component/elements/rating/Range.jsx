@@ -1,7 +1,13 @@
 import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
 
-export function Range({ update, element, icon, isPlayful = true }) {
-	const { value, max, min, step, icon: stateIcon } = element.state;
+export function Range({ update, element, maps, icon, isPlayful = true }) {
+	const { data: dataMap } = maps;
+	const { max, min, step, icon: stateIcon } = element.state;
+	let { value } = element.state;
+
+	if(dataMap[ element.id ]) {
+		value = dataMap[ element.id ];
+	}
 
 	let Icon = icon ?? BsStar;
 	if(stateIcon === "star") {

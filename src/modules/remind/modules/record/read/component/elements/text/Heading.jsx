@@ -1,7 +1,12 @@
 import React from "react";
 
-export function Heading({ update, element }) {
-	const { value, size } = element.state;
+export function Heading({ update, element, maps }) {
+	const { data: dataMap } = maps;
+	let { value, size } = element.state;
+
+	if(dataMap[ element.id ]) {
+		value = dataMap[ element.id ];
+	}
 
 	const hToTw = {
 		h1: "text-4xl",

@@ -1,12 +1,8 @@
-//TODO: Create a { [UUID]: value, ... } object for the active state; map back via `schemaState.components.elements[ UUID ]`
-// Write - Write back to that UUID:value state object
-// Read - Read the info from the `schemaState.components.elements[ UUID ]` object, but override the `value` from the UUID:value state object
-
 export const Helpers = {};
 
-export const State = ({ active = {}, ...rest } = {}) => {
+export const State = ({ data = {}, ...rest } = {}) => {
 	return {
-		active,
+		data,
 		...rest,
 	};
 };
@@ -14,7 +10,35 @@ export const State = ({ active = {}, ...rest } = {}) => {
 export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
-	setActive: (state, active) => ({ ...state, active }),
+	setData: (state, next) => ({ ...state, data: next }),
+	mergeData: (state, id, key, value) => {
+		if(typeof key === "object") {
+			// assume it's a merge object
+			return {
+				...state,
+				data: {
+					...state.data,
+					[ id ]: {
+						...state.data[ id ],
+						...key,
+					},
+				},
+			};
+		}
+
+		const data = state.data[ id ] || {};
+		return {
+			...state,
+			data: {
+				...state.data,
+				[ id ]: {
+					...data,
+					[ key ]: value,
+				},
+			},
+		};
+
+	},
 });
 export const Effects = () => ({});
 

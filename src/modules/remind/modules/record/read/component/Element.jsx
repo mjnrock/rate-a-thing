@@ -18,8 +18,8 @@ export function toComponent(element, map = {}) {
 	return Element;
 };
 
-export function Element({ update, element, config, map, ...props }) {
-	const Component = toComponent(element, map);
+export function Element({ update, element, config, maps, ...props }) {
+	const Component = toComponent(element, maps);
 
 	return (
 		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
@@ -32,7 +32,7 @@ export function Element({ update, element, config, map, ...props }) {
 			</div>
 			<div className="flex flex-col w-full p-2">
 				{
-					Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
+					Component !== Element && <Component update={ update } element={ element } config={ config } maps={ maps } />
 				}
 			</div>
 		</div>

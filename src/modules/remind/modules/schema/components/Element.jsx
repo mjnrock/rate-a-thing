@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { BsTrash, BsClipboard } from "react-icons/bs";
+import { BsTrash, BsClipboard, BsInfoCircle } from "react-icons/bs";
 
 import TypeDropdown from "./TypeDropdown";
 import AsDropdown from "./AsDropdown";
+import RecordTableModal from "../../../components/RecordTableModal";
 
 export function toComponent(element, map = {}) {
 	const { TypeModelMap, AsModelMap } = map;
@@ -28,6 +29,7 @@ export function Element({ update, element, config, map, ...props }) {
 	const [ isEditing, setIsEditing ] = useState(false);
 	const [ labelText, setLabelText ] = useState(element?.meta?.label || element.id);
 	const [ originalLabelText, setOriginalLabelText ] = useState(element?.meta?.label || element.id);
+	const [ isModalOpen, setIsModalOpen ] = useState(false);
 
 	const handleClick = () => {
 		setOriginalLabelText(labelText);
@@ -59,6 +61,13 @@ export function Element({ update, element, config, map, ...props }) {
 		setIsEditing(false);
 	};
 
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	const Component = toComponent(element, map);
 
 	return (
@@ -81,6 +90,15 @@ export function Element({ update, element, config, map, ...props }) {
 
 				<div className="flex flex-row items-center justify-end w-1/4 gap-2 p-2">
 					<div
+						className="flex flex-row items-center justify-center gap-2 p-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-400 bg-neutral-100 border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
+						onClick={ (e) => {
+							console.table(element);
+							openModal(); // Open the modal with the element data
+						} }
+					>
+						<BsInfoCircle size={ "1.5rem" } />
+					</div>
+					<div
 						className="flex flex-row items-center justify-center gap-2 p-2 border border-solid rounded shadow-md cursor-pointer select-none text-neutral-400 bg-neutral-100 border-neutral-200 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-500 active:bg-emerald-700 active:border-emerald-50 active:text-emerald-50"
 						onClick={ (e) => update("duplicateChild", element.id) }
 					>
@@ -99,6 +117,9 @@ export function Element({ update, element, config, map, ...props }) {
 					Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
 				}
 			</div>
+
+			{/* Modal */ }
+			<RecordTableModal isOpen={ isModalOpen } closeModal={ closeModal } data={ element } />
 		</div>
 	);
 };

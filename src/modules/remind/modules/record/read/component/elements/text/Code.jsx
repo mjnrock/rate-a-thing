@@ -1,19 +1,19 @@
 import React from "react";
 import CodeMirror from "@uiw/react-codemirror";
 
-export function Code({ update, element }) {
-	const { recordDispatch } = update;
+export function Code({ update, element, maps }) {
+	const { data: dataMap } = maps;
+	let { value } = element.state;
 
-	const { value } = element.state;
-
-	console.log(value);
+	if(dataMap[ element.id ]) {
+		value = dataMap[ element.id ];
+	}
 
 	return (
 		<CodeMirror
 			value={ value }
 			onChange={ (v) => {
 				console.log(v, update)
-				recordDispatch("setElementValue", element.id, v);
 			} }
 			options={ {
 				mode: "javascript",
