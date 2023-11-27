@@ -3,13 +3,11 @@ import { InputSchema } from "../../../../../models/input/Input";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
 export function Input({ update, element, columns = 2 }) {
-	const { schemaDispatch } = update;
-
 	const { as } = element;
 	const inputSchema = InputSchema[ as ];
 
 	const handleElementUpdate = (id, prop, value) => {
-		schemaDispatch("mergeElementState", id, { [ prop ]: value });
+		update("mergeElementState", id, { [ prop ]: value });
 	};
 
 	if(!inputSchema) {
