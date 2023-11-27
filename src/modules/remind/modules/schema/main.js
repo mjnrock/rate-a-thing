@@ -1,34 +1,9 @@
 import { v4 as uuid } from "uuid";
 import { deepClone } from "../../../../util/deepClone";
 
-import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
+import { EnumElementType } from "../../EnumElementType";
 
 import { TypeModelMap, AsModelMap, Models } from "../../models/package";
-
-export const HTMLInputEnums = [
-	"button",
-	"checkbox",
-	"color",
-	"date",
-	"datetime-local",
-	"email",
-	"file",
-	"hidden",
-	"image",
-	"month",
-	"number",
-	"password",
-	"radio",
-	"range",
-	"reset",
-	"search",
-	"submit",
-	"tel",
-	"text",
-	"time",
-	"url",
-	"week",
-];
 
 export const Helpers = {
 	duplicateElementWithChildren: (element) => {
@@ -112,7 +87,7 @@ export const Utility = {
 
 		if(as in AsModelMap[ type ]) {
 			return AsModelMap[ type ][ as ];
-		} else if (type in TypeModelMap) {
+		} else if(type in TypeModelMap) {
 			return TypeModelMap[ type ];
 		} else {
 			return TypeModelMap[ EnumElementType.ELEMENT ];

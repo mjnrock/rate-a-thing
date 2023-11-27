@@ -9,7 +9,6 @@ import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
 import ModRecord from "../modules/remind/modules/record/main";
 import EditRecord from "../modules/remind/modules/record/views/EditRecord";
 import ViewRecord from "../modules/remind/modules/record/views/ViewRecord";
-import { useEffect } from "react";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {

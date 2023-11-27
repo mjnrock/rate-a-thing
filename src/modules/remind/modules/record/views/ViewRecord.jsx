@@ -1,22 +1,20 @@
-import deepClone from "../../../../../util/deepClone";
 import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 
 import ElementGroup from "../read/component/ElementGroup";
-import Range from "../read/component/elements/rating/Range";
-import Heading from "../read/component/elements/text/Heading";
-import Code from "../read/component/elements/text/Code";
+import Elements from "../read/component/elements/package";
 
 export const TypeModelMap = {
 	[ EnumElementType.GROUP ]: ElementGroup,
+	[ EnumElementType.INPUT ]: Elements.Input.Input,
 };
 
 export const AsModelMap = {
 	[ EnumElementType.TEXT ]: {
-		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Heading,
-		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Code,
+		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Elements.Text.Heading,
+		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Elements.Text.Code
 	},
 	[ EnumElementType.RATING ]: {
-		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Range,
+		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Elements.Rating.Range,
 	},
 };
 

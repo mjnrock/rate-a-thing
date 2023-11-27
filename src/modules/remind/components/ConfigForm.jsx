@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { debounce } from "../../../util/debounce";
 import { ConfigField } from "./ConfigField";
+import EnumElementType from "../EnumElementType";
 
 export function ConfigForm({ schema, element, update, columns = 2, children, ...props }) {
 	const debouncedUpdate = useCallback(debounce((id, prop, value) => {
@@ -26,9 +27,27 @@ export function ConfigForm({ schema, element, update, columns = 2, children, ...
 				// Pass the options starting from the third element if elementType is "array"
 				const extraProps = elementType === "array" ? { options: options.slice(1) } : {};
 
+				if(element.type === EnumElementType.INPUT) {
+					if(prop === "value") {
+						return (
+							<div className="flex flex-col w-full gap-1 p-2">
+								<label className="block text-sm font-medium text-gray-700">{ prop.charAt(0).toUpperCase() + prop.slice(1) }</label>
+								<input
+									key={ prop }
+									type={ element.as }
+									onChange={ (e) => handleUpdate(prop, e.target.value) }
+									className="flex-1 w-full p-2 font-mono border border-solid rounded shadow-md select-none text-neutral-600 border-neutral-200"
+									{ ...element.state }
+								/>
+							</div>
+						);
+					}
+				}
+
 				return (
 					<ConfigField
 						key={ prop }
+						element={ element }
 						label={ prop.charAt(0).toUpperCase() + prop.slice(1) }
 						type={ elementType }
 						value={ value }
