@@ -7,6 +7,10 @@ export const State = ({ data = {}, ...rest } = {}) => {
 	};
 };
 
+
+//TODO: The basic idea of data is implemented here, but it's not implemented fully over the entire record module.
+//NOTE: t's basically only present in this file -- nothing else has been updated to use it.
+
 export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
