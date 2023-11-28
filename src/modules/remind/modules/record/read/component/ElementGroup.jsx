@@ -6,7 +6,7 @@ export function ElementGroup({ update, element, config = {}, maps, ...props }) {
 		<div className="flex flex-col w-full" { ...props }>
 			{ element.state.elements.map((el) => (
 				<Fragment key={ el.id }>
-					<Element update={ update } element={ el } config={ config } maps={ maps } className="flex-grow" />
+					<Element update={ update } element={ el } config={ config } maps={ maps } />
 				</Fragment>
 			)) }
 		</div>

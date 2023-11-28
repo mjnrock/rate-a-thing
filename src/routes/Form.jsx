@@ -30,6 +30,10 @@ export function Reviews() {
 	const { state: recordState, dispatch: recordDispatch } = Chord.Node.React.useNode(Nodes.record);
 	const { state: repositoryState, dispatch: repositoryDispatch } = Chord.Node.React.useNode(Nodes.repository);
 
+	console.log(schemaState);
+	console.log(recordState);
+	console.log(repositoryState);
+
 	return (
 		<ModelRecordSearchContainer
 			schemaContent={ () => (

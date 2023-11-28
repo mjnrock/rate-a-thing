@@ -50,8 +50,6 @@ export function EditSchema({ update, element, config = {}, ...props }) {
 		element.click();
 	};
 
-	console.log(element)
-
 	return (
 		<>
 			<div className="flex flex-row items-center justify-start w-full gap-2 p-2 mb-2 border border-b border-solid shadow-md select-none bg-neutral-50 border-neutral-200 border-b-neutral-100 ">

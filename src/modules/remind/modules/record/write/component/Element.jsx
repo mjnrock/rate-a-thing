@@ -18,26 +18,19 @@ export function toComponent(element, map = {}) {
 	return Element;
 };
 
-export function Element({ update, element, config, map, ...props }) {
-	const Component = toComponent(element, map);
-
-	if(!element) {
-		return null;
-	}
+export function Element({ update, element, config, maps, ...props }) {
+	const Component = toComponent(element, maps);
 
 	return (
-		<div className="flex flex-col flex-grow m-2 ml-0 border border-solid rounded shadow select-none basis-1 border-neutral-200" { ...props }>
-			<div className="flex flex-row items-center justify-between w-full gap-x-2">
-				<div className="flex w-3/4 p-2 rounded hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500">
-					<span className="flex-1 w-full font-mono cursor-pointer">
-						{ element?.meta?.label || element.id }
-					</span>
-				</div>
+		<div className="grid w-full grid-cols-6 gap-2 m-2 ml-0 border border-solid rounded shadow select-none border-neutral-200" { ...props }>
+			{/* Label Section - occupies 1 column */ }
+			<div className="flex items-center justify-center col-span-1 p-2">
+				{ element?.meta?.label || element.id }
 			</div>
-			<div className="flex flex-col w-full p-2">
-				{
-					Component !== Element && <Component update={ update } element={ element } config={ config } map={ map } />
-				}
+
+			{/* Component Section - occupies 5 columns */ }
+			<div className="flex items-center justify-center col-span-5 p-2">
+				{ Component !== Element && <Component update={ update } element={ element } config={ config } maps={ maps } /> }
 			</div>
 		</div>
 	);

@@ -21,33 +21,14 @@ export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
 	setData: (state, next) => ({ ...state, data: next }),
-	mergeData: (state, id, key, value) => {
-		if(typeof key === "object") {
-			// assume it's a merge object
-			return {
-				...state,
-				data: {
-					...state.data,
-					[ id ]: {
-						...state.data[ id ],
-						...key,
-					},
-				},
-			};
-		}
-
-		const data = state.data[ id ] || {};
+	mergeData: (state, id, value) => {
 		return {
 			...state,
 			data: {
 				...state.data,
-				[ id ]: {
-					...data,
-					[ key ]: value,
-				},
+				[ id ]: value,
 			},
 		};
-
 	},
 });
 export const Effects = () => ({});
