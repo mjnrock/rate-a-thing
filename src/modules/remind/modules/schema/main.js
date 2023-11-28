@@ -143,6 +143,23 @@ export const State = ({ form = {}, ...rest } = {}) => {
 export const Reducers = () => ({
 	set: (state, next) => next,
 	merge: (state, next) => ({ ...state, ...next }),
+	setForm: (state, nextForm) => {
+		return {
+			...state,
+			form: nextForm.id,
+			components: Utility.toComponentMap(nextForm),
+		};
+	},
+	setConfig: (state, nextConfig) => {
+		return {
+			...state,
+			config: {
+				...state.config,
+				...nextConfig,
+			},
+		};
+	},
+
 
 	addElementByType: (state, parentId, type, as) => {
 		const model = Utility.getModelByType(type);

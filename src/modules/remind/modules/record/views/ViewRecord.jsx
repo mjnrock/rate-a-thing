@@ -6,6 +6,7 @@ import Elements from "../read/component/elements/package";
 export const TypeModelMap = {
 	[ EnumElementType.GROUP ]: ElementGroup,
 	[ EnumElementType.INPUT ]: Elements.Input.Input,
+	[ EnumElementType.NUMBER ]: Elements.Number.Number,
 };
 
 export const AsModelMap = {
