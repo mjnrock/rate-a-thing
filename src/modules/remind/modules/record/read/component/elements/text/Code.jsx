@@ -1,13 +1,9 @@
 import React from "react";
 import CodeMirror from "@uiw/react-codemirror";
+import { readHelper } from "../../../util/helper";
 
 export function Code({ update, element, maps }) {
-	const { data: dataMap } = maps;
-	let { value } = element.state;
-
-	if(dataMap[ element.id ]) {
-		value = dataMap[ element.id ];
-	}
+	let { value } = readHelper({ element, maps });
 
 	return (
 		<CodeMirror

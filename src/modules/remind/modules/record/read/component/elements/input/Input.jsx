@@ -1,18 +1,13 @@
 import React from "react";
-import { InputSchema } from "../../../../../../models/input/Input";
+import { readHelper } from "../../../util/helper";
 
-export function Input({ update, element, columns = 2 }) {
-	const { as } = element;
-	const inputSchema = InputSchema[ as ];
-
-	if(!inputSchema) {
-		return null;
-	}
+export function Input({ update, element, maps }) {
+	let { value } = readHelper({ element, maps });
 
 	return (
 		<input
 			type={ element.as }
-			value={ element.state.value }
+			value={ value }
 			readOnly={ true }
 		/>
 	);

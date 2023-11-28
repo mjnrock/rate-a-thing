@@ -1,14 +1,8 @@
 import { BsStar, BsCircle, BsSquare } from "react-icons/bs";
+import { writeHelper } from "../../../util/helper";
 
 export function Range({ update, element, maps, icon, isPlayful = true }) {
-	const { recordDispatch } = update;
-	const { data: dataMap } = maps;
-	const { max, min, step, icon: stateIcon } = element.state;
-	let { value } = element.state;
-
-	if(dataMap[ element.id ]) {
-		value = dataMap[ element.id ];
-	}
+	let { state: { value, max, min, step, icon: stateIcon }, dataDispatcher } = writeHelper({ update, element, maps });
 
 	let Icon = icon ?? BsStar;
 	if(stateIcon === "star") {
@@ -30,7 +24,10 @@ export function Range({ update, element, maps, icon, isPlayful = true }) {
 					className={ `cursor-pointer text-4xl ${ i <= value ? "text-yellow-500 hover:text-yellow-600" : "text-gray-300 hover:text-gray-400" }` }
 					style={ isPlayful && { transform: `rotate(${ rotationDegree }deg)` } }
 					size={ "3rem" }
-					onClick={ e => recordDispatch("mergeData", element.id, i) }
+					onClick={ e => dataDispatcher({
+						...element.state,
+						value: i,
+					}, true) }
 				/>
 			);
 		}

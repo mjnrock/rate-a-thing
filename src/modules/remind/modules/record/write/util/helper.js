@@ -1,7 +1,15 @@
 export function writeHelper({ update, element, maps }) {
 	const { recordDispatch } = update;
-	const dispatcher = (nextState, key = "value") => {
-		recordDispatch("mergeData", element.id, { [ key ]: nextState });
+	const dispatcher = (value, key = "value") => {
+		//NOTE: Remember that "mergeData" is a reducer for the *module* state, not the *element* state.
+		if(key === true && typeof value === "object") {
+			// de facto "set"
+			recordDispatch("mergeData", element.id, value);
+		} else if(key) {
+			// de facto "merge"
+			recordDispatch("mergeData", element.id, { ...element.state, [ key ]: value });
+		}
+
 		return;
 	};
 

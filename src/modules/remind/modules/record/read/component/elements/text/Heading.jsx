@@ -1,12 +1,8 @@
 import React from "react";
+import { readHelper } from "../../../util/helper";
 
 export function Heading({ update, element, maps }) {
-	const { data: dataMap } = maps;
-	let { value, size } = element.state;
-
-	if(dataMap[ element.id ]) {
-		value = dataMap[ element.id ];
-	}
+	let { value, size } = readHelper({ element, maps });
 
 	const hToTw = {
 		h1: "text-4xl",

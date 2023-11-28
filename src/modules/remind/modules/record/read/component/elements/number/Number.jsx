@@ -1,12 +1,8 @@
 import React from "react";
+import { readHelper } from "../../../util/helper";
 
 export function Number({ update, element, maps }) {
-	const { data: dataMap } = maps;
-	let { value, size } = element.state;
-
-	if(dataMap[ element.id ]) {
-		value = dataMap[ element.id ];
-	}
+	let { value, size } = readHelper({ element, maps });
 
 	return (
 		<div className="flex flex-row items-center justify-center w-full h-full gap-2">
