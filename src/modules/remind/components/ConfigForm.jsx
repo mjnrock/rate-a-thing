@@ -1,7 +1,9 @@
 import React, { useCallback } from "react";
 import { debounce } from "../../../util/debounce";
 import { ConfigField } from "./ConfigField";
-import EnumElementType from "../EnumElementType";
+
+import Packages from "../packages/package";
+const { EnumType } = Packages;
 
 export function ConfigForm({ schema, element, update, columns = 2, children, ...props }) {
 	const debouncedUpdate = useCallback(debounce((id, prop, value) => {
@@ -27,7 +29,7 @@ export function ConfigForm({ schema, element, update, columns = 2, children, ...
 				// Pass the options starting from the third element if elementType is "array"
 				const extraProps = elementType === "array" ? { options: options.slice(1) } : {};
 
-				if(element.type === EnumElementType.INPUT) {
+				if(element.type === EnumType.INPUT) {
 					if(prop === "value") {
 						return (
 							<div

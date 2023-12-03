@@ -6,7 +6,7 @@ export function Number({ update, element, maps }) {
 
 	return (
 		<div className="flex flex-row items-center justify-center w-full h-full gap-2">
-			{ value.toString() }
+			{ value && (value).toString() }
 		</div>
 	);
 }

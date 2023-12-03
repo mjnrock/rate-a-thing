@@ -1,5 +1,5 @@
 import React from "react";
-import { HeadingSchema } from "../../../../../models/text/Heading";
+import { HeadingSchema } from "../../../../../packages/form/models/text/Heading";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
 export function Heading({ update, element, columns = 2 }) {

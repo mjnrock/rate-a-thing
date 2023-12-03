@@ -1,5 +1,5 @@
 import React from "react";
-import { InputSchema } from "../../../../../models/input/Input";
+import { InputSchema } from "../../../../../packages/form/models/input/Input";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
 export function Input({ update, element, columns = 2 }) {

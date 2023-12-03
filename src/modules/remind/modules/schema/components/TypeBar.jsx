@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { EnumElementType } from "../../../EnumElementType";
 import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
+import Packages from "../../../packages/package";
+const { EnumType } = Packages;
+
 export const ElementTypeEnums = [
-	EnumElementType.GROUP,
-	EnumElementType.TEXT,
-	EnumElementType.NUMBER,
-	EnumElementType.INPUT,
-	EnumElementType.RATING,
+	EnumType.GROUP,
+	EnumType.TEXT,
+	EnumType.NUMBER,
+	EnumType.INPUT,
+	EnumType.RATING,
 ];
 
 export const TypeBar = ({ update, element, collapsed = true, collapsible = true }) => {
@@ -43,7 +45,7 @@ export const TypeBar = ({ update, element, collapsed = true, collapsible = true 
 							key={ key }
 							className="items-center justify-center px-2 py-4 bg-white border border-solid rounded shadow cursor-pointer select-none border-neutral-200 hover:bg-sky-50 hover:border-sky-200 hover:text-sky-500 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
 							onClick={ e => {
-								//TODO: Implement use of the "as" clause: update("addElementByType", element.id, EnumElementType[ key ], as);
+								//TODO: Implement use of the "as" clause: update("addElementByType", element.id, EnumType[ key ], as);
 								update("addElementByType", element.id, key);
 							} }
 						>

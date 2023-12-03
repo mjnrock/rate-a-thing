@@ -6,14 +6,14 @@ import AsDropdown from "./AsDropdown";
 import RecordTableModal from "../../../components/RecordTableModal";
 
 export function toComponent(element, map = {}) {
-	const { TypeModelMap, AsModelMap } = map;
+	const { TypeComponentMap, AsComponentMap } = map;
 
-	let as = AsModelMap?.[ element.type ]?.[ element.as ];
+	let as = AsComponentMap?.[ element.type ]?.[ element.as ];
 	if(as) {
 		return as;
 	}
 
-	let type = TypeModelMap?.[ element.type ];
+	let type = TypeComponentMap?.[ element.type ];
 	if(type) {
 		return type;
 	}

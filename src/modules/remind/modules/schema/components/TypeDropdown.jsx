@@ -1,14 +1,16 @@
 import React from "react";
 import { Menu } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
-import EnumElementType from "../../../EnumElementType";
+
+import Packages from "../../../packages/package";
+const { EnumType } = Packages;
 
 export const ElementTypeEnums = [
-	EnumElementType.GROUP,
-	EnumElementType.TEXT,
-	EnumElementType.NUMBER,
-	EnumElementType.INPUT,
-	EnumElementType.RATING,
+	EnumType.GROUP,
+	EnumType.TEXT,
+	EnumType.NUMBER,
+	EnumType.INPUT,
+	EnumType.RATING,
 ];
 
 export const TypeDropdown = ({ update, element, ...props }) => {
@@ -31,7 +33,7 @@ export const TypeDropdown = ({ update, element, ...props }) => {
 					<Menu.Item key={ key }>
 						{ ({ active }) => (
 							<div
-								className={ `${ active ? "bg-sky-50 text-sky-500 font-bold" : "text-neutral-500" } py-2 px-4 group flex rounded items-center w-full cursor-pointer ` + (element.type === EnumElementType[ key ] ? "font-bold" : "") }
+								className={ `${ active ? "bg-sky-50 text-sky-500 font-bold" : "text-neutral-500" } py-2 px-4 group flex rounded items-center w-full cursor-pointer ` + (element.type === EnumType[ key ] ? "font-bold" : "") }
 								onClick={ () => update("changeElementType", element.id, key) }
 							>
 								{ key.toLowerCase() }

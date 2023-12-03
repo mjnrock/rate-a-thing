@@ -1,5 +1,5 @@
 import React from "react";
-import { CodeSchema } from "../../../../../models/text/Code";
+import { CodeSchema } from "../../../../../packages/form/models/text/Code";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
 export function Code({ update, element, columns = 2 }) {

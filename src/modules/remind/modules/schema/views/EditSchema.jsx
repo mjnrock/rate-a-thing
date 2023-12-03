@@ -1,28 +1,29 @@
 import { BsChevronRight, BsChevronUp, BsFile, BsFileArrowDown, BsFloppy, BsFolder, BsFolder2Open, BsSave } from "react-icons/bs";
 
-import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
 import ElementGroup from "../components/ElementGroup";
-import Element from "../components/Element";
 
 import Elements from "../components/elements/package";
 
-export const TypeModelMap = {
-	[ EnumElementType.GROUP ]: ElementGroup,
-	[ EnumElementType.NUMBER ]: Elements.Number.Number,
-	[ EnumElementType.INPUT ]: Elements.Input.Input,
+import Packages from "../../../packages/package";
+const { EnumType, EnumAs } = Packages;
+
+export const TypeComponentMap = {
+	[ EnumType.GROUP ]: ElementGroup,
+	[ EnumType.NUMBER ]: Elements.Number.Number,
+	[ EnumType.INPUT ]: Elements.Input.Input,
 };
 
-export const AsModelMap = {
-	[ EnumElementType.GROUP ]: {
-		[ EnumFormElementType[ EnumElementType.GROUP ].FORM ]: EditSchema,
+export const AsComponentMap = {
+	[ EnumType.GROUP ]: {
+		[ EnumAs[ EnumType.GROUP ].FORM ]: EditSchema,
 	},
-	[ EnumElementType.TEXT ]: {
-		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Elements.Text.Heading,
-		[ EnumFormElementType[ EnumElementType.TEXT ].MARKDOWN ]: Elements.Text.Markdown,
-		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Elements.Text.Code,
+	[ EnumType.TEXT ]: {
+		[ EnumAs[ EnumType.TEXT ].HEADING ]: Elements.Text.Heading,
+		[ EnumAs[ EnumType.TEXT ].MARKDOWN ]: Elements.Text.Markdown,
+		[ EnumAs[ EnumType.TEXT ].CODE ]: Elements.Text.Code,
 	},
-	[ EnumElementType.RATING ]: {
-		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Elements.Rating.Range,
+	[ EnumType.RATING ]: {
+		[ EnumAs[ EnumType.RATING ].RANGE ]: Elements.Rating.Range,
 	},
 };
 
@@ -71,7 +72,7 @@ export function EditSchema({ update, element, config = {}, ...props }) {
 
 			<div className="flex flex-row items-center justify-between w-full gap-2 p-2 mb-2 border border-b border-solid shadow-md select-none bg-neutral-50 border-neutral-200 border-b-neutral-100 ">
 				{
-					element.state.elements.some(el => el.type === EnumElementType.GROUP) ? (
+					element.state.elements.some(el => el.type === EnumType.GROUP) ? (
 						<button
 							className="flex flex-row items-center p-2 border-2 border-solid rounded cursor-pointer border-neutral-200 hover:bg-sky-50 hover:text-sky-500 hover:border-sky-200 text-neutral-400 active:bg-sky-700 active:border-sky-50 active:text-sky-50"
 							onClick={ e => {
@@ -88,7 +89,7 @@ export function EditSchema({ update, element, config = {}, ...props }) {
 				update={ update }
 				element={ element }
 				config={ config }
-				map={ { TypeModelMap, AsModelMap } }
+				map={ { TypeComponentMap, AsComponentMap } }
 				{ ...props }
 			/>
 		</>

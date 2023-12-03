@@ -1,7 +1,9 @@
 import React from "react";
 import { Menu } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
-import { EnumFormElementType, EnumElementType } from "../../../EnumElementType";
+
+import Packages from "../../../packages/package";
+const { EnumAs } = Packages;
 
 export const AsDropdown = ({ update, element, ...props }) => {
 	const getDropdownPosition = () => {
@@ -12,7 +14,7 @@ export const AsDropdown = ({ update, element, ...props }) => {
 	};
 
 	// Get the current type-specific enum options
-	const currentTypeOptions = EnumFormElementType[ element.type ] || {};
+	const currentTypeOptions = EnumAs[ element.type ] || {};
 
 	if(Object.keys(currentTypeOptions).length === 0) {
 		return null;

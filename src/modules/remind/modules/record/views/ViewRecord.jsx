@@ -1,21 +1,22 @@
-import { EnumElementType, EnumFormElementType } from "../../../EnumElementType";
-
 import ElementGroup from "../read/component/ElementGroup";
 import Elements from "../read/component/elements/package";
 
-export const TypeModelMap = {
-	[ EnumElementType.GROUP ]: ElementGroup,
-	[ EnumElementType.INPUT ]: Elements.Input.Input,
-	[ EnumElementType.NUMBER ]: Elements.Number.Number,
+import Packages from "../../../packages/package";
+const { EnumType, EnumAs } = Packages;
+
+export const TypeComponentMap = {
+	[ EnumType.GROUP ]: ElementGroup,
+	[ EnumType.INPUT ]: Elements.Input.Input,
+	[ EnumType.NUMBER ]: Elements.Number.Number,
 };
 
-export const AsModelMap = {
-	[ EnumElementType.TEXT ]: {
-		[ EnumFormElementType[ EnumElementType.TEXT ].HEADING ]: Elements.Text.Heading,
-		[ EnumFormElementType[ EnumElementType.TEXT ].CODE ]: Elements.Text.Code
+export const AsComponentMap = {
+	[ EnumType.TEXT ]: {
+		[ EnumAs[ EnumType.TEXT ].HEADING ]: Elements.Text.Heading,
+		[ EnumAs[ EnumType.TEXT ].CODE ]: Elements.Text.Code
 	},
-	[ EnumElementType.RATING ]: {
-		[ EnumFormElementType[ EnumElementType.RATING ].RANGE ]: Elements.Rating.Range,
+	[ EnumType.RATING ]: {
+		[ EnumAs[ EnumType.RATING ].RANGE ]: Elements.Rating.Range,
 	},
 };
 
@@ -31,7 +32,7 @@ export function ViewRecord({ update, data }) {
 			update={ update }
 			element={ schemaState.components.elements[ schemaState.form ] }
 			config={ recordState.config }
-			maps={ { TypeModelMap, AsModelMap, data: recordState.data } }
+			maps={ { TypeComponentMap, AsComponentMap, data: recordState.data } }
 		/>
 	);
 };

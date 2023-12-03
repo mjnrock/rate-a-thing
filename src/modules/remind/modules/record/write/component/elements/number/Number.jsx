@@ -52,7 +52,7 @@ export function Number({ update, element, maps }) {
 			min={ min }
 			max={ max }
 			step={ step }
-			value={ value }
+			value={ value ?? "" }
 			onChange={ e => dataDispatcher(e.target.value) }
 		/>
 	);
