@@ -1,7 +1,7 @@
 import Element from "./element/package";
 import Form from "./form/package";
 
-const { EnumElementType: EnumCoreType, EnumElementAs: EnumCoreAs } = Element;
+const { EnumElementType, EnumElementAs } = Element;
 const { EnumFormType, EnumFormAs } = Form;
 
 const merge = (a, b) => {
@@ -25,11 +25,11 @@ const merge = (a, b) => {
 
 
 export const Modules = merge(Element, Form);
-export const EnumElementType = merge(EnumCoreType, EnumFormType);
-export const EnumElementAs = merge(EnumCoreAs, EnumFormAs);
+export const EnumType = merge(EnumElementType, EnumFormType);
+export const EnumAs = merge(EnumElementAs, EnumFormAs);
 
 export default {
 	Modules,
-	EnumType: EnumElementType,
-	EnumAs: EnumElementAs,
+	EnumType,
+	EnumAs,
 };
