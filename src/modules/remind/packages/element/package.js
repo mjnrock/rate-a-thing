@@ -28,7 +28,7 @@ export const TypeModelMap = {
 };
 
 export const AsModelMap = {
-	[ EnumElementAs.ELEMENT ]: Element,
+	[ EnumElementType.ELEMENT ]: Element,
 
 	[ EnumElementType.ARRAY ]: {},
 	[ EnumElementType.BOOLEAN ]: {
