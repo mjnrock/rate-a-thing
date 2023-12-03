@@ -1,5 +1,5 @@
 import { EnumElementType, EnumElementAs } from "../../../element/EnumElementType";
-import { EnumFormAs } from "../../EnumFormType";
+import { EnumFormType, EnumFormAs } from "../../EnumFormType";
 
 import Rating from "./Rating";
 
@@ -13,7 +13,7 @@ export const RangeSchema = {
 export const RangeState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
 	return {
 		...Rating.State({
-			as: EnumElementAs[ EnumElementType.RATING ].RANGE,
+			as: EnumFormAs[ EnumFormType.RATING ].RANGE,
 			state: {
 				value,
 				max,

@@ -1,9 +1,11 @@
 import { v4 as uuid } from "uuid";
 import { deepClone } from "../../../../util/deepClone";
 
-import { EnumElementType } from "../../EnumElementType";
+import Lib from "../../packages/package";
+const { EnumType: EnumElementType, Modules: { TypeModelMap, AsModelMap, Models } } = Lib;
 
-import { TypeModelMap, AsModelMap, Models } from "../../models/package";
+console.log(EnumElementType);
+console.log(Models);
 
 export const Helpers = {
 	duplicateElementWithChildren: (element) => {

@@ -1,4 +1,5 @@
 import { EnumElementType, EnumElementAs } from "../../../element/EnumElementType";
+import { EnumFormType } from "../../EnumFormType";
 
 import Element from "../../../element/models/Element";
 
@@ -150,10 +151,10 @@ export const InputSchema = {
 	},
 };
 
-export const InputState = ({ as = EnumElementAs[ EnumElementType.INPUT ].TEXT, ...rest } = {}) => {
+export const InputState = ({ as, ...rest } = {}) => {
 	return {
 		...Element.State({
-			type: EnumElementType.INPUT,
+			type: EnumFormType.INPUT,
 			as,
 			state: {
 				value: "",

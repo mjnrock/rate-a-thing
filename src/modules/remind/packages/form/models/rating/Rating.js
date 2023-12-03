@@ -1,11 +1,11 @@
-import { EnumElementType } from "../../../element/EnumElementType";
+import { EnumFormType } from "../../EnumFormType";
 
 import Element from "../../../element/models/Element";
 
 export const RatingState = ({ value = null, ...rest } = {}) => {
 	return {
 		...Element.State({
-			type: EnumElementType.RATING,
+			type: EnumFormType.RATING,
 			state: {
 				value,
 			},
