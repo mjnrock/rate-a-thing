@@ -1,7 +1,7 @@
 import { EnumElementType } from "../../../element/EnumElementType";
 import { EnumFormAs } from "../../EnumFormType";
 
-import { Form } from "./Form";
+import Form from "./Form";
 
 export const SectionState = ({ ...rest } = {}) => {
 	return {

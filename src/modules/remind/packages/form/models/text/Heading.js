@@ -1,7 +1,7 @@
 import { EnumElementType } from "../../../element/EnumElementType";
 import { EnumFormAs } from "../../EnumFormType";
 
-import { Text } from "../../../element/models/text/Text";
+import Text from "../../../element/models/text/Text";
 
 export const HeadingSchema = {
 	value: EnumElementType.TEXT,

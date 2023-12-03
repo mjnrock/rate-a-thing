@@ -5,6 +5,10 @@ import Review_0_1_0 from "./routes/Review-0.1.0";
 import Review_0_2_0 from "./routes/Review-0.2.0";
 import Form from "./routes/Form";
 
+import Modules from "./modules/remind/packages/package";
+
+console.log(Modules);
+
 export function App() {
 	return (
 		<Routes>

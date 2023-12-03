@@ -1,5 +1,6 @@
-import { EnumElementType } from "../../EnumElementType";
-import Element from "../Element";
+import { EnumElementType } from "../../../element/EnumElementType";
+
+import Element from "../../../element/models/Element";
 
 export const RatingState = ({ value = null, ...rest } = {}) => {
 	return {

@@ -1,7 +1,7 @@
-import { EnumElementType } from "../../EnumElementType";
+import { EnumElementType } from "../../../element/EnumElementType";
 import { EnumFormAs } from "../../EnumFormType";
 
-import { Array } from "../../../element/models/array/Array";
+import Array from "../../../element/models/array/Array";
 
 export const DropdownState = ({ ...rest } = {}) => {
 	return {

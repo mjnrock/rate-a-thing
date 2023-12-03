@@ -1,17 +1,19 @@
-import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
+import { EnumElementType, EnumElementAs } from "../../../element/EnumElementType";
+import { EnumFormAs } from "../../EnumFormType";
+
 import Rating from "./Rating";
 
 export const RangeSchema = {
-	max: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
-	min: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
-	step: [ EnumElementType.NUMBER, EnumFormElementType[ EnumElementType.NUMBER ].UINT32 ],
-	icon: [ EnumElementType.ARRAY, EnumFormElementType[ EnumElementType.ARRAY ].DROPDOWN, "star", "circle", "square", ],
+	max: [ EnumElementType.NUMBER, EnumElementAs[ EnumElementType.NUMBER ].UINT32 ],
+	min: [ EnumElementType.NUMBER, EnumElementAs[ EnumElementType.NUMBER ].UINT32 ],
+	step: [ EnumElementType.NUMBER, EnumElementAs[ EnumElementType.NUMBER ].UINT32 ],
+	icon: [ EnumElementType.ARRAY, EnumFormAs[ EnumElementType.ARRAY ].DROPDOWN, "star", "circle", "square", ],
 };
 
 export const RangeState = ({ value = null, max = 5, min = 1, step = 1, ...rest } = {}) => {
 	return {
 		...Rating.State({
-			as: EnumFormElementType[ EnumElementType.RATING ].RANGE,
+			as: EnumElementAs[ EnumElementType.RATING ].RANGE,
 			state: {
 				value,
 				max,

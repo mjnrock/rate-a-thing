@@ -1,5 +1,4 @@
 import { EnumElementType, EnumElementAs } from "./EnumElementType";
-export { EnumElementType, EnumElementAs };
 
 import Element from "./models/Element";
 
@@ -8,7 +7,6 @@ import ArrayModel from "./models/array/Array";		// Array is a reserved word
 import BooleanModel from "./models/boolean/Boolean";	// Boolean is a reserved word
 
 import Group from "./models/group/Group";
-import Form from "./group/Form";
 
 import NumberModel from "./models/number/Number";	// Number is a reserved word
 
@@ -33,9 +31,19 @@ export const AsModelMap = {
 	[ EnumElementAs.ELEMENT ]: Element,
 
 	[ EnumElementType.ARRAY ]: {},
-	[ EnumElementType.BOOLEAN ]: {},
+	[ EnumElementType.BOOLEAN ]: {
+		[ EnumElementAs[ EnumElementType.BOOLEAN ].BITMASK ]: BooleanModel,
+	},
 	[ EnumElementType.GROUP ]: {},
-	[ EnumElementType.NUMBER ]: {},
+	[ EnumElementType.NUMBER ]: {
+		[ EnumElementAs[ EnumElementType.NUMBER ].INT8 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].INT16 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].INT32 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].UINT8 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].UINT16 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].UINT32 ]: NumberModel,
+		[ EnumElementAs[ EnumElementType.NUMBER ].FLOAT32 ]: NumberModel,
+	},
 	[ EnumElementType.OBJECT ]: {},
 	[ EnumElementType.TEXT ]: {
 		[ EnumElementAs[ EnumElementType.TEXT ].UUID ]: UUID,
@@ -55,7 +63,6 @@ export const Models = {
 	},
 	Group: {
 		Group,
-		Form,
 	},
 	Number: {
 		Number: NumberModel,
