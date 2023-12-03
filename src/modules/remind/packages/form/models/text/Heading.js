@@ -1,15 +1,17 @@
-import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
-import Text from "./Text";
+import { EnumElementType } from "../../../element/EnumElementType";
+import { EnumFormAs } from "../../EnumFormType";
+
+import { Text } from "../../../element/models/text/Text";
 
 export const HeadingSchema = {
 	value: EnumElementType.TEXT,
-	size: [ EnumElementType.ARRAY, EnumFormElementType[ EnumElementType.ARRAY ].DROPDOWN, "h1", "h2", "h3", "h4", "h5", "h6" ],
+	size: [ EnumElementType.ARRAY, EnumFormAs[ EnumElementType.ARRAY ].DROPDOWN, "h1", "h2", "h3", "h4", "h5", "h6" ],
 };
 
 export const HeadingState = ({ ...rest } = {}) => {
 	return {
 		...Text.State({
-			as: EnumFormElementType[ EnumElementType.TEXT ].HEADING,
+			as: EnumFormAs[ EnumElementType.TEXT ].HEADING,
 			state: {
 				value: "",
 				size: "h1",

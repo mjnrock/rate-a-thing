@@ -1,15 +1,17 @@
-import { EnumElementType, EnumFormElementType } from "../../EnumElementType";
-import Text from "./Text";
+import { EnumElementType } from "../../../element/EnumElementType";
+import { EnumFormAs } from "../../EnumFormType";
+
+import { Text } from "../../../element/models/text/Text";
 
 export const CodeSchema = {
 	value: EnumElementType.TEXT,
-	lang: [ EnumElementType.ARRAY, EnumFormElementType[ EnumElementType.ARRAY ].DROPDOWN, "js", "css", "html", "json", "jsx" ],
+	lang: [ EnumElementType.ARRAY, EnumFormAs[ EnumElementType.ARRAY ].DROPDOWN, "js", "css", "html", "json", "jsx" ],
 };
 
 export const CodeState = ({ ...rest } = {}) => {
 	return {
 		...Text.State({
-			as: EnumFormElementType[ EnumElementType.TEXT ].Code,
+			as: EnumFormAs[ EnumElementType.TEXT ].CODE,
 			state: {
 				value: "",
 				lang: "javascript",

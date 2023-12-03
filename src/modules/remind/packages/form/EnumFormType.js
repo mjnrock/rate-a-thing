@@ -1,8 +1,11 @@
 import { EnumElementType } from "../element/EnumElementType";
 
-export { EnumElementType } from "../element/EnumElementType";
+export const EnumFormType = {
+	INPUT: "input",
+	RATING: "rating",
+};
 
-export const EnumElementAs = {
+export const EnumFormAs = {
 	[ EnumElementType.ARRAY ]: {
 		DROPDOWN: "dropdown",
 	},
@@ -15,7 +18,8 @@ export const EnumElementAs = {
 		HEADING: "heading",		// Heading (h1, h2, h3, etc.)
 		MARKDOWN: "markdown",	// Markdown block (remarkable)
 	},
-	[ EnumElementType.INPUT ]: {
+
+	[ EnumFormType.INPUT ]: {
 		// HTML input types
 		TEXT: "text",
 		CODE: "code",
@@ -36,7 +40,7 @@ export const EnumElementAs = {
 		CHECKBOX: "checkbox",
 		RADIO: "radio",
 	},
-	[ EnumElementType.RATING ]: {
+	[ EnumFormType.RATING ]: {
 		LIKE_DISLIKE: "like-dislike",	// Thumbs up/down
 		RANGE: "range",					// 1-5 stars, 1-10 scale, etc.
 		COMMENT: "comment",				// Markdown comment
@@ -44,6 +48,6 @@ export const EnumElementAs = {
 };
 
 export default {
-	EnumElementType,
-	EnumElementAs,
+	EnumFormType,
+	EnumFormAs,
 };

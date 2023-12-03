@@ -22,11 +22,11 @@ const renderTableRows = (data, visited) => {
 		return (
 			<tr
 				key={ key }
-				onClick={ e => navigator.clipboard.writeText(value?.toString()) }
+				onClick={ e => navigator.clipboard.writeText((value)?.toString()) }
 				className="cursor-copy hover:bg-gray-50 hover:text-blue-500 active:bg-gray-100 active:text-blue-700"
 			>
 				<td className="p-2 font-bold">{ key }</td>
-				<td className="p-2 font-mono">{ value?.toString() }</td>
+				<td className="p-2 font-mono">{ (value)?.toString() }</td>
 			</tr>
 		);
 	});
