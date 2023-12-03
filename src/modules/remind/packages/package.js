@@ -1,12 +1,8 @@
 import Element from "./element/package";
 import Form from "./form/package";
 
-const { EnumElementType, EnumElementAs } = Element;
+const { EnumElementType: EnumCoreType, EnumElementAs: EnumCoreAs } = Element;
 const { EnumFormType, EnumFormAs } = Form;
-
-// Recursively merge the two nested objects.
-// If a key is present in both, merge the two objects.
-// If a key is only present in one, use that object.
 
 const merge = (a, b) => {
 	const keys = new Set([ ...Object.keys(a), ...Object.keys(b) ]);
@@ -29,5 +25,11 @@ const merge = (a, b) => {
 
 
 export const Modules = merge(Element, Form);
+export const EnumElementType = merge(EnumCoreType, EnumFormType);
+export const EnumElementAs = merge(EnumCoreAs, EnumFormAs);
 
-export default Modules;
+export default {
+	Modules,
+	EnumType: EnumElementType,
+	EnumAs: EnumElementAs,
+};
