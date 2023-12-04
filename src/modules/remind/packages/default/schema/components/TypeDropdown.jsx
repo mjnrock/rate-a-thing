@@ -2,8 +2,8 @@ import React from "react";
 import { Menu } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 
-import Packages from "../../../modules/package";
-const { EnumType } = Packages;
+import Modules from "../../../../modules/package";
+const { EnumType } = Modules;
 
 export const ElementTypeEnums = [
 	EnumType.GROUP,

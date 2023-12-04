@@ -2,8 +2,8 @@ import React from "react";
 import { Menu } from "@headlessui/react";
 import { BsChevronDown } from "react-icons/bs";
 
-import Packages from "../../../modules/package";
-const { EnumAs } = Packages;
+import Modules from "../../../../modules/package";
+const { EnumAs } = Modules;
 
 export const AsDropdown = ({ update, element, ...props }) => {
 	const getDropdownPosition = () => {

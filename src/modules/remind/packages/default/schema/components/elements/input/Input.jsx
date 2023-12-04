@@ -1,6 +1,6 @@
 import React from "react";
-import { InputSchema } from "../../../../../modules/form/models/input/Input";
-import { ConfigForm } from "../../../../../components/ConfigForm";
+import { InputSchema } from "../../../../../../modules/form/models/input/Input";
+import { ConfigForm } from "../../../../../../components/ConfigForm";
 
 export function Input({ update, element, columns = 2 }) {
 	const { as } = element;

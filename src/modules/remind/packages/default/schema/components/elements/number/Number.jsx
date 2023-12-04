@@ -1,6 +1,6 @@
 import React from "react";
-import { NumberSchema } from "../../../../../modules/element/models/number/Number";
-import { ConfigForm } from "../../../../../components/ConfigForm";
+import { NumberSchema } from "../../../../../../modules/element/models/number/Number";
+import { ConfigForm } from "../../../../../../components/ConfigForm";
 
 export function Number({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {

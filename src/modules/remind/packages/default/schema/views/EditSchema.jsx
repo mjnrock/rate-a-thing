@@ -4,8 +4,8 @@ import ElementGroup from "../components/ElementGroup";
 
 import Elements from "../components/elements/package";
 
-import Packages from "../../../modules/package";
-const { EnumType, EnumAs } = Packages;
+import Modules from "../../../../modules/package";
+const { EnumType, EnumAs } = Modules;
 
 export const TypeComponentMap = {
 	[ EnumType.GROUP ]: ElementGroup,

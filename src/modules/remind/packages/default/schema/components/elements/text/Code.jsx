@@ -1,6 +1,6 @@
 import React from "react";
-import { CodeSchema } from "../../../../../modules/form/models/text/Code";
-import { ConfigForm } from "../../../../../components/ConfigForm";
+import { CodeSchema } from "../../../../../../modules/form/models/text/Code";
+import { ConfigForm } from "../../../../../../components/ConfigForm";
 
 export function Code({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {

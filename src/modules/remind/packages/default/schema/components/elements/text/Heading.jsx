@@ -1,6 +1,6 @@
 import React from "react";
-import { HeadingSchema } from "../../../../../modules/form/models/text/Heading";
-import { ConfigForm } from "../../../../../components/ConfigForm";
+import { HeadingSchema } from "../../../../../../modules/form/models/text/Heading";
+import { ConfigForm } from "../../../../../../components/ConfigForm";
 
 export function Heading({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {

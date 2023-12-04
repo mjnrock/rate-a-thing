@@ -3,7 +3,7 @@ import { BsTrash, BsClipboard, BsInfoCircle } from "react-icons/bs";
 
 import TypeDropdown from "./TypeDropdown";
 import AsDropdown from "./AsDropdown";
-import RecordTableModal from "../../../components/RecordTableModal";
+import RecordTableModal from "../../../../components/RecordTableModal";
 
 export function toComponent(element, map = {}) {
 	const { TypeComponentMap, AsComponentMap } = map;

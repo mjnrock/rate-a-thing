@@ -1,6 +1,6 @@
 import React from "react";
-import { MarkdownSchema } from "../../../../../modules/form/models/text/Markdown";
-import { ConfigForm } from "../../../../../components/ConfigForm";
+import { MarkdownSchema } from "../../../../../../modules/form/models/text/Markdown";
+import { ConfigForm } from "../../../../../../components/ConfigForm";
 
 export function Markdown({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {
