@@ -3,12 +3,12 @@ import Chord from "@lespantsfancy/chord";
 import ModelRecordSearchContainer from "../modules/remind/components/ModelRecordSearchContainer";
 import ReadWriteContainer from "../modules/remind/components/ReadWriteContainer";
 
-import ModSchema from "../modules/remind/modules/schema/main";
-import EditSchema from "../modules/remind/modules/schema/views/EditSchema";
+import ModSchema from "../modules/remind/packages/schema/main";
+import EditSchema from "../modules/remind/packages/schema/views/EditSchema";
 
-import ModRecord from "../modules/remind/modules/record/main";
-import EditRecord from "../modules/remind/modules/record/views/EditRecord";
-import ViewRecord from "../modules/remind/modules/record/views/ViewRecord";
+import ModRecord from "../modules/remind/packages/record/main";
+import EditRecord from "../modules/remind/packages/record/views/EditRecord";
+import ViewRecord from "../modules/remind/packages/record/views/ViewRecord";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {

@@ -1,15 +1,22 @@
 import React from "react";
-import { MarkdownSchema } from "../../../../../packages/form/models/text/Markdown";
+import { InputSchema } from "../../../../../modules/form/models/input/Input";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
-export function Markdown({ update, element, columns = 2 }) {
+export function Input({ update, element, columns = 2 }) {
+	const { as } = element;
+	const inputSchema = InputSchema[ as ];
+
 	const handleElementUpdate = (id, prop, value) => {
 		update("mergeElementState", id, { [ prop ]: value });
 	};
 
+	if(!inputSchema) {
+		return null;
+	}
+
 	return (
 		<ConfigForm
-			schema={ MarkdownSchema }
+			schema={ inputSchema }
 			element={ element }
 			update={ handleElementUpdate }
 			columns={ columns }
@@ -17,4 +24,4 @@ export function Markdown({ update, element, columns = 2 }) {
 	);
 }
 
-export default Markdown;
+export default Input;

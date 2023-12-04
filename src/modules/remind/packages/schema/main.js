@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { deepClone } from "../../../../util/deepClone";
 
-import Lib from "../../packages/package";
+import Lib from "../../modules/package";
 const { EnumType: EnumElementType, Modules: { TypeModelMap, AsModelMap, Models } } = Lib;
 
 console.log(EnumElementType);

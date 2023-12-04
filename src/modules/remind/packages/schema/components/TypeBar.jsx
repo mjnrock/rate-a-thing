@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsChevronRight, BsChevronUp } from "react-icons/bs";
 
-import Packages from "../../../packages/package";
+import Packages from "../../../modules/package";
 const { EnumType } = Packages;
 
 export const ElementTypeEnums = [

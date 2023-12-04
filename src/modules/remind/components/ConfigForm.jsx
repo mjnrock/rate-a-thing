@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { debounce } from "../../../util/debounce";
 import { ConfigField } from "./ConfigField";
 
-import Packages from "../packages/package";
+import Packages from "../modules/package";
 const { EnumType } = Packages;
 
 export function ConfigForm({ schema, element, update, columns = 2, children, ...props }) {

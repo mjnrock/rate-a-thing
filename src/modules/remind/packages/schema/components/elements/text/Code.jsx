@@ -1,22 +1,15 @@
 import React from "react";
-import { InputSchema } from "../../../../../packages/form/models/input/Input";
+import { CodeSchema } from "../../../../../modules/form/models/text/Code";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
-export function Input({ update, element, columns = 2 }) {
-	const { as } = element;
-	const inputSchema = InputSchema[ as ];
-
+export function Code({ update, element, columns = 2 }) {
 	const handleElementUpdate = (id, prop, value) => {
 		update("mergeElementState", id, { [ prop ]: value });
 	};
 
-	if(!inputSchema) {
-		return null;
-	}
-
 	return (
 		<ConfigForm
-			schema={ inputSchema }
+			schema={ CodeSchema }
 			element={ element }
 			update={ handleElementUpdate }
 			columns={ columns }
@@ -24,4 +17,4 @@ export function Input({ update, element, columns = 2 }) {
 	);
 }
 
-export default Input;
+export default Code;

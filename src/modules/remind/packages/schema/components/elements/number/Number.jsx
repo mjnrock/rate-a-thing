@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberSchema } from "../../../../../packages/element/models/number/Number";
+import { NumberSchema } from "../../../../../modules/element/models/number/Number";
 import { ConfigForm } from "../../../../../components/ConfigForm";
 
 export function Number({ update, element, columns = 2 }) {

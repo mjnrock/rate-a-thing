@@ -2,7 +2,7 @@ import React from "react";
 import { BsStar, BsCircle, BsSquare, BsCircleFill, BsSquareFill, BsStarFill } from "react-icons/bs";
 
 import { ConfigForm } from "../../../../../components/ConfigForm";
-import { RangeSchema } from "../../../../../packages/form/models/rating/Range";
+import { RangeSchema } from "../../../../../modules/form/models/rating/Range";
 
 
 export function Range({ update, element }) {

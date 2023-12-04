@@ -4,7 +4,7 @@ import ElementGroup from "../components/ElementGroup";
 
 import Elements from "../components/elements/package";
 
-import Packages from "../../../packages/package";
+import Packages from "../../../modules/package";
 const { EnumType, EnumAs } = Packages;
 
 export const TypeComponentMap = {
