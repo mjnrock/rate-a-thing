@@ -1,5 +1,5 @@
-import ElementGroup from "../write/component/ElementGroup";
-import Elements from "../write/component/elements/package";
+import ElementGroup from "../write/components/ElementGroup";
+import Elements from "../write/components/elements/package";
 
 import Modules from "../../../../modules/package";
 const { EnumType, EnumAs } = Modules;

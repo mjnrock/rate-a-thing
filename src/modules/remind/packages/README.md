@@ -5,9 +5,11 @@ A `Package` represents the *visualization* of a `Module` or a collection of `Mod
 ```
 /packages
   /NAME
+	<!-- The package-level JSX -->
     main.js
     /components
     /views
+
     <!-- The UI for the 4 Core Modes -->
     /record
       /read
