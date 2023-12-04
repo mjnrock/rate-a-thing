@@ -7,8 +7,8 @@ import ModSchema from "../modules/remind/packages/default/schema/main";
 import EditSchema from "../modules/remind/packages/default/schema/views/EditSchema";
 
 import ModRecord from "../modules/remind/packages/default/record/main";
-import EditRecord from "../modules/remind/packages/default/record/views/EditRecord";
-import ViewRecord from "../modules/remind/packages/default/record/views/ViewRecord";
+import EditRecord from "../modules/remind/packages/default/record/write/views/EditRecord";
+import ViewRecord from "../modules/remind/packages/default/record/read/views/ViewRecord";
 
 const Nodes = Chord.Node.Node.CreateMany({
 	schema: {

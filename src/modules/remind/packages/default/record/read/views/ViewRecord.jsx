@@ -1,7 +1,7 @@
-import ElementGroup from "../write/components/ElementGroup";
-import Elements from "../write/components/elements/package";
+import ElementGroup from "../components/ElementGroup";
+import Elements from "../components/elements/package";
 
-import Modules from "../../../../modules/package";
+import Modules from "../../../../../modules/package";
 const { EnumType, EnumAs } = Modules;
 
 export const TypeComponentMap = {
@@ -20,7 +20,7 @@ export const AsComponentMap = {
 	},
 };
 
-export function EditRecord({ update, data }) {
+export function ViewRecord({ update, data }) {
 	const { recordDispatch } = update;
 	const { schemaState, recordState } = data;
 
@@ -37,4 +37,4 @@ export function EditRecord({ update, data }) {
 	);
 };
 
-export default EditRecord;
+export default ViewRecord;
