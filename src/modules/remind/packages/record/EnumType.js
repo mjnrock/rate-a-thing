@@ -1,4 +1,4 @@
-import { EnumElementType } from "../element/EnumElementType";
+import { EnumElementType } from "../element/EnumType";
 
 export const EnumRecordType = {};
 

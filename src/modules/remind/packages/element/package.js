@@ -1,4 +1,4 @@
-import { EnumElementType, EnumElementAs } from "./EnumElementType";
+import { EnumElementType, EnumElementAs } from "./EnumType";
 
 import Element from "./models/Element";
 

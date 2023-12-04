@@ -1,4 +1,4 @@
-import { EnumElementType } from "../../EnumElementType";
+import { EnumElementType } from "../../EnumType";
 import Element from "../Element";
 
 export const ObjectState = ({ ...rest } = {}) => {

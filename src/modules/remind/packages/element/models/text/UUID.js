@@ -1,5 +1,5 @@
 import { v4 as uuid, validate } from "uuid";
-import { EnumElementType, EnumElementAs } from "../../EnumElementType";
+import { EnumElementType, EnumElementAs } from "../../EnumType";
 import Text from "./Text";
 
 export const UUIDSchema = {

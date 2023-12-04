@@ -1,4 +1,4 @@
-import { EnumElementType } from "./EnumElementType";
+import { EnumElementType } from "./EnumType";
 
 export const deserialize = (json, map) => {
 	if(Array.isArray(json)) {

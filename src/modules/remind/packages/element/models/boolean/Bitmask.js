@@ -1,4 +1,4 @@
-import { EnumElementType, EnumElementAs } from "../../EnumElementType";
+import { EnumElementType, EnumElementAs } from "../../EnumType";
 import Boolean from "./Boolean";
 
 export const BitmaskState = ({ ...rest } = {}) => {

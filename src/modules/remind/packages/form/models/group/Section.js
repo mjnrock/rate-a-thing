@@ -1,5 +1,5 @@
-import { EnumElementType } from "../../../element/EnumElementType";
-import { EnumFormAs } from "../../EnumFormType";
+import { EnumElementType } from "../../../element/EnumType";
+import { EnumFormAs } from "../../EnumType";
 
 import Form from "./Form";
 

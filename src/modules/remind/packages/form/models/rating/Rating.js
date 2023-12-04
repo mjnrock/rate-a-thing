@@ -1,4 +1,4 @@
-import { EnumFormType } from "../../EnumFormType";
+import { EnumFormType } from "../../EnumType";
 
 import Element from "../../../element/models/Element";
 

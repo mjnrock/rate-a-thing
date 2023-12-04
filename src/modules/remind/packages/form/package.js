@@ -1,6 +1,6 @@
 import LibElement from "../element/package";
 
-import { EnumFormType, EnumFormAs } from "./EnumFormType";
+import { EnumFormType, EnumFormAs } from "./EnumType";
 
 import Input from "./models/input/Input";
 

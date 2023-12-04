@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { EnumElementType } from "../EnumElementType";
+import { EnumElementType } from "../EnumType";
 
 export const copyElement = (element) => {
 	// Create a deep copy of the element

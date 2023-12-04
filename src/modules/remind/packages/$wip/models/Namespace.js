@@ -1,4 +1,6 @@
-import { EnumElementType, EnumFormElementType } from "../EnumElementType";
+//TODO: Convert over to package/module format
+
+import { EnumElementType, EnumFormElementType } from "../EnumType";
 import Group from "../group/Group";
 
 export const NamespaceState = ({ ...rest } = {}) => {
